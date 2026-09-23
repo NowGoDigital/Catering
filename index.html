@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Royal Banquet | Premium Catering</title>
+    <title>The Royal Banquet | High-End Catering</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,20 +16,18 @@
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     
-    <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'royal-green': '#0f3d2e', // Deep Emerald
-                        'royal-green-light': '#1a5c46',
-                        'royal-gold': '#d4af37',   // Classic Gold
-                        'royal-gold-dim': '#aa8c2c',
-                        'cream': '#f9f7f2'
+                        'royal-green': '#0f3d2e',
+                        'royal-gold': '#c5a059',
+                        'cream': '#f9f7f2',
+                        'charcoal': '#1a1a1a'
                     },
                     fontFamily: {
                         serif: ['"Cormorant Garamond"', 'serif'],
@@ -41,161 +39,160 @@
     </script>
 
     <style>
-        body { background-color: #f9f7f2; color: #0f3d2e; overflow-x: hidden; }
+        body { background-color: #f9f7f2; color: #0f3d2e; }
         
-        /* Smooth Text Rendering */
-        .text-shadow-sm { text-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+        /* Elegant Card Hover */
+        .menu-card:hover .card-img { transform: scale(1.05); filter: brightness(0.9); }
+        .menu-card:hover .card-title { color: #c5a059; }
         
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f9f7f2; }
-        ::-webkit-scrollbar-thumb { background: #0f3d2e; border-radius: 4px; }
-
-        /* Hero Slider Transition */
-        .slide-active { opacity: 1; transform: scale(1.05); }
-        .slide-hidden { opacity: 0; transform: scale(1); }
-        
-        /* Card Hover Effect */
-        .menu-card:hover .card-img { transform: scale(1.1); }
-        .menu-card:hover { border-color: #d4af37; box-shadow: 0 10px 30px -10px rgba(15, 61, 46, 0.15); }
+        /* Map Grayscale Filter */
+        .map-grayscale iframe { filter: grayscale(100%) invert(90%) contrast(85%); transition: filter 0.5s; }
+        .map-grayscale:hover iframe { filter: none; }
     </style>
 </head>
 <body class="font-sans antialiased selection:bg-royal-gold selection:text-white">
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-cream/90 backdrop-blur-md border-b border-royal-green/10 transition-all duration-300 py-4">
+    <!-- TOP BAR: Information Strip -->
+    <div class="bg-royal-green text-white/80 py-2 text-[10px] md:text-xs uppercase tracking-widest border-b border-white/10">
         <div class="max-w-[1600px] mx-auto px-6 flex justify-between items-center">
+            <div class="flex gap-6">
+                <span class="flex items-center gap-2"><i data-lucide="phone" class="w-3 h-3 text-royal-gold"></i> +62 21 555 0199</span>
+                <span class="hidden md:flex items-center gap-2"><i data-lucide="mail" class="w-3 h-3 text-royal-gold"></i> concierge@royalbanquet.id</span>
+            </div>
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-royal-gold transition">Instagram</a>
+                <span class="text-white/20">|</span>
+                <a href="#" class="hover:text-royal-gold transition">LinkedIn</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVBAR: Floating & Elegant -->
+    <nav class="sticky top-0 z-50 bg-cream/95 backdrop-blur-md border-b border-royal-green/5 py-5 transition-all duration-300">
+        <div class="max-w-[1600px] mx-auto px-6 flex justify-between items-center">
+            <!-- Logo Centered on Mobile, Left on Desktop -->
             <a href="#" class="text-3xl font-serif font-bold text-royal-green tracking-tighter">Royal<span class="text-royal-gold">.</span></a>
             
-            <div class="hidden md:flex space-x-10 text-xs uppercase tracking-[0.2em] font-medium text-royal-green/80">
-                <a href="#home" class="hover:text-royal-gold transition">Beranda</a>
-                <a href="#menu" class="hover:text-royal-gold transition">Menu</a>
-                <a href="#events" class="hover:text-royal-gold transition">Acara</a>
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex items-center gap-12">
+                <a href="#home" class="text-xs uppercase tracking-[0.2em] font-medium text-royal-green hover:text-royal-gold transition relative group">
+                    Beranda
+                    <span class="absolute -bottom-2 left-0 w-0 h-0.5 bg-royal-gold transition-all group-hover:w-full"></span>
+                </a>
+                <a href="#menu" class="text-xs uppercase tracking-[0.2em] font-medium text-royal-green hover:text-royal-gold transition relative group">
+                    Koleksi Menu
+                    <span class="absolute -bottom-2 left-0 w-0 h-0.5 bg-royal-gold transition-all group-hover:w-full"></span>
+                </a>
+                <a href="#events" class="text-xs uppercase tracking-[0.2em] font-medium text-royal-green hover:text-royal-gold transition relative group">
+                    Rancang Acara
+                    <span class="absolute -bottom-2 left-0 w-0 h-0.5 bg-royal-gold transition-all group-hover:w-full"></span>
+                </a>
             </div>
 
-            <a href="#contact" class="px-6 py-2 bg-royal-green text-white text-xs uppercase tracking-widest hover:bg-royal-gold transition duration-300">Reservasi</a>
+            <!-- CTA Button -->
+            <a href="#contact" class="hidden md:block px-8 py-3 bg-royal-green text-white text-[10px] uppercase tracking-[0.2em] hover:bg-royal-gold transition duration-500 shadow-lg">
+                Reservasi VIP
+            </a>
         </div>
     </nav>
 
-    <!-- HERO SECTION: Slider with Gradient Overlay -->
-    <section id="home" class="relative h-screen w-full overflow-hidden bg-royal-green" 
-             x-data="heroSlider()" x-init="startTimer()">
-        
-        <!-- Slides -->
+    <!-- HERO SECTION: Slider -->
+    <section id="home" class="relative h-[85vh] w-full overflow-hidden bg-royal-green" x-data="heroSlider()" x-init="startTimer()">
         <template x-for="(slide, index) in slides" :key="index">
-            <div class="absolute inset-0 transition-all duration-1000 ease-in-out"
-                 :class="activeSlide === index ? 'slide-active z-10' : 'slide-hidden z-0'">
-                
-                <!-- Image -->
+            <div class="absolute inset-0 transition-all duration-1000 ease-in-out" :class="activeSlide === index ? 'opacity-100 z-10 scale-105' : 'opacity-0 z-0 scale-100'">
                 <img :src="slide.img" class="w-full h-full object-cover" alt="Luxury Event">
-                
-                <!-- Gradient Overlay (Green to Transparent) -->
                 <div class="absolute inset-0 bg-gradient-to-r from-royal-green/90 via-royal-green/40 to-transparent"></div>
             </div>
         </template>
 
-        <!-- Content -->
         <div class="absolute inset-0 z-20 flex items-center px-6 md:px-20">
             <div class="max-w-3xl text-white">
-                <p class="text-royal-gold text-xs md:text-sm uppercase tracking-[0.4em] mb-6 animate-fade-in-up">Exquisite Catering Service</p>
-                <h1 class="text-5xl md:text-8xl font-serif font-light leading-none mb-8 animate-fade-in-up delay-100">
+                <p class="text-royal-gold text-xs md:text-sm uppercase tracking-[0.4em] mb-6">Exquisite Catering Service</p>
+                <h1 class="text-5xl md:text-7xl font-serif font-light leading-none mb-6">
                     Cita Rasa <br> <span class="italic text-royal-gold font-normal">Kemewahan</span>
                 </h1>
-                <p class="text-white/80 font-light text-lg md:text-xl max-w-lg mb-10 leading-relaxed animate-fade-in-up delay-200">
+                <p class="text-white/80 font-light text-lg max-w-lg mb-8 leading-relaxed">
                     Menghadirkan pengalaman bersantap tak terlupakan dengan sentuhan elegan untuk momen paling berharga dalam hidup Anda.
                 </p>
-                <a href="#menu" class="inline-block px-10 py-4 border border-white text-white text-xs uppercase tracking-widest hover:bg-white hover:text-royal-green transition duration-500 animate-fade-in-up delay-300">
+                <a href="#menu" class="inline-block px-10 py-4 border border-white text-white text-xs uppercase tracking-widest hover:bg-white hover:text-royal-green transition duration-500">
                     Jelajahi Menu
                 </a>
             </div>
         </div>
-
-        <!-- Slide Indicators -->
-        <div class="absolute bottom-12 left-6 md:left-20 z-30 flex gap-4">
-            <template x-for="(slide, index) in slides" :key="index">
-                <button @click="setSlide(index)" 
-                        class="h-1 rounded-full transition-all duration-500"
-                        :class="activeSlide === index ? 'w-12 bg-royal-gold' : 'w-6 bg-white/30 hover:bg-white/60'">
-                </button>
-            </template>
-        </div>
     </section>
 
-    <!-- MENU SECTION: 4 Columns Desktop, 2 Columns Mobile -->
-    <section id="menu" class="py-24 bg-cream relative">
+    <!-- MENU SECTION: Elegant Magazine Cards -->
+    <section id="menu" class="py-16 bg-cream"> <!-- Padding dirapatkan -->
         <div class="max-w-[1600px] mx-auto px-6">
             
-            <!-- Header -->
-            <div class="text-center mb-16">
-                <span class="text-royal-gold text-xs font-bold uppercase tracking-[0.3em]">Our Selection</span>
-                <h2 class="text-4xl md:text-5xl font-serif text-royal-green mt-3 mb-8">Koleksi Menu Istimewa</h2>
-                <div class="w-24 h-px bg-royal-green/20 mx-auto"></div>
+            <div class="flex flex-col md:flex-row justify-between items-end mb-10 border-b border-royal-green/10 pb-4">
+                <div>
+                    <span class="text-royal-gold text-xs font-bold uppercase tracking-[0.3em]">Curated Selection</span>
+                    <h2 class="text-3xl md:text-4xl font-serif text-royal-green mt-2">Koleksi Istimewa</h2>
+                </div>
+                <!-- Filter Tabs Minimalis -->
+                <div class="flex gap-6 mt-4 md:mt-0 text-xs uppercase tracking-widest text-royal-green/60" x-data="{ activeTab: 'all' }">
+                    <button @click="activeTab = 'all'" :class="activeTab === 'all' ? 'text-royal-green border-b-2 border-royal-gold' : ''" class="pb-1 transition">Semua</button>
+                    <button @click="activeTab = 'wedding'" :class="activeTab === 'wedding' ? 'text-royal-green border-b-2 border-royal-gold' : ''" class="pb-1 transition">Pernikahan</button>
+                    <button @click="activeTab = 'corporate'" :class="activeTab === 'corporate' ? 'text-royal-green border-b-2 border-royal-gold' : ''" class="pb-1 transition">Korporat</button>
+                </div>
             </div>
 
-            <!-- Filter Tabs -->
-            <div class="flex justify-center gap-8 mb-12 text-xs uppercase tracking-widest text-royal-green/60" x-data="{ activeTab: 'all' }">
-                <button @click="activeTab = 'all'" :class="activeTab === 'all' ? 'text-royal-green border-b border-royal-green' : 'hover:text-royal-green'" class="pb-1 transition">Semua</button>
-                <button @click="activeTab = 'wedding'" :class="activeTab === 'wedding' ? 'text-royal-green border-b border-royal-green' : 'hover:text-royal-green'" class="pb-1 transition">Pernikahan</button>
-                <button @click="activeTab = 'corporate'" :class="activeTab === 'corporate' ? 'text-royal-green border-b border-royal-green' : 'hover:text-royal-green'" class="pb-1 transition">Korporat</button>
-            </div>
-
-            <!-- GRID: 2 cols on mobile, 4 cols on desktop -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+            <!-- Grid: 2 Mobile, 4 Desktop -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                 
                 <!-- Card 1 -->
-                <div class="menu-card group bg-white border border-gray-100 p-3 cursor-pointer transition-all duration-300" x-show="true">
-                    <div class="overflow-hidden aspect-[3/4] mb-4 relative">
+                <div class="menu-card group cursor-pointer bg-white p-3 border border-transparent hover:border-royal-gold/30 transition-all duration-300">
+                    <div class="overflow-hidden aspect-[4/5] mb-4 relative">
                         <img src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&q=80&w=500" class="card-img w-full h-full object-cover transition duration-700" alt="Food">
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur px-2 py-1 text-[10px] uppercase tracking-wide font-bold text-royal-green">Best</div>
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-500">
+                            <span class="text-white text-[10px] uppercase tracking-widest">Lihat Detail</span>
+                        </div>
                     </div>
-                    <h3 class="font-serif text-lg text-royal-green leading-tight mb-1 group-hover:text-royal-gold transition">Lobster Thermidor</h3>
-                    <p class="text-[10px] text-gray-500 uppercase tracking-wide mb-2">Seafood Collection</p>
-                    <p class="text-xs text-gray-600 font-light line-clamp-2 leading-relaxed">Lobster segar dipanggang dengan saus krim cognac dan keju gruyere.</p>
-                    <div class="mt-3 pt-3 border-t border-gray-100 flex justify-between items-center">
+                    <h3 class="card-title font-serif text-xl text-royal-green leading-tight mb-1 transition duration-300">Lobster Thermidor</h3>
+                    <p class="text-[10px] text-gray-500 uppercase tracking-wide mb-2">Signature Seafood</p>
+                    <div class="flex justify-between items-center pt-2 border-t border-gray-100">
                         <span class="text-royal-gold font-medium text-sm">IDR 185k</span>
-                        <span class="text-[10px] text-royal-green underline decoration-royal-gold">Detail</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 text-royal-green/30 group-hover:text-royal-gold transition"></i>
                     </div>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="menu-card group bg-white border border-gray-100 p-3 cursor-pointer transition-all duration-300">
-                    <div class="overflow-hidden aspect-[3/4] mb-4 relative">
+                <div class="menu-card group cursor-pointer bg-white p-3 border border-transparent hover:border-royal-gold/30 transition-all duration-300">
+                    <div class="overflow-hidden aspect-[4/5] mb-4 relative">
                         <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=500" class="card-img w-full h-full object-cover transition duration-700" alt="Food">
                     </div>
-                    <h3 class="font-serif text-lg text-royal-green leading-tight mb-1 group-hover:text-royal-gold transition">Wagyu Ribeye</h3>
-                    <p class="text-[10px] text-gray-500 uppercase tracking-wide mb-2">Main Course</p>
-                    <p class="text-xs text-gray-600 font-light line-clamp-2 leading-relaxed">Daging sapi Wagyu A5 dengan truffle mashed potato dan asparagus.</p>
-                    <div class="mt-3 pt-3 border-t border-gray-100 flex justify-between items-center">
+                    <h3 class="card-title font-serif text-xl text-royal-green leading-tight mb-1 transition duration-300">Wagyu Ribeye A5</h3>
+                    <p class="text-[10px] text-gray-500 uppercase tracking-wide mb-2">Premium Meat</p>
+                    <div class="flex justify-between items-center pt-2 border-t border-gray-100">
                         <span class="text-royal-gold font-medium text-sm">IDR 250k</span>
-                        <span class="text-[10px] text-royal-green underline decoration-royal-gold">Detail</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 text-royal-green/30 group-hover:text-royal-gold transition"></i>
                     </div>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="menu-card group bg-white border border-gray-100 p-3 cursor-pointer transition-all duration-300">
-                    <div class="overflow-hidden aspect-[3/4] mb-4 relative">
+                <div class="menu-card group cursor-pointer bg-white p-3 border border-transparent hover:border-royal-gold/30 transition-all duration-300">
+                    <div class="overflow-hidden aspect-[4/5] mb-4 relative">
                         <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=500" class="card-img w-full h-full object-cover transition duration-700" alt="Food">
                     </div>
-                    <h3 class="font-serif text-lg text-royal-green leading-tight mb-1 group-hover:text-royal-gold transition">Organic Salad</h3>
-                    <p class="text-[10px] text-gray-500 uppercase tracking-wide mb-2">Appetizer</p>
-                    <p class="text-xs text-gray-600 font-light line-clamp-2 leading-relaxed">Sayuran hidroponik segar dengan dressing balsamic dan buah berry.</p>
-                    <div class="mt-3 pt-3 border-t border-gray-100 flex justify-between items-center">
+                    <h3 class="card-title font-serif text-xl text-royal-green leading-tight mb-1 transition duration-300">Organic Garden</h3>
+                    <p class="text-[10px] text-gray-500 uppercase tracking-wide mb-2">Healthy Start</p>
+                    <div class="flex justify-between items-center pt-2 border-t border-gray-100">
                         <span class="text-royal-gold font-medium text-sm">IDR 65k</span>
-                        <span class="text-[10px] text-royal-green underline decoration-royal-gold">Detail</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 text-royal-green/30 group-hover:text-royal-gold transition"></i>
                     </div>
                 </div>
 
                 <!-- Card 4 -->
-                <div class="menu-card group bg-white border border-gray-100 p-3 cursor-pointer transition-all duration-300">
-                    <div class="overflow-hidden aspect-[3/4] mb-4 relative">
+                <div class="menu-card group cursor-pointer bg-white p-3 border border-transparent hover:border-royal-gold/30 transition-all duration-300">
+                    <div class="overflow-hidden aspect-[4/5] mb-4 relative">
                         <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&q=80&w=500" class="card-img w-full h-full object-cover transition duration-700" alt="Food">
                     </div>
-                    <h3 class="font-serif text-lg text-royal-green leading-tight mb-1 group-hover:text-royal-gold transition">Scallops Platter</h3>
-                    <p class="text-[10px] text-gray-500 uppercase tracking-wide mb-2">Seafood Collection</p>
-                    <p class="text-xs text-gray-600 font-light line-clamp-2 leading-relaxed">Kerang laut premium dengan saus lemon butter dan kaviar hitam.</p>
-                    <div class="mt-3 pt-3 border-t border-gray-100 flex justify-between items-center">
+                    <h3 class="card-title font-serif text-xl text-royal-green leading-tight mb-1 transition duration-300">Scallops Platter</h3>
+                    <p class="text-[10px] text-gray-500 uppercase tracking-wide mb-2">Signature Seafood</p>
+                    <div class="flex justify-between items-center pt-2 border-t border-gray-100">
                         <span class="text-royal-gold font-medium text-sm">IDR 120k</span>
-                        <span class="text-[10px] text-royal-green underline decoration-royal-gold">Detail</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 text-royal-green/30 group-hover:text-royal-gold transition"></i>
                     </div>
                 </div>
 
@@ -203,84 +200,106 @@
         </div>
     </section>
 
-    <!-- FULL WIDTH CALCULATOR SECTION -->
-    <section id="events" class="w-full bg-royal-green text-white relative overflow-hidden py-24">
-        <!-- Background Pattern/Gradient -->
+    <!-- FULL WIDTH CALCULATOR -->
+    <section id="events" class="w-full bg-royal-green text-white relative overflow-hidden py-16"> <!-- Padding dirapatkan -->
         <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
-        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-royal-green via-royal-green to-black/40"></div>
-
-        <div class="relative z-10 max-w-[1600px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            
-            <!-- Text Side -->
-            <div class="space-y-6">
-                <h2 class="text-4xl md:text-6xl font-serif leading-tight">Rancang Acara <br><span class="text-royal-gold italic">Impian Anda</span></h2>
-                <p class="text-white/70 font-light text-lg max-w-md leading-relaxed">
-                    Dapatkan estimasi biaya awal secara instan. Transparansi harga adalah komitmen kami untuk kenyamanan Anda.
+        
+        <div class="relative z-10 max-w-[1600px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-4">
+                <h2 class="text-4xl md:text-5xl font-serif leading-tight">Rancang Acara <br><span class="text-royal-gold italic">Impian Anda</span></h2>
+                <p class="text-white/70 font-light text-base max-w-md leading-relaxed">
+                    Dapatkan estimasi biaya awal secara instan. Transparansi harga adalah komitmen kami.
                 </p>
-                <ul class="space-y-3 text-sm text-white/60 font-light mt-8">
-                    <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-royal-gold rounded-full"></span> Bahan baku premium pilihan</li>
-                    <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-royal-gold rounded-full"></span> Chef berpengalaman internasional</li>
-                    <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-royal-gold rounded-full"></span> Layanan purna jual eksklusif</li>
-                </ul>
             </div>
 
-            <!-- Calculator Box -->
-            <div class="bg-white/5 backdrop-blur-xl border border-white/10 p-8 md:p-12 rounded-sm shadow-2xl" x-data="{ pax: 50, type: 'wedding', rate: 250000 }">
-                <div class="space-y-8">
-                    
-                    <!-- Pax Slider -->
-                    <div>
-                        <label class="flex justify-between text-xs uppercase tracking-widest text-royal-gold mb-4">
-                            <span>Jumlah Tamu</span>
-                            <span class="text-white font-bold text-lg" x-text="pax + ' Orang'"></span>
-                        </label>
-                        <input type="range" min="20" max="500" step="10" x-model="pax" 
-                               class="w-full h-1 bg-white/20 rounded-lg appearance-none cursor-pointer accent-royal-gold hover:accent-white transition">
-                    </div>
-
-                    <!-- Type Selection -->
-                    <div>
-                        <label class="block text-xs uppercase tracking-widest text-royal-gold mb-4">Jenis Paket</label>
-                        <div class="grid grid-cols-3 gap-4">
-                            <button @click="type = 'wedding'; rate = 250000" :class="type === 'wedding' ? 'bg-royal-gold text-royal-green border-royal-gold' : 'border-white/20 text-white hover:border-white'" class="py-3 text-xs uppercase tracking-wide border transition rounded-sm">Wedding</button>
-                            <button @click="type = 'corporate'; rate = 150000" :class="type === 'corporate' ? 'bg-royal-gold text-royal-green border-royal-gold' : 'border-white/20 text-white hover:border-white'" class="py-3 text-xs uppercase tracking-wide border transition rounded-sm">Korporat</button>
-                            <button @click="type = 'private'; rate = 400000" :class="type === 'private' ? 'bg-royal-gold text-royal-green border-royal-gold' : 'border-white/20 text-white hover:border-white'" class="py-3 text-xs uppercase tracking-wide border transition rounded-sm">Private</button>
-                        </div>
-                    </div>
-
-                    <!-- Result -->
-                    <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-end gap-6">
+            <div class="bg-white/5 backdrop-blur-xl border border-white/10 p-6 md:p-8 rounded-sm" x-data="{ pax: 50, type: 'wedding', rate: 250000 }">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-6">
                         <div>
-                            <p class="text-xs uppercase tracking-widest text-white/40 mb-1">Estimasi Total</p>
-                            <p class="text-3xl md:text-4xl font-serif text-white" x-text="'IDR ' + (pax * rate).toLocaleString('id-ID')"></p>
+                            <label class="flex justify-between text-[10px] uppercase tracking-widest text-royal-gold mb-2">
+                                Jumlah Tamu <span x-text="pax + ' Pax'"></span>
+                            </label>
+                            <input type="range" min="20" max="500" step="10" x-model="pax" class="w-full h-1 bg-white/20 rounded-lg appearance-none cursor-pointer accent-royal-gold">
                         </div>
-                        <a href="https://wa.me/" class="px-8 py-4 bg-royal-gold text-royal-green font-bold uppercase tracking-widest text-xs hover:bg-white transition duration-300 shadow-lg w-full md:w-auto text-center">
-                            Konsultasi Sekarang
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-widest text-royal-gold mb-3">Jenis Paket</label>
+                            <div class="flex gap-2">
+                                <button @click="type = 'wedding'; rate = 250000" :class="type === 'wedding' ? 'bg-royal-gold text-royal-green' : 'border border-white/20 text-white'" class="flex-1 py-2 text-[10px] uppercase tracking-wide transition">Wedding</button>
+                                <button @click="type = 'corporate'; rate = 150000" :class="type === 'corporate' ? 'bg-royal-gold text-royal-green' : 'border border-white/20 text-white'" class="flex-1 py-2 text-[10px] uppercase tracking-wide transition">Korporat</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col justify-center items-center border-l border-white/10 pl-0 md:pl-8">
+                        <p class="text-[10px] uppercase tracking-widest text-white/40 mb-1">Estimasi Total</p>
+                        <p class="text-3xl font-serif text-white mb-4" x-text="'IDR ' + (pax * rate).toLocaleString('id-ID')"></p>
+                        <a href="https://wa.me/" class="w-full py-3 bg-royal-gold text-royal-green font-bold uppercase tracking-widest text-[10px] hover:bg-white transition duration-300 text-center">
+                            Konsultasi
                         </a>
                     </div>
-
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="bg-royal-green text-white py-16 border-t border-white/5">
-        <div class="max-w-[1600px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-2xl font-serif font-bold tracking-tighter">Royal<span class="text-royal-gold">.</span></div>
-            <div class="text-xs text-white/40 uppercase tracking-widest">
-                &copy; 2026 The Royal Banquet. All Rights Reserved.
+    <!-- FOOTER: Classy & Functional -->
+    <footer id="contact" class="bg-charcoal text-white pt-16 pb-8 border-t-4 border-royal-gold">
+        <div class="max-w-[1600px] mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                
+                <!-- Brand -->
+                <div class="space-y-6">
+                    <a href="#" class="text-3xl font-serif font-bold tracking-tighter">Royal<span class="text-royal-gold">.</span></a>
+                    <p class="text-white/50 text-sm leading-relaxed font-light">
+                        Mendefinisikan ulang standar katering premium dengan integritas, rasa, dan pelayanan yang tak tertandingi.
+                    </p>
+                </div>
+
+                <!-- Navigation -->
+                <div>
+                    <h4 class="text-royal-gold text-xs uppercase tracking-widest mb-6">Navigasi</h4>
+                    <ul class="space-y-3 text-sm text-white/60 font-light">
+                        <li><a href="#home" class="hover:text-white transition">Beranda</a></li>
+                        <li><a href="#menu" class="hover:text-white transition">Koleksi Menu</a></li>
+                        <li><a href="#events" class="hover:text-white transition">Rancang Acara</a></li>
+                        <li><a href="#" class="hover:text-white transition">Karir</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-royal-gold text-xs uppercase tracking-widest mb-6">Kontak</h4>
+                    <ul class="space-y-3 text-sm text-white/60 font-light">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-royal-gold mt-1"></i>
+                            <span>Jl. Senopati No. 88,<br>Jakarta Selatan, 12190</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="phone" class="w-4 h-4 text-royal-gold"></i>
+                            <span>+62 21 555 0199</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Map -->
+                <div class="h-40 w-full map-grayscale rounded-sm overflow-hidden border border-white/10">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3966.666427006446!2d106.8068887!3d-6.2297469!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f15a6b0b0b0b%3A0x0!2zNsKwMTMnNDUuMSJTIDEwNsKwNDgnMjQuOCJF!5e0!3m2!1sen!2sid!4v1600000000000!5m2!1sen!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
             </div>
-            <div class="flex gap-6">
-                <a href="#" class="text-white/60 hover:text-royal-gold transition">Instagram</a>
-                <a href="#" class="text-white/60 hover:text-royal-gold transition">WhatsApp</a>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-[10px] text-white/30 uppercase tracking-widest">&copy; 2026 The Royal Banquet. All Rights Reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="text-white/30 hover:text-royal-gold transition"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                    <a href="#" class="text-white/30 hover:text-royal-gold transition"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+                </div>
             </div>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script>
-        // Hero Slider Logic
+        lucide.createIcons();
+
         function heroSlider() {
             return {
                 activeSlide: 0,
@@ -293,29 +312,9 @@
                     setInterval(() => {
                         this.activeSlide = (this.activeSlide + 1) % this.slides.length;
                     }, 5000);
-                },
-                setSlide(index) {
-                    this.activeSlide = index;
                 }
             }
         }
-
-        // GSAP Animations
-        gsap.registerPlugin(ScrollTrigger);
-        
-        // Fade Up Elements
-        gsap.utils.toArray('.animate-fade-in-up').forEach(element => {
-            gsap.from(element, {
-                y: 50,
-                opacity: 0,
-                duration: 1,
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: element,
-                    start: "top 85%"
-                }
-            });
-        });
     </script>
 </body>
 </html>
