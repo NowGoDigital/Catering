@@ -1,224 +1,291 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lumière Catering | Premium Service</title>
+    <title>LUMIÈRE | Culinary Artistry</title>
     
-    <!-- Fonts: Playfair Display (Judul) & Lato (Isi) -->
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- Fonts: Cinzel (Luxury Serif) & Manrope (Modern Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Manrope:wght@200;300;400&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- GSAP for Smooth Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'mewah-black': '#1a1a1a',
-                        'mewah-gold': '#c5a059',
-                        'mewah-bg': '#fcfcfc',
-                        'mewah-gray': '#f4f4f4'
+                        'obsidian': '#050505',
+                        'charcoal': '#121212',
+                        'antique-gold': '#D4AF37',
+                        'mist': '#E5E5E5'
                     },
                     fontFamily: {
-                        serif: ['"Playfair Display"', 'serif'],
-                        sans: ['"Lato"', 'sans-serif'],
+                        display: ['"Cinzel"', 'serif'],
+                        body: ['"Manrope"', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
-    
+
     <style>
-        body { background-color: #fcfcfc; color: #1a1a1a; }
-        .smooth-transition { transition: all 0.4s ease-in-out; }
-        /* Efek Hover Card Mewah */
-        .menu-card:hover img { transform: scale(1.03); }
-        .menu-card:hover { box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1); border-color: #c5a059; }
+        /* Luxury Base Styles */
+        body { background-color: #050505; color: #E5E5E5; cursor: none; /* Custom cursor logic below */ }
+        
+        /* Custom Cursor */
+        .cursor-dot, .cursor-outline {
+            position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
+            border-radius: 50%; z-index: 9999; pointer-events: none;
+        }
+        .cursor-dot { width: 8px; height: 8px; background-color: #D4AF37; }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(212, 175, 55, 0.5); transition: width 0.2s, height 0.2s; }
+        
+        /* Image Parallax Container */
+        .parallax-wrapper { overflow: hidden; position: relative; }
+        .parallax-img { will-change: transform; }
+
+        /* Text Selection */
+        ::selection { background: #D4AF37; color: #000; }
+
+        /* Hide Scrollbar but keep functionality */
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
+        
+        .reveal-text { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); }
     </style>
 </head>
-<body class="font-sans antialiased">
+<body class="font-body antialiased overflow-x-hidden">
 
-    <!-- NAVBAR: Sticky & Clean -->
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 py-4">
-        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-            <div class="text-2xl font-serif font-bold tracking-tight">Lumière.</div>
-            <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest text-gray-600">
-                <a href="#home" class="hover:text-mewah-gold transition">Beranda</a>
-                <a href="#menu" class="hover:text-mewah-gold transition">Menu</a>
-                <a href="#kontak" class="hover:text-mewah-gold transition">Kontak</a>
-            </div>
-            <a href="#kontak" class="px-6 py-2 bg-mewah-black text-white text-xs uppercase tracking-widest hover:bg-mewah-gold transition">Pesan Sekarang</a>
+    <!-- Custom Cursor Elements -->
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-outline hidden md:block"></div>
+
+    <!-- Navigation: Minimalist & Floating -->
+    <nav class="fixed top-0 w-full z-50 px-8 py-8 flex justify-between items-center mix-blend-difference text-white">
+        <a href="#" class="text-2xl font-display tracking-widest font-semibold hover:text-antique-gold transition duration-500">LUMIÈRE</a>
+        <div class="hidden md:flex gap-12 text-xs uppercase tracking-[0.2em] font-light">
+            <a href="#philosophy" class="hover:text-antique-gold transition">Filosofi</a>
+            <a href="#collections" class="hover:text-antique-gold transition">Koleksi</a>
+            <a href="#bespoke" class="hover:text-antique-gold transition">Bespoke</a>
         </div>
+        <button class="border border-white/30 px-6 py-2 text-xs uppercase tracking-widest hover:bg-white hover:text-black transition duration-500">
+            Reservasi
+        </button>
     </nav>
 
-    <!-- HERO SECTION: Split Layout (Text Left, Image Right) -->
-    <section id="home" class="pt-32 pb-20 lg:min-h-screen flex items-center bg-white">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            
-            <!-- Teks -->
-            <div class="order-2 lg:order-1 space-y-8">
-                <span class="text-mewah-gold text-xs font-bold uppercase tracking-[0.2em]">Catering Premium Jakarta</span>
-                <h1 class="text-5xl lg:text-7xl font-serif leading-tight text-mewah-black">
-                    Rasa Autentik <br> <span class="italic text-gray-400">Untuk Momen Istimewa.</span>
-                </h1>
-                <p class="text-gray-600 text-lg font-light leading-relaxed max-w-md">
-                    Kami menghadirkan pengalaman bersantap kelas dunia dengan bahan lokal terbaik. Sempurna untuk pernikahan, acara kantor, dan jamuan pribadi.
+    <!-- HERO SECTION: Immersive & Dark -->
+    <header class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <!-- Background Video/Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=2800&auto=format&fit=crop" 
+                 class="w-full h-full object-cover opacity-40 scale-110" id="hero-bg" alt="Dark Fine Dining">
+            <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian/50"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-5xl">
+            <p class="text-antique-gold text-xs md:text-sm uppercase tracking-[0.5em] mb-6 reveal-item">Est. Jakarta 2026</p>
+            <h1 class="text-5xl md:text-8xl lg:text-9xl font-display text-white leading-none mb-8 reveal-item">
+                SENI RASA <br> <span class="italic font-light text-white/80">YANG ABADI</span>
+            </h1>
+            <div class="w-px h-24 bg-gradient-to-b from-antique-gold to-transparent mx-auto mt-12 reveal-item"></div>
+        </div>
+    </header>
+
+    <!-- PHILOSOPHY: Asymmetrical Layout -->
+    <section id="philosophy" class="py-32 px-6 md:px-20 bg-obsidian relative">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
+            <div class="md:col-span-5 order-2 md:order-1 parallax-wrapper h-[600px]">
+                <img src="https://images.unsplash.com/photo-1556910103-1c02745a30bf?auto=format&fit=crop&q=80&w=1000" 
+                     class="parallax-img w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000 ease-out" alt="Chef Hand">
+            </div>
+            <div class="md:col-span-7 order-1 md:order-2 md:pl-12">
+                <h2 class="text-4xl md:text-6xl font-display text-mist mb-8 leading-tight">
+                    Bukan Sekadar <br> <span class="text-antique-gold italic">Menyajikan.</span>
+                </h2>
+                <p class="text-white/60 font-light text-lg leading-loose max-w-xl mb-10">
+                    Di Lumière, kami percaya bahwa makanan adalah bahasa cinta tertinggi. Setiap piring adalah kanvas, setiap bahan adalah cerita. Kami tidak melayani massa, kami melayani individu yang menghargai kesempurnaan.
                 </p>
-                <div class="flex gap-4 pt-4">
-                    <a href="#menu" class="px-8 py-4 bg-mewah-black text-white text-sm uppercase tracking-widest hover:bg-mewah-gold smooth-transition">Lihat Menu</a>
-                    <a href="#kontak" class="px-8 py-4 border border-gray-300 text-mewah-black text-sm uppercase tracking-widest hover:border-mewah-black smooth-transition">Hubungi Kami</a>
-                </div>
-            </div>
-
-            <!-- Gambar Hero -->
-            <div class="order-1 lg:order-2 relative h-[500px] lg:h-[700px] overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=1000&auto=format&fit=crop" 
-                     class="w-full h-full object-cover" alt="Fine Dining Presentation">
+                <a href="#" class="inline-flex items-center gap-4 text-antique-gold uppercase tracking-widest text-xs group">
+                    <span class="w-12 h-px bg-antique-gold group-hover:w-20 transition-all duration-500"></span>
+                    Baca Cerita Kami
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- MENU SECTION: Elegant Grid Cards -->
-    <section id="menu" class="py-24 bg-mewah-bg" x-data="{ filter: 'all' }">
+    <!-- COLLECTIONS: The "Gallery" Menu -->
+    <section id="collections" class="py-32 bg-charcoal">
         <div class="max-w-7xl mx-auto px-6">
-            
-            <!-- Judul Section -->
-            <div class="text-center mb-16 space-y-4">
-                <h2 class="text-4xl font-serif text-mewah-black">Koleksi Menu Kami</h2>
-                <div class="w-20 h-0.5 bg-mewah-gold mx-auto"></div>
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 border-b border-white/10 pb-8">
+                <h2 class="text-4xl font-display text-white">Karya Kuliner</h2>
                 
-                <!-- Filter Simpel -->
-                <div class="flex justify-center gap-8 mt-8 text-sm uppercase tracking-widest text-gray-500">
-                    <button @click="filter = 'all'" :class="filter === 'all' ? 'text-mewah-black border-b-2 border-mewah-gold' : ''" class="pb-1 transition">Semua</button>
-                    <button @click="filter = 'wedding'" :class="filter === 'wedding' ? 'text-mewah-black border-b-2 border-mewah-gold' : ''" class="pb-1 transition">Pernikahan</button>
-                    <button @click="filter = 'corporate'" :class="filter === 'corporate' ? 'text-mewah-black border-b-2 border-mewah-gold' : ''" class="pb-1 transition">Korporat</button>
+                <!-- Minimal Tabs -->
+                <div class="flex gap-8 mt-6 md:mt-0" x-data="{ active: 'signature' }">
+                    <button @click="active = 'signature'" :class="active === 'signature' ? 'text-antique-gold' : 'text-white/40 hover:text-white'" class="text-xs uppercase tracking-widest pb-1 transition">Signature</button>
+                    <button @click="active = 'wedding'" :class="active === 'wedding' ? 'text-antique-gold' : 'text-white/40 hover:text-white'" class="text-xs uppercase tracking-widest pb-1 transition">Wedding</button>
+                    <button @click="active = 'private'" :class="active === 'private' ? 'text-antique-gold' : 'text-white/40 hover:text-white'" class="text-xs uppercase tracking-widest pb-1 transition">Private Dining</button>
                 </div>
             </div>
 
-            <!-- Grid Kartu Menu -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Menu Grid: Large & Spacious -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20">
                 
-                <!-- Card 1 -->
-                <div class="menu-card group bg-white border border-gray-100 p-4 cursor-pointer smooth-transition" 
-                     x-show="filter === 'all' || filter === 'wedding'">
-                    <div class="overflow-hidden aspect-[4/3] mb-6">
-                        <img src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&q=80&w=600" 
-                             class="w-full h-full object-cover smooth-transition" alt="Seafood">
+                <!-- Item 1 -->
+                <div class="group cursor-pointer">
+                    <div class="overflow-hidden aspect-[16/10] mb-6 relative">
+                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=1200" 
+                             class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700 ease-out">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition duration-500"></div>
                     </div>
-                    <div class="px-2 pb-2">
-                        <div class="flex justify-between items-baseline mb-2">
-                            <h3 class="font-serif text-xl text-mewah-black">Royal Seafood</h3>
-                            <span class="text-mewah-gold font-medium">IDR 150k</span>
-                        </div>
-                        <p class="text-gray-500 text-sm font-light leading-relaxed">Lobster segar, udang tiger, dan kerang hijau dengan saus lemon butter khas chef.</p>
+                    <div class="flex justify-between items-baseline border-b border-white/10 pb-4 group-hover:border-antique-gold transition duration-500">
+                        <h3 class="text-2xl font-display text-white">Truffle Risotto Nero</h3>
+                        <span class="text-antique-gold font-display italic text-xl">IDR 185k</span>
                     </div>
+                    <p class="mt-4 text-white/50 font-light text-sm leading-relaxed">Nasi arborio hitam dengan tinta cumi, jamur porcini liar, dan irisan truffle putih Alba yang melimpah.</p>
                 </div>
 
-                <!-- Card 2 -->
-                <div class="menu-card group bg-white border border-gray-100 p-4 cursor-pointer smooth-transition" 
-                     x-show="filter === 'all' || filter === 'wedding'">
-                    <div class="overflow-hidden aspect-[4/3] mb-6">
-                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=600" 
-                             class="w-full h-full object-cover smooth-transition" alt="Steak">
+                <!-- Item 2 -->
+                <div class="group cursor-pointer md:mt-24">
+                    <div class="overflow-hidden aspect-[16/10] mb-6 relative">
+                        <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&q=80&w=1200" 
+                             class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700 ease-out">
                     </div>
-                    <div class="px-2 pb-2">
-                        <div class="flex justify-between items-baseline mb-2">
-                            <h3 class="font-serif text-xl text-mewah-black">Wagyu Tenderloin</h3>
-                            <span class="text-mewah-gold font-medium">IDR 220k</span>
-                        </div>
-                        <p class="text-gray-500 text-sm font-light leading-relaxed">Daging sapi Wagyu A5 dipanggang sempurna dengan truffle mashed potato.</p>
+                    <div class="flex justify-between items-baseline border-b border-white/10 pb-4 group-hover:border-antique-gold transition duration-500">
+                        <h3 class="text-2xl font-display text-white">Wagyu A5 Sirloin</h3>
+                        <span class="text-antique-gold font-display italic text-xl">IDR 450k</span>
                     </div>
+                    <p class="mt-4 text-white/50 font-light text-sm leading-relaxed">Daging sapi Jepang grade tertinggi, dipanggang dengan arang binchotan, disajikan dengan wasabi segar.</p>
                 </div>
-
-                <!-- Card 3 -->
-                <div class="menu-card group bg-white border border-gray-100 p-4 cursor-pointer smooth-transition" 
-                     x-show="filter === 'all' || filter === 'corporate'">
-                    <div class="overflow-hidden aspect-[4/3] mb-6">
-                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=600" 
-                             class="w-full h-full object-cover smooth-transition" alt="Bento">
-                    </div>
-                    <div class="px-2 pb-2">
-                        <div class="flex justify-between items-baseline mb-2">
-                            <h3 class="font-serif text-xl text-mewah-black">Executive Bento</h3>
-                            <span class="text-mewah-gold font-medium">IDR 85k</span>
-                        </div>
-                        <p class="text-gray-500 text-sm font-light leading-relaxed">Paket makan siang sehat dengan nasi merah, salmon pangkas, dan salad organik.</p>
-                    </div>
-                </div>
-
-                 <!-- Card 4 -->
-                 <div class="menu-card group bg-white border border-gray-100 p-4 cursor-pointer smooth-transition" 
-                 x-show="filter === 'all' || filter === 'corporate'">
-                <div class="overflow-hidden aspect-[4/3] mb-6">
-                    <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=600" 
-                         class="w-full h-full object-cover smooth-transition" alt="Salad">
-                </div>
-                <div class="px-2 pb-2">
-                    <div class="flex justify-between items-baseline mb-2">
-                        <h3 class="font-serif text-xl text-mewah-black">Garden Salad</h3>
-                        <span class="text-mewah-gold font-medium">IDR 65k</span>
-                    </div>
-                    <p class="text-gray-500 text-sm font-light leading-relaxed">Sayuran hidroponik segar dengan dressing balsamic vinegar buatan sendiri.</p>
-                </div>
-            </div>
 
             </div>
         </div>
     </section>
 
-    <!-- CALCULATOR SECTION: Clean Box -->
-    <section class="py-20 bg-white border-t border-gray-100">
-        <div class="max-w-3xl mx-auto px-6 text-center" x-data="{ pax: 50, price: 150000 }">
-            <h2 class="text-3xl font-serif mb-8">Estimasi Biaya Acara</h2>
-            
-            <div class="bg-mewah-bg p-8 md:p-12 border border-gray-200">
-                <div class="space-y-8">
-                    <!-- Slider -->
-                    <div>
-                        <label class="block text-xs uppercase tracking-widest text-gray-500 mb-4">Jumlah Tamu: <span class="text-mewah-black font-bold" x-text="pax"></span></label>
-                        <input type="range" min="20" max="500" step="10" x-model="pax" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-mewah-gold">
+    <!-- BESPOKE CALCULATOR: Elegant Form -->
+    <section id="bespoke" class="py-32 bg-obsidian relative overflow-hidden">
+        <!-- Decorative Blur -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-antique-gold/5 rounded-full blur-[120px]"></div>
+
+        <div class="max-w-4xl mx-auto px-6 relative z-10 text-center" x-data="{ pax: 50, type: 'wedding', rate: 250000 }">
+            <h2 class="text-4xl md:text-5xl font-display text-white mb-4">Rancang Acara Anda</h2>
+            <p class="text-white/50 font-light mb-12">Transparansi dalam kemewahan.</p>
+
+            <div class="bg-white/5 backdrop-blur-lg border border-white/10 p-8 md:p-12 rounded-sm">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
+                    
+                    <div class="space-y-8">
+                        <div>
+                            <label class="flex justify-between text-xs uppercase tracking-widest text-antique-gold mb-4">
+                                Jumlah Tamu <span x-text="pax + ' Pax'"></span>
+                            </label>
+                            <input type="range" min="10" max="200" step="5" x-model="pax" 
+                                   class="w-full h-1 bg-white/10 rounded-lg appearance-none cursor-pointer accent-antique-gold">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-antique-gold mb-4">Tipe Pengalaman</label>
+                            <select x-model="type" @change="type === 'wedding' ? rate = 250000 : (type === 'corporate' ? rate = 150000 : rate = 500000)" 
+                                    class="w-full bg-transparent border-b border-white/20 text-white py-2 focus:outline-none focus:border-antique-gold transition">
+                                <option value="wedding" class="bg-obsidian">Grand Wedding</option>
+                                <option value="corporate" class="bg-obsidian">Corporate Gala</option>
+                                <option value="private" class="bg-obsidian">Private Chef Table</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <!-- Pilihan Paket -->
-                    <div class="flex justify-center gap-4">
-                        <button @click="price = 150000" :class="price === 150000 ? 'bg-mewah-black text-white' : 'bg-white text-gray-600 border border-gray-200'" class="px-6 py-2 text-sm uppercase tracking-wider transition">Pernikahan</button>
-                        <button @click="price = 85000" :class="price === 85000 ? 'bg-mewah-black text-white' : 'bg-white text-gray-600 border border-gray-200'" class="px-6 py-2 text-sm uppercase tracking-wider transition">Korporat</button>
+                    <div class="flex flex-col justify-center items-center border-l border-white/10 pl-0 md:pl-12">
+                        <span class="text-xs uppercase tracking-widest text-white/40 mb-2">Estimasi Investasi</span>
+                        <span class="text-4xl md:text-5xl font-display text-white mb-6" x-text="'IDR ' + (pax * rate).toLocaleString('id-ID')"></span>
+                        <button class="w-full py-4 bg-antique-gold text-obsidian font-bold uppercase tracking-widest text-xs hover:bg-white transition duration-500">
+                            Ajukan Proposal Resmi
+                        </button>
                     </div>
 
-                    <!-- Hasil -->
-                    <div class="pt-8 border-t border-gray-200">
-                        <p class="text-xs uppercase tracking-widest text-gray-400 mb-2">Estimasi Total</p>
-                        <p class="text-4xl font-serif text-mewah-black" x-text="'Rp ' + (pax * price).toLocaleString('id-ID')"></p>
-                        <a href="https://wa.me/" class="inline-block mt-6 px-8 py-3 bg-mewah-gold text-white text-xs uppercase tracking-widest hover:bg-mewah-black transition">Konsultasi via WhatsApp</a>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer id="kontak" class="bg-mewah-black text-white py-16">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
-            <div>
-                <h3 class="text-2xl font-serif mb-4">Lumière.</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">Menghadirkan kehangatan dan kemewahan dalam setiap sajian untuk momen berharga Anda.</p>
+    <!-- FOOTER: Ultra Minimal -->
+    <footer class="bg-black text-white py-20 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-2xl font-display tracking-widest">LUMIÈRE</div>
+            <div class="text-xs text-white/40 uppercase tracking-widest">
+                &copy; 2026 Culinary Artistry Group. Jakarta.
             </div>
-            <div>
-                <h4 class="text-xs uppercase tracking-widest text-mewah-gold mb-4">Kontak</h4>
-                <p class="text-gray-300 text-sm mb-2">hello@lumiere.id</p>
-                <p class="text-gray-300 text-sm">+62 812 3456 7890</p>
-            </div>
-            <div>
-                <h4 class="text-xs uppercase tracking-widest text-mewah-gold mb-4">Lokasi</h4>
-                <p class="text-gray-300 text-sm">Jl. Senopati No. 88<br>Jakarta Selatan</p>
+            <div class="flex gap-6">
+                <a href="#" class="text-white/40 hover:text-antique-gold transition">Instagram</a>
+                <a href="#" class="text-white/40 hover:text-antique-gold transition">WhatsApp</a>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts for Interactions -->
+    <script>
+        // Custom Cursor Logic
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            
+            // Add a little lag to the outline for smooth feel
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Reveal
+        gsap.from(".reveal-item", {
+            y: 100,
+            opacity: 0,
+            duration: 1.5,
+            stagger: 0.2,
+            ease: "power4.out"
+        });
+
+        // Parallax Effect for Philosophy Image
+        gsap.to(".parallax-img", {
+            yPercent: 20,
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".parallax-wrapper",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+
+        // Menu Items Fade In
+        gsap.utils.toArray('.group').forEach(item => {
+            gsap.from(item, {
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 85%"
+                }
+            });
+        });
+    </script>
 </body>
 </html>
