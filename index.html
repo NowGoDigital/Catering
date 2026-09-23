@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lumière Catering | Kuliner Premium</title>
+    <title>Lumière Catering | Premium Service</title>
     
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Fonts: Playfair Display (Judul) & Lato (Isi) -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -21,14 +19,14 @@
             theme: {
                 extend: {
                     colors: {
-                        'brand-dark': '#1c1917',   /* Stone 900 */
-                        'brand-gold': '#b45309',   /* Amber 700 - Elegant Gold */
-                        'brand-cream': '#fafaf9',  /* Stone 50 */
-                        'brand-sage': '#e7e5e4',   /* Stone 200 */
+                        'mewah-black': '#1a1a1a',
+                        'mewah-gold': '#c5a059',
+                        'mewah-bg': '#fcfcfc',
+                        'mewah-gray': '#f4f4f4'
                     },
                     fontFamily: {
                         serif: ['"Playfair Display"', 'serif'],
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        sans: ['"Lato"', 'sans-serif'],
                     }
                 }
             }
@@ -36,222 +34,189 @@
     </script>
     
     <style>
-        /* Smooth Scroll & Base */
-        body { background-color: #fafaf9; color: #1c1917; }
-        
-        /* Card Hover Effect */
-        .menu-card:hover .card-img { transform: scale(1.05); }
-        .menu-card:hover .card-overlay { opacity: 1; }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-thumb { background: #d6d3d1; border-radius: 10px; }
+        body { background-color: #fcfcfc; color: #1a1a1a; }
+        .smooth-transition { transition: all 0.4s ease-in-out; }
+        /* Efek Hover Card Mewah */
+        .menu-card:hover img { transform: scale(1.03); }
+        .menu-card:hover { box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1); border-color: #c5a059; }
     </style>
 </head>
-<body class="font-sans antialiased selection:bg-brand-gold selection:text-white">
+<body class="font-sans antialiased">
 
-    <!-- Navbar Simple & Clean -->
-    <nav class="fixed w-full z-50 bg-brand-cream/90 backdrop-blur-md border-b border-stone-200 transition-all duration-300">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="#" class="text-2xl font-serif font-semibold tracking-tight text-brand-dark">Lumière.</a>
-            
-            <div class="hidden md:flex space-x-8 text-sm font-medium text-stone-600">
-                <a href="#home" class="hover:text-brand-gold transition">Beranda</a>
-                <a href="#menu" class="hover:text-brand-gold transition">Menu</a>
-                <a href="#calculator" class="hover:text-brand-gold transition">Estimasi</a>
+    <!-- NAVBAR: Sticky & Clean -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="text-2xl font-serif font-bold tracking-tight">Lumière.</div>
+            <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest text-gray-600">
+                <a href="#home" class="hover:text-mewah-gold transition">Beranda</a>
+                <a href="#menu" class="hover:text-mewah-gold transition">Menu</a>
+                <a href="#kontak" class="hover:text-mewah-gold transition">Kontak</a>
             </div>
-
-            <a href="https://wa.me/" class="px-5 py-2.5 bg-brand-dark text-white text-xs uppercase tracking-wider hover:bg-brand-gold transition duration-300 rounded-sm">
-                Hubungi Kami
-            </a>
+            <a href="#kontak" class="px-6 py-2 bg-mewah-black text-white text-xs uppercase tracking-widest hover:bg-mewah-gold transition">Pesan Sekarang</a>
         </div>
     </nav>
 
-    <!-- Hero Section: Bright, Centered, Elegant -->
-    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        <div class="absolute top-0 right-0 w-1/2 h-full bg-stone-100 -z-10 hidden lg:block"></div>
-        
-        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <!-- Text Content -->
-            <div class="order-2 lg:order-1" x-data="{ show: false }" x-init="setTimeout(() => show = true, 100)">
-                <span class="block text-brand-gold text-xs font-bold uppercase tracking-[0.2em] mb-4 transition-opacity duration-1000" :class="show ? 'opacity-100' : 'opacity-0'">Premium Catering Jakarta</span>
-                
-                <h1 class="text-5xl lg:text-7xl font-serif text-brand-dark leading-[1.1] mb-6 transition-transform duration-1000 delay-100" :class="show ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'">
-                    Cita Rasa <br> <span class="italic text-stone-500">Yang Mewah.</span>
+    <!-- HERO SECTION: Split Layout (Text Left, Image Right) -->
+    <section id="home" class="pt-32 pb-20 lg:min-h-screen flex items-center bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            <!-- Teks -->
+            <div class="order-2 lg:order-1 space-y-8">
+                <span class="text-mewah-gold text-xs font-bold uppercase tracking-[0.2em]">Catering Premium Jakarta</span>
+                <h1 class="text-5xl lg:text-7xl font-serif leading-tight text-mewah-black">
+                    Rasa Autentik <br> <span class="italic text-gray-400">Untuk Momen Istimewa.</span>
                 </h1>
-                
-                <p class="text-stone-600 leading-relaxed mb-8 max-w-md transition-opacity duration-1000 delay-200" :class="show ? 'opacity-100' : 'opacity-0'">
-                    Kami menyajikan pengalaman kuliner tak terlupakan untuk pernikahan, acara korporat, dan makan malam pribadi dengan sentuhan chef profesional.
+                <p class="text-gray-600 text-lg font-light leading-relaxed max-w-md">
+                    Kami menghadirkan pengalaman bersantap kelas dunia dengan bahan lokal terbaik. Sempurna untuk pernikahan, acara kantor, dan jamuan pribadi.
                 </p>
-                
-                <div class="flex gap-4 transition-opacity duration-1000 delay-300" :class="show ? 'opacity-100' : 'opacity-0'">
-                    <a href="#menu" class="px-8 py-3 bg-brand-dark text-white text-sm font-medium hover:bg-brand-gold transition duration-300">Lihat Menu</a>
-                    <a href="#calculator" class="px-8 py-3 border border-stone-300 text-brand-dark text-sm font-medium hover:border-brand-dark transition duration-300">Hitung Biaya</a>
+                <div class="flex gap-4 pt-4">
+                    <a href="#menu" class="px-8 py-4 bg-mewah-black text-white text-sm uppercase tracking-widest hover:bg-mewah-gold smooth-transition">Lihat Menu</a>
+                    <a href="#kontak" class="px-8 py-4 border border-gray-300 text-mewah-black text-sm uppercase tracking-widest hover:border-mewah-black smooth-transition">Hubungi Kami</a>
                 </div>
             </div>
 
-            <!-- Hero Image -->
-            <div class="order-1 lg:order-2 relative">
-                <div class="aspect-[4/5] overflow-hidden rounded-lg shadow-xl">
-                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1000&auto=format&fit=crop" alt="Fine Dining" class="w-full h-full object-cover hover:scale-105 transition duration-1000">
-                </div>
-                <!-- Floating Badge -->
-                <div class="absolute -bottom-6 -left-6 bg-white p-6 shadow-lg max-w-xs hidden lg:block">
-                    <p class="font-serif italic text-lg text-brand-dark">"Makanan terbaik yang pernah kami rasakan di acara kantor."</p>
-                    <p class="text-xs text-stone-500 mt-2 uppercase tracking-wide">— PT. Maju Mundur</p>
-                </div>
+            <!-- Gambar Hero -->
+            <div class="order-1 lg:order-2 relative h-[500px] lg:h-[700px] overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=1000&auto=format&fit=crop" 
+                     class="w-full h-full object-cover" alt="Fine Dining Presentation">
             </div>
         </div>
     </section>
 
-    <!-- Menu Section: Compact Cards & Minimalist -->
-    <section id="menu" class="py-24 bg-white" x-data="{ activeTab: 'all' }">
-        <div class="max-w-6xl mx-auto px-6">
+    <!-- MENU SECTION: Elegant Grid Cards -->
+    <section id="menu" class="py-24 bg-mewah-bg" x-data="{ filter: 'all' }">
+        <div class="max-w-7xl mx-auto px-6">
             
-            <!-- Header Section -->
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-serif text-brand-dark mb-4">Pilihan Menu Eksklusif</h2>
-                <div class="w-16 h-0.5 bg-brand-gold mx-auto mb-8"></div>
+            <!-- Judul Section -->
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-4xl font-serif text-mewah-black">Koleksi Menu Kami</h2>
+                <div class="w-20 h-0.5 bg-mewah-gold mx-auto"></div>
                 
-                <!-- Filter Tabs -->
-                <div class="flex flex-wrap justify-center gap-6 text-sm uppercase tracking-widest text-stone-500">
-                    <button @click="activeTab = 'all'" :class="activeTab === 'all' ? 'text-brand-dark border-b border-brand-dark' : 'hover:text-brand-dark'" class="pb-1 transition">Semua</button>
-                    <button @click="activeTab = 'wedding'" :class="activeTab === 'wedding' ? 'text-brand-dark border-b border-brand-dark' : 'hover:text-brand-dark'" class="pb-1 transition">Pernikahan</button>
-                    <button @click="activeTab = 'corporate'" :class="activeTab === 'corporate' ? 'text-brand-dark border-b border-brand-dark' : 'hover:text-brand-dark'" class="pb-1 transition">Korporat</button>
+                <!-- Filter Simpel -->
+                <div class="flex justify-center gap-8 mt-8 text-sm uppercase tracking-widest text-gray-500">
+                    <button @click="filter = 'all'" :class="filter === 'all' ? 'text-mewah-black border-b-2 border-mewah-gold' : ''" class="pb-1 transition">Semua</button>
+                    <button @click="filter = 'wedding'" :class="filter === 'wedding' ? 'text-mewah-black border-b-2 border-mewah-gold' : ''" class="pb-1 transition">Pernikahan</button>
+                    <button @click="filter = 'corporate'" :class="filter === 'corporate' ? 'text-mewah-black border-b-2 border-mewah-gold' : ''" class="pb-1 transition">Korporat</button>
                 </div>
             </div>
 
-            <!-- Grid Menu Cards (Compact & Aesthetic) -->
+            <!-- Grid Kartu Menu -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
                 <!-- Card 1 -->
-                <div class="menu-card group cursor-pointer" x-show="activeTab === 'all' || activeTab === 'wedding'" x-transition.duration.500ms>
-                    <div class="relative aspect-[4/3] overflow-hidden rounded-md mb-4 bg-stone-100">
-                        <img src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&q=80&w=600" class="card-img w-full h-full object-cover transition duration-700 ease-out" alt="Food">
-                        <div class="card-overlay absolute inset-0 bg-black/20 opacity-0 transition duration-300 flex items-center justify-center">
-                            <span class="bg-white/90 backdrop-blur px-4 py-2 text-xs uppercase tracking-widest rounded-full">Lihat Detail</span>
+                <div class="menu-card group bg-white border border-gray-100 p-4 cursor-pointer smooth-transition" 
+                     x-show="filter === 'all' || filter === 'wedding'">
+                    <div class="overflow-hidden aspect-[4/3] mb-6">
+                        <img src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&q=80&w=600" 
+                             class="w-full h-full object-cover smooth-transition" alt="Seafood">
+                    </div>
+                    <div class="px-2 pb-2">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h3 class="font-serif text-xl text-mewah-black">Royal Seafood</h3>
+                            <span class="text-mewah-gold font-medium">IDR 150k</span>
                         </div>
+                        <p class="text-gray-500 text-sm font-light leading-relaxed">Lobster segar, udang tiger, dan kerang hijau dengan saus lemon butter khas chef.</p>
                     </div>
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="font-serif text-xl text-brand-dark group-hover:text-brand-gold transition">Seafood Platter</h3>
-                        <span class="text-sm font-medium text-stone-500">IDR 150k</span>
-                    </div>
-                    <p class="text-sm text-stone-500 leading-relaxed line-clamp-2">Lobster, udang tiger, dan kerang hijau segar dengan saus lemon butter spesial.</p>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="menu-card group cursor-pointer" x-show="activeTab === 'all' || activeTab === 'wedding'" x-transition.duration.500ms>
-                    <div class="relative aspect-[4/3] overflow-hidden rounded-md mb-4 bg-stone-100">
-                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=600" class="card-img w-full h-full object-cover transition duration-700 ease-out" alt="Food">
-                         <div class="card-overlay absolute inset-0 bg-black/20 opacity-0 transition duration-300 flex items-center justify-center">
-                            <span class="bg-white/90 backdrop-blur px-4 py-2 text-xs uppercase tracking-widest rounded-full">Lihat Detail</span>
+                <div class="menu-card group bg-white border border-gray-100 p-4 cursor-pointer smooth-transition" 
+                     x-show="filter === 'all' || filter === 'wedding'">
+                    <div class="overflow-hidden aspect-[4/3] mb-6">
+                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=600" 
+                             class="w-full h-full object-cover smooth-transition" alt="Steak">
+                    </div>
+                    <div class="px-2 pb-2">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h3 class="font-serif text-xl text-mewah-black">Wagyu Tenderloin</h3>
+                            <span class="text-mewah-gold font-medium">IDR 220k</span>
                         </div>
+                        <p class="text-gray-500 text-sm font-light leading-relaxed">Daging sapi Wagyu A5 dipanggang sempurna dengan truffle mashed potato.</p>
                     </div>
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="font-serif text-xl text-brand-dark group-hover:text-brand-gold transition">Wagyu Steak</h3>
-                        <span class="text-sm font-medium text-stone-500">IDR 220k</span>
-                    </div>
-                    <p class="text-sm text-stone-500 leading-relaxed line-clamp-2">Daging sapi Wagyu grade A5 dipanggang sempurna dengan truffle mashed potato.</p>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="menu-card group cursor-pointer" x-show="activeTab === 'all' || activeTab === 'corporate'" x-transition.duration.500ms>
-                    <div class="relative aspect-[4/3] overflow-hidden rounded-md mb-4 bg-stone-100">
-                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=600" class="card-img w-full h-full object-cover transition duration-700 ease-out" alt="Food">
-                         <div class="card-overlay absolute inset-0 bg-black/20 opacity-0 transition duration-300 flex items-center justify-center">
-                            <span class="bg-white/90 backdrop-blur px-4 py-2 text-xs uppercase tracking-widest rounded-full">Lihat Detail</span>
+                <div class="menu-card group bg-white border border-gray-100 p-4 cursor-pointer smooth-transition" 
+                     x-show="filter === 'all' || filter === 'corporate'">
+                    <div class="overflow-hidden aspect-[4/3] mb-6">
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=600" 
+                             class="w-full h-full object-cover smooth-transition" alt="Bento">
+                    </div>
+                    <div class="px-2 pb-2">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h3 class="font-serif text-xl text-mewah-black">Executive Bento</h3>
+                            <span class="text-mewah-gold font-medium">IDR 85k</span>
                         </div>
+                        <p class="text-gray-500 text-sm font-light leading-relaxed">Paket makan siang sehat dengan nasi merah, salmon pangkas, dan salad organik.</p>
                     </div>
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="font-serif text-xl text-brand-dark group-hover:text-brand-gold transition">Healthy Bento</h3>
-                        <span class="text-sm font-medium text-stone-500">IDR 85k</span>
-                    </div>
-                    <p class="text-sm text-stone-500 leading-relaxed line-clamp-2">Paket makan siang sehat dengan nasi merah, salmon pangkas, dan salad organik.</p>
                 </div>
 
                  <!-- Card 4 -->
-                 <div class="menu-card group cursor-pointer" x-show="activeTab === 'all' || activeTab === 'corporate'" x-transition.duration.500ms>
-                    <div class="relative aspect-[4/3] overflow-hidden rounded-md mb-4 bg-stone-100">
-                        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=600" class="card-img w-full h-full object-cover transition duration-700 ease-out" alt="Food">
-                         <div class="card-overlay absolute inset-0 bg-black/20 opacity-0 transition duration-300 flex items-center justify-center">
-                            <span class="bg-white/90 backdrop-blur px-4 py-2 text-xs uppercase tracking-widest rounded-full">Lihat Detail</span>
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="font-serif text-xl text-brand-dark group-hover:text-brand-gold transition">Gourmet Salad</h3>
-                        <span class="text-sm font-medium text-stone-500">IDR 65k</span>
-                    </div>
-                    <p class="text-sm text-stone-500 leading-relaxed line-clamp-2">Campuran sayuran hidroponik segar dengan dressing balsamic vinegar buatan sendiri.</p>
+                 <div class="menu-card group bg-white border border-gray-100 p-4 cursor-pointer smooth-transition" 
+                 x-show="filter === 'all' || filter === 'corporate'">
+                <div class="overflow-hidden aspect-[4/3] mb-6">
+                    <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=600" 
+                         class="w-full h-full object-cover smooth-transition" alt="Salad">
                 </div>
+                <div class="px-2 pb-2">
+                    <div class="flex justify-between items-baseline mb-2">
+                        <h3 class="font-serif text-xl text-mewah-black">Garden Salad</h3>
+                        <span class="text-mewah-gold font-medium">IDR 65k</span>
+                    </div>
+                    <p class="text-gray-500 text-sm font-light leading-relaxed">Sayuran hidroponik segar dengan dressing balsamic vinegar buatan sendiri.</p>
+                </div>
+            </div>
 
             </div>
+        </div>
+    </section>
+
+    <!-- CALCULATOR SECTION: Clean Box -->
+    <section class="py-20 bg-white border-t border-gray-100">
+        <div class="max-w-3xl mx-auto px-6 text-center" x-data="{ pax: 50, price: 150000 }">
+            <h2 class="text-3xl font-serif mb-8">Estimasi Biaya Acara</h2>
             
-            <div class="text-center mt-12">
-                <a href="#" class="inline-block text-xs uppercase tracking-widest border-b border-stone-400 pb-1 hover:text-brand-gold hover:border-brand-gold transition">Lihat Katalog Lengkap PDF</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Calculator Section: Simple & Clean -->
-    <section id="calculator" class="py-20 bg-stone-100">
-        <div class="max-w-4xl mx-auto px-6">
-            <div class="bg-white p-8 md:p-12 shadow-sm border border-stone-200" x-data="{ guests: 50, type: 'wedding', price: 150000 }">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                    
+            <div class="bg-mewah-bg p-8 md:p-12 border border-gray-200">
+                <div class="space-y-8">
+                    <!-- Slider -->
                     <div>
-                        <h3 class="text-2xl font-serif text-brand-dark mb-6">Estimasi Biaya Acara</h3>
-                        
-                        <div class="space-y-6">
-                            <div>
-                                <label class="flex justify-between text-xs uppercase tracking-wider text-stone-500 mb-2">
-                                    Jumlah Tamu <span x-text="guests + ' Orang'" class="text-brand-dark font-bold"></span>
-                                </label>
-                                <input type="range" min="20" max="500" step="10" x-model="guests" class="w-full h-1 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-brand-gold">
-                            </div>
-
-                            <div>
-                                <label class="block text-xs uppercase tracking-wider text-stone-500 mb-3">Jenis Paket</label>
-                                <div class="grid grid-cols-2 gap-3">
-                                    <button @click="type = 'wedding'; price = 150000" :class="type === 'wedding' ? 'bg-brand-dark text-white' : 'bg-stone-100 text-stone-600'" class="py-2 text-xs uppercase tracking-wide transition rounded-sm">Wedding</button>
-                                    <button @click="type = 'corporate'; price = 85000" :class="type === 'corporate' ? 'bg-brand-dark text-white' : 'bg-stone-100 text-stone-600'" class="py-2 text-xs uppercase tracking-wide transition rounded-sm">Korporat</button>
-                                </div>
-                            </div>
-                        </div>
+                        <label class="block text-xs uppercase tracking-widest text-gray-500 mb-4">Jumlah Tamu: <span class="text-mewah-black font-bold" x-text="pax"></span></label>
+                        <input type="range" min="20" max="500" step="10" x-model="pax" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-mewah-gold">
                     </div>
 
-                    <div class="bg-stone-50 p-6 text-center border border-stone-100">
-                        <p class="text-xs uppercase tracking-widest text-stone-400 mb-2">Total Estimasi</p>
-                        <p class="text-3xl font-serif text-brand-dark mb-1" x-text="'Rp ' + (guests * price).toLocaleString('id-ID')"></p>
-                        <p class="text-[10px] text-stone-400 italic mb-4">*Harga dapat berubah sesuai menu final</p>
-                        <a href="https://wa.me/?text=Halo%20Lumiere,%20saya%20ingin%20tanya%20paket%20catering" target="_blank" class="block w-full py-3 bg-brand-gold text-white text-xs uppercase tracking-widest hover:bg-brand-dark transition duration-300">
-                            Konsultasi via WhatsApp
-                        </a>
+                    <!-- Pilihan Paket -->
+                    <div class="flex justify-center gap-4">
+                        <button @click="price = 150000" :class="price === 150000 ? 'bg-mewah-black text-white' : 'bg-white text-gray-600 border border-gray-200'" class="px-6 py-2 text-sm uppercase tracking-wider transition">Pernikahan</button>
+                        <button @click="price = 85000" :class="price === 85000 ? 'bg-mewah-black text-white' : 'bg-white text-gray-600 border border-gray-200'" class="px-6 py-2 text-sm uppercase tracking-wider transition">Korporat</button>
                     </div>
 
+                    <!-- Hasil -->
+                    <div class="pt-8 border-t border-gray-200">
+                        <p class="text-xs uppercase tracking-widest text-gray-400 mb-2">Estimasi Total</p>
+                        <p class="text-4xl font-serif text-mewah-black" x-text="'Rp ' + (pax * price).toLocaleString('id-ID')"></p>
+                        <a href="https://wa.me/" class="inline-block mt-6 px-8 py-3 bg-mewah-gold text-white text-xs uppercase tracking-widest hover:bg-mewah-black transition">Konsultasi via WhatsApp</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-brand-dark text-stone-400 py-16 text-center md:text-left">
-        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+    <!-- FOOTER -->
+    <footer id="kontak" class="bg-mewah-black text-white py-16">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
             <div>
-                <h2 class="text-2xl font-serif text-white mb-4">Lumière.</h2>
-                <p class="text-sm leading-relaxed mb-6">Menghadirkan kehangatan dan kemewahan dalam setiap sajian untuk momen berharga Anda.</p>
+                <h3 class="text-2xl font-serif mb-4">Lumière.</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Menghadirkan kehangatan dan kemewahan dalam setiap sajian untuk momen berharga Anda.</p>
             </div>
             <div>
-                <h4 class="text-white text-xs uppercase tracking-widest mb-4">Kontak</h4>
-                <p class="text-sm mb-2">hello@lumiere-catering.id</p>
-                <p class="text-sm">+62 812 3456 7890</p>
+                <h4 class="text-xs uppercase tracking-widest text-mewah-gold mb-4">Kontak</h4>
+                <p class="text-gray-300 text-sm mb-2">hello@lumiere.id</p>
+                <p class="text-gray-300 text-sm">+62 812 3456 7890</p>
             </div>
             <div>
-                <h4 class="text-white text-xs uppercase tracking-widest mb-4">Alamat</h4>
-                <p class="text-sm">Jl. Senopati No. 88<br>Jakarta Selatan, 12190</p>
+                <h4 class="text-xs uppercase tracking-widest text-mewah-gold mb-4">Lokasi</h4>
+                <p class="text-gray-300 text-sm">Jl. Senopati No. 88<br>Jakarta Selatan</p>
             </div>
-        </div>
-        <div class="border-t border-white/10 mt-12 pt-8 text-center text-xs text-stone-600">
-            &copy; 2026 Lumière Catering. All rights reserved.
         </div>
     </footer>
 
