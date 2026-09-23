@@ -3,350 +3,257 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lumière | Haute Catering</title>
+    <title>Lumière Catering | Kuliner Premium</title>
     
-    <!-- Fonts: Playfair Display (Serif Mewah) & Lato (Clean) -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    
-    <!-- GSAP for High-End Animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'cream': '#FDFBF7',
-                        'charcoal': '#1A1A1A',
-                        'gold-accent': '#C5A059',
-                        'sage': '#8DA399'
+                        'brand-dark': '#1c1917',   /* Stone 900 */
+                        'brand-gold': '#b45309',   /* Amber 700 - Elegant Gold */
+                        'brand-cream': '#fafaf9',  /* Stone 50 */
+                        'brand-sage': '#e7e5e4',   /* Stone 200 */
                     },
                     fontFamily: {
                         serif: ['"Playfair Display"', 'serif'],
-                        sans: ['"Lato"', 'sans-serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
-
+    
     <style>
-        body { background-color: #FDFBF7; color: #1A1A1A; overflow-x: hidden; }
+        /* Smooth Scroll & Base */
+        body { background-color: #fafaf9; color: #1c1917; }
+        
+        /* Card Hover Effect */
+        .menu-card:hover .card-img { transform: scale(1.05); }
+        .menu-card:hover .card-overlay { opacity: 1; }
         
         /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #FDFBF7; }
-        ::-webkit-scrollbar-thumb { background: #C5A059; border-radius: 4px; }
-
-        /* Image Reveal Mask */
-        .reveal-img {
-            clip-path: inset(0 100% 0 0);
-            transition: clip-path 1.5s cubic-bezier(0.77, 0, 0.175, 1);
-        }
-        .reveal-img.active {
-            clip-path: inset(0 0 0 0);
-        }
-
-        /* Text Stroke Effect */
-        .text-outline {
-            -webkit-text-stroke: 1px transparent;
-            -webkit-text-fill-color: transparent;
-            -webkit-text-stroke-color: #1A1A1A;
-        }
-        
-        .hover-lift { transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); }
-        .hover-lift:hover { transform: translateY(-10px); }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #d6d3d1; border-radius: 10px; }
     </style>
 </head>
-<body>
+<body class="font-sans antialiased selection:bg-brand-gold selection:text-white">
 
-    <!-- Navigation Minimalis -->
-    <nav class="fixed w-full z-50 px-8 py-6 flex justify-between items-center mix-blend-difference text-white" x-data="{ open: false }">
-        <a href="#" class="text-2xl font-serif italic font-bold tracking-tighter">Lumière.</a>
-        
-        <div class="hidden md:flex space-x-12 text-sm uppercase tracking-widest font-light">
-            <a href="#menu" class="hover:text-gold-accent transition">Menu</a>
-            <a href="#about" class="hover:text-gold-accent transition">Story</a>
-            <a href="#contact" class="hover:text-gold-accent transition">Contact</a>
-        </div>
-
-        <button class="md:hidden text-white">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-        </button>
-    </nav>
-
-    <!-- HERO SECTION: Bright, Artistic, Slider -->
-    <header class="relative h-screen w-full overflow-hidden bg-cream" x-data="heroSlider()" x-init="startTimer()">
-        
-        <!-- Slides Container -->
-        <template x-for="(slide, index) in slides" :key="index">
-            <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out"
-                 :class="activeSlide === index ? 'opacity-100 z-10' : 'opacity-0 z-0'">
-                
-                <!-- Image: High Key Lighting -->
-                <img :src="slide.img" class="w-full h-full object-cover object-center scale-105 animate-slow-zoom" alt="Luxury Food">
-                
-                <!-- Soft Overlay untuk keterbacaan teks -->
-                <div class="absolute inset-0 bg-white/10"></div>
-            </div>
-        </template>
-
-        <!-- Hero Content: Centered & Elegant -->
-        <div class="absolute inset-0 z-20 flex flex-col justify-center items-center text-center px-4">
-            <span class="block text-charcoal/60 text-xs uppercase tracking-[0.4em] mb-6 animate-fade-in">Est. Jakarta 2026</span>
+    <!-- Navbar Simple & Clean -->
+    <nav class="fixed w-full z-50 bg-brand-cream/90 backdrop-blur-md border-b border-stone-200 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="#" class="text-2xl font-serif font-semibold tracking-tight text-brand-dark">Lumière.</a>
             
-            <h1 class="text-6xl md:text-9xl font-serif text-charcoal mb-8 leading-none mix-blend-multiply">
-                <span class="block overflow-hidden"><span class="block translate-y-full animate-slide-up">Pure</span></span>
-                <span class="block overflow-hidden"><span class="block translate-y-full animate-slide-up delay-100 italic text-gold-accent">Elegance</span></span>
-            </h1>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-stone-600">
+                <a href="#home" class="hover:text-brand-gold transition">Beranda</a>
+                <a href="#menu" class="hover:text-brand-gold transition">Menu</a>
+                <a href="#calculator" class="hover:text-brand-gold transition">Estimasi</a>
+            </div>
 
-            <p class="max-w-md text-charcoal/80 font-sans font-light leading-relaxed mb-10 opacity-0 animate-fade-in delay-500">
-                Sebuah persembahan kuliner di mana setiap bahan bercerita dan setiap sajian adalah mahakarya.
-            </p>
-
-            <a href="#menu" class="group relative px-10 py-4 border border-charcoal text-charcoal uppercase tracking-widest text-xs overflow-hidden hover:border-gold-accent transition duration-500 opacity-0 animate-fade-in delay-700">
-                <span class="relative z-10 group-hover:text-white transition duration-500">Explore Menu</span>
-                <div class="absolute inset-0 bg-charcoal transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out"></div>
+            <a href="https://wa.me/" class="px-5 py-2.5 bg-brand-dark text-white text-xs uppercase tracking-wider hover:bg-brand-gold transition duration-300 rounded-sm">
+                Hubungi Kami
             </a>
         </div>
+    </nav>
 
-        <!-- Slider Indicators -->
-        <div class="absolute bottom-12 left-0 right-0 z-30 flex justify-center gap-6">
-            <template x-for="(slide, index) in slides" :key="index">
-                <button @click="setSlide(index)" 
-                        class="w-2 h-2 rounded-full transition-all duration-500"
-                        :class="activeSlide === index ? 'bg-charcoal scale-150' : 'bg-charcoal/20 hover:bg-charcoal/50'">
-                </button>
-            </template>
-        </div>
-    </header>
-
-    <!-- INTRO SECTION: Editorial Style -->
-    <section id="about" class="py-32 px-6 md:px-20 bg-cream">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
-            <div class="md:col-span-5 reveal-on-scroll">
-                <div class="relative">
-                    <div class="absolute -top-10 -left-10 w-full h-full border border-gold-accent/30 z-0"></div>
-                    <img src="https://images.unsplash.com/photo-1556910103-1c02745a30bf?auto=format&fit=crop&q=80&w=1000" class="relative z-10 w-full shadow-2xl grayscale hover:grayscale-0 transition duration-1000" alt="Chef Plating">
-                </div>
-            </div>
-            <div class="md:col-span-7 md:pl-12 reveal-on-scroll">
-                <h2 class="text-5xl md:text-7xl font-serif text-charcoal mb-8">The Art of <br><span class="italic text-gold-accent">Hosting</span></h2>
-                <p class="text-lg font-sans font-light text-charcoal/70 leading-loose mb-8 max-w-xl">
-                    Kami tidak sekadar menyajikan makanan. Kami merancang atmosfer. Dari pernikahan intim hingga gala dinner korporat, Lumière menghadirkan sentuhan chef pribadi dengan standar layanan bintang lima.
+    <!-- Hero Section: Bright, Centered, Elegant -->
+    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-stone-100 -z-10 hidden lg:block"></div>
+        
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <!-- Text Content -->
+            <div class="order-2 lg:order-1" x-data="{ show: false }" x-init="setTimeout(() => show = true, 100)">
+                <span class="block text-brand-gold text-xs font-bold uppercase tracking-[0.2em] mb-4 transition-opacity duration-1000" :class="show ? 'opacity-100' : 'opacity-0'">Premium Catering Jakarta</span>
+                
+                <h1 class="text-5xl lg:text-7xl font-serif text-brand-dark leading-[1.1] mb-6 transition-transform duration-1000 delay-100" :class="show ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'">
+                    Cita Rasa <br> <span class="italic text-stone-500">Yang Mewah.</span>
+                </h1>
+                
+                <p class="text-stone-600 leading-relaxed mb-8 max-w-md transition-opacity duration-1000 delay-200" :class="show ? 'opacity-100' : 'opacity-0'">
+                    Kami menyajikan pengalaman kuliner tak terlupakan untuk pernikahan, acara korporat, dan makan malam pribadi dengan sentuhan chef profesional.
                 </p>
-                <div class="flex items-center gap-4">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Signature_sample.svg/1200px-Signature_sample.svg.png" class="h-12 opacity-50" alt="Signature">
-                    <span class="text-xs uppercase tracking-widest text-charcoal/50">Head Chef, Antoine D.</span>
+                
+                <div class="flex gap-4 transition-opacity duration-1000 delay-300" :class="show ? 'opacity-100' : 'opacity-0'">
+                    <a href="#menu" class="px-8 py-3 bg-brand-dark text-white text-sm font-medium hover:bg-brand-gold transition duration-300">Lihat Menu</a>
+                    <a href="#calculator" class="px-8 py-3 border border-stone-300 text-brand-dark text-sm font-medium hover:border-brand-dark transition duration-300">Hitung Biaya</a>
+                </div>
+            </div>
+
+            <!-- Hero Image -->
+            <div class="order-1 lg:order-2 relative">
+                <div class="aspect-[4/5] overflow-hidden rounded-lg shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1000&auto=format&fit=crop" alt="Fine Dining" class="w-full h-full object-cover hover:scale-105 transition duration-1000">
+                </div>
+                <!-- Floating Badge -->
+                <div class="absolute -bottom-6 -left-6 bg-white p-6 shadow-lg max-w-xs hidden lg:block">
+                    <p class="font-serif italic text-lg text-brand-dark">"Makanan terbaik yang pernah kami rasakan di acara kantor."</p>
+                    <p class="text-xs text-stone-500 mt-2 uppercase tracking-wide">— PT. Maju Mundur</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- MENU SHOWCASE: Asymmetrical & Interactive -->
-    <section id="menu" class="py-32 bg-white relative" x-data="{ activeCategory: 'signature' }">
-        <div class="max-w-7xl mx-auto px-6">
+    <!-- Menu Section: Compact Cards & Minimalist -->
+    <section id="menu" class="py-24 bg-white" x-data="{ activeTab: 'all' }">
+        <div class="max-w-6xl mx-auto px-6">
             
-            <!-- Category Header -->
-            <div class="flex flex-col md:flex-row justify-between items-end mb-20 border-b border-gray-100 pb-8">
-                <h2 class="text-6xl font-serif text-charcoal">Our <span class="italic text-gold-accent">Collections</span></h2>
+            <!-- Header Section -->
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-serif text-brand-dark mb-4">Pilihan Menu Eksklusif</h2>
+                <div class="w-16 h-0.5 bg-brand-gold mx-auto mb-8"></div>
                 
-                <div class="flex gap-8 mt-8 md:mt-0">
-                    <button @click="activeCategory = 'signature'" :class="activeCategory === 'signature' ? 'text-charcoal border-b-2 border-gold-accent' : 'text-gray-400 hover:text-charcoal'" class="pb-2 uppercase tracking-widest text-sm transition-all">Signature</button>
-                    <button @click="activeCategory = 'wedding'" :class="activeCategory === 'wedding' ? 'text-charcoal border-b-2 border-gold-accent' : 'text-gray-400 hover:text-charcoal'" class="pb-2 uppercase tracking-widest text-sm transition-all">Wedding</button>
-                    <button @click="activeCategory = 'corporate'" :class="activeCategory === 'corporate' ? 'text-charcoal border-b-2 border-gold-accent' : 'text-gray-400 hover:text-charcoal'" class="pb-2 uppercase tracking-widest text-sm transition-all">Corporate</button>
+                <!-- Filter Tabs -->
+                <div class="flex flex-wrap justify-center gap-6 text-sm uppercase tracking-widest text-stone-500">
+                    <button @click="activeTab = 'all'" :class="activeTab === 'all' ? 'text-brand-dark border-b border-brand-dark' : 'hover:text-brand-dark'" class="pb-1 transition">Semua</button>
+                    <button @click="activeTab = 'wedding'" :class="activeTab === 'wedding' ? 'text-brand-dark border-b border-brand-dark' : 'hover:text-brand-dark'" class="pb-1 transition">Pernikahan</button>
+                    <button @click="activeTab = 'corporate'" :class="activeTab === 'corporate' ? 'text-brand-dark border-b border-brand-dark' : 'hover:text-brand-dark'" class="pb-1 transition">Korporat</button>
                 </div>
             </div>
 
-            <!-- Dynamic Content Area -->
-            <div class="min-h-[600px]">
+            <!-- Grid Menu Cards (Compact & Aesthetic) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
-                <!-- Signature Items -->
-                <div x-show="activeCategory === 'signature'" class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center" x-transition:enter="transition ease-out duration-700" x-transition:enter-start="opacity-0 translate-y-10" x-transition:enter-end="opacity-100 translate-y-0">
-                    
-                    <!-- Item 1: Large Image Left -->
-                    <div class="group cursor-pointer">
-                        <div class="overflow-hidden aspect-[3/4] mb-6 relative">
-                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-1000">
-                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-500"></div>
+                <!-- Card 1 -->
+                <div class="menu-card group cursor-pointer" x-show="activeTab === 'all' || activeTab === 'wedding'" x-transition.duration.500ms>
+                    <div class="relative aspect-[4/3] overflow-hidden rounded-md mb-4 bg-stone-100">
+                        <img src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&q=80&w=600" class="card-img w-full h-full object-cover transition duration-700 ease-out" alt="Food">
+                        <div class="card-overlay absolute inset-0 bg-black/20 opacity-0 transition duration-300 flex items-center justify-center">
+                            <span class="bg-white/90 backdrop-blur px-4 py-2 text-xs uppercase tracking-widest rounded-full">Lihat Detail</span>
                         </div>
-                        <div class="flex justify-between items-baseline border-b border-gray-100 pb-4">
-                            <h3 class="text-3xl font-serif text-charcoal">Truffle Risotto</h3>
-                            <span class="text-gold-accent font-serif italic text-xl">IDR 150k</span>
-                        </div>
-                        <p class="mt-4 text-sm text-gray-500 font-light">Arborio rice, wild porcini mushrooms, shaved black truffle from Alba, parmesan foam.</p>
                     </div>
-
-                    <!-- Item 2: Large Image Right (Offset) -->
-                    <div class="group cursor-pointer md:mt-24">
-                        <div class="overflow-hidden aspect-[3/4] mb-6 relative">
-                            <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-1000">
-                        </div>
-                        <div class="flex justify-between items-baseline border-b border-gray-100 pb-4">
-                            <h3 class="text-3xl font-serif text-charcoal">Wagyu A5 Tenderloin</h3>
-                            <span class="text-gold-accent font-serif italic text-xl">IDR 350k</span>
-                        </div>
-                        <p class="mt-4 text-sm text-gray-500 font-light">Japanese Wagyu, red wine reduction, truffle mashed potato, seasonal grilled vegetables.</p>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-serif text-xl text-brand-dark group-hover:text-brand-gold transition">Seafood Platter</h3>
+                        <span class="text-sm font-medium text-stone-500">IDR 150k</span>
                     </div>
+                    <p class="text-sm text-stone-500 leading-relaxed line-clamp-2">Lobster, udang tiger, dan kerang hijau segar dengan saus lemon butter spesial.</p>
                 </div>
 
-                <!-- Wedding Items (Placeholder for logic) -->
-                <div x-show="activeCategory === 'wedding'" class="text-center py-20" x-cloak>
-                    <h3 class="text-4xl font-serif italic text-charcoal mb-4">Wedding Packages</h3>
-                    <p class="text-gray-500 max-w-lg mx-auto">Kami menyediakan menu custom untuk hari istimewa Anda. Mulai dari prasmanan internasional hingga plated dinner 7-course.</p>
-                    <button class="mt-8 px-8 py-3 border border-charcoal text-xs uppercase tracking-widest hover:bg-charcoal hover:text-white transition">Download PDF Brochure</button>
+                <!-- Card 2 -->
+                <div class="menu-card group cursor-pointer" x-show="activeTab === 'all' || activeTab === 'wedding'" x-transition.duration.500ms>
+                    <div class="relative aspect-[4/3] overflow-hidden rounded-md mb-4 bg-stone-100">
+                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=600" class="card-img w-full h-full object-cover transition duration-700 ease-out" alt="Food">
+                         <div class="card-overlay absolute inset-0 bg-black/20 opacity-0 transition duration-300 flex items-center justify-center">
+                            <span class="bg-white/90 backdrop-blur px-4 py-2 text-xs uppercase tracking-widest rounded-full">Lihat Detail</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-serif text-xl text-brand-dark group-hover:text-brand-gold transition">Wagyu Steak</h3>
+                        <span class="text-sm font-medium text-stone-500">IDR 220k</span>
+                    </div>
+                    <p class="text-sm text-stone-500 leading-relaxed line-clamp-2">Daging sapi Wagyu grade A5 dipanggang sempurna dengan truffle mashed potato.</p>
                 </div>
 
+                <!-- Card 3 -->
+                <div class="menu-card group cursor-pointer" x-show="activeTab === 'all' || activeTab === 'corporate'" x-transition.duration.500ms>
+                    <div class="relative aspect-[4/3] overflow-hidden rounded-md mb-4 bg-stone-100">
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=600" class="card-img w-full h-full object-cover transition duration-700 ease-out" alt="Food">
+                         <div class="card-overlay absolute inset-0 bg-black/20 opacity-0 transition duration-300 flex items-center justify-center">
+                            <span class="bg-white/90 backdrop-blur px-4 py-2 text-xs uppercase tracking-widest rounded-full">Lihat Detail</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-serif text-xl text-brand-dark group-hover:text-brand-gold transition">Healthy Bento</h3>
+                        <span class="text-sm font-medium text-stone-500">IDR 85k</span>
+                    </div>
+                    <p class="text-sm text-stone-500 leading-relaxed line-clamp-2">Paket makan siang sehat dengan nasi merah, salmon pangkas, dan salad organik.</p>
+                </div>
+
+                 <!-- Card 4 -->
+                 <div class="menu-card group cursor-pointer" x-show="activeTab === 'all' || activeTab === 'corporate'" x-transition.duration.500ms>
+                    <div class="relative aspect-[4/3] overflow-hidden rounded-md mb-4 bg-stone-100">
+                        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=600" class="card-img w-full h-full object-cover transition duration-700 ease-out" alt="Food">
+                         <div class="card-overlay absolute inset-0 bg-black/20 opacity-0 transition duration-300 flex items-center justify-center">
+                            <span class="bg-white/90 backdrop-blur px-4 py-2 text-xs uppercase tracking-widest rounded-full">Lihat Detail</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-serif text-xl text-brand-dark group-hover:text-brand-gold transition">Gourmet Salad</h3>
+                        <span class="text-sm font-medium text-stone-500">IDR 65k</span>
+                    </div>
+                    <p class="text-sm text-stone-500 leading-relaxed line-clamp-2">Campuran sayuran hidroponik segar dengan dressing balsamic vinegar buatan sendiri.</p>
+                </div>
+
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block text-xs uppercase tracking-widest border-b border-stone-400 pb-1 hover:text-brand-gold hover:border-brand-gold transition">Lihat Katalog Lengkap PDF</a>
             </div>
         </div>
     </section>
 
-    <!-- CALCULATOR: Clean & Integrated -->
-    <section id="calculator" class="py-24 bg-sage/10">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-4xl font-serif text-charcoal mb-2">Plan Your Event</h2>
-            <p class="text-gray-500 font-light mb-12">Transparansi harga untuk kenyamanan Anda.</p>
-
-            <div class="bg-white p-8 md:p-12 shadow-xl shadow-gray-100/50 rounded-sm" x-data="{ guests: 50, price: 150000 }">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <div class="text-left space-y-8">
-                        <div>
-                            <label class="flex justify-between text-xs uppercase tracking-widest text-gray-400 mb-2">
-                                <span>Guest Count</span>
-                                <span class="text-charcoal font-bold" x-text="guests + ' Pax'"></span>
-                            </label>
-                            <input type="range" min="10" max="200" x-model="guests" class="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-gold-accent">
-                        </div>
+    <!-- Calculator Section: Simple & Clean -->
+    <section id="calculator" class="py-20 bg-stone-100">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="bg-white p-8 md:p-12 shadow-sm border border-stone-200" x-data="{ guests: 50, type: 'wedding', price: 150000 }">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                    
+                    <div>
+                        <h3 class="text-2xl font-serif text-brand-dark mb-6">Estimasi Biaya Acara</h3>
                         
-                        <div>
-                            <label class="block text-xs uppercase tracking-widest text-gray-400 mb-4">Event Type</label>
-                            <div class="flex gap-4">
-                                <button @click="price = 150000" :class="price === 150000 ? 'bg-charcoal text-white' : 'bg-gray-100 text-gray-500'" class="flex-1 py-3 text-xs uppercase tracking-wide transition">Wedding</button>
-                                <button @click="price = 85000" :class="price === 85000 ? 'bg-charcoal text-white' : 'bg-gray-100 text-gray-500'" class="flex-1 py-3 text-xs uppercase tracking-wide transition">Corporate</button>
+                        <div class="space-y-6">
+                            <div>
+                                <label class="flex justify-between text-xs uppercase tracking-wider text-stone-500 mb-2">
+                                    Jumlah Tamu <span x-text="guests + ' Orang'" class="text-brand-dark font-bold"></span>
+                                </label>
+                                <input type="range" min="20" max="500" step="10" x-model="guests" class="w-full h-1 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-brand-gold">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs uppercase tracking-wider text-stone-500 mb-3">Jenis Paket</label>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <button @click="type = 'wedding'; price = 150000" :class="type === 'wedding' ? 'bg-brand-dark text-white' : 'bg-stone-100 text-stone-600'" class="py-2 text-xs uppercase tracking-wide transition rounded-sm">Wedding</button>
+                                    <button @click="type = 'corporate'; price = 85000" :class="type === 'corporate' ? 'bg-brand-dark text-white' : 'bg-stone-100 text-stone-600'" class="py-2 text-xs uppercase tracking-wide transition rounded-sm">Korporat</button>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex flex-col justify-center items-center border-l border-gray-100 pl-0 md:pl-12">
-                        <span class="text-xs uppercase tracking-widest text-gray-400 mb-2">Estimated Total</span>
-                        <span class="text-4xl md:text-5xl font-serif text-charcoal mb-6" x-text="'Rp ' + (guests * price).toLocaleString('id-ID')"></span>
-                        <button class="w-full py-4 bg-gold-accent text-white font-medium uppercase tracking-widest text-xs hover:bg-charcoal transition duration-300">
-                            Book This Package
-                        </button>
+                    <div class="bg-stone-50 p-6 text-center border border-stone-100">
+                        <p class="text-xs uppercase tracking-widest text-stone-400 mb-2">Total Estimasi</p>
+                        <p class="text-3xl font-serif text-brand-dark mb-1" x-text="'Rp ' + (guests * price).toLocaleString('id-ID')"></p>
+                        <p class="text-[10px] text-stone-400 italic mb-4">*Harga dapat berubah sesuai menu final</p>
+                        <a href="https://wa.me/?text=Halo%20Lumiere,%20saya%20ingin%20tanya%20paket%20catering" target="_blank" class="block w-full py-3 bg-brand-gold text-white text-xs uppercase tracking-widest hover:bg-brand-dark transition duration-300">
+                            Konsultasi via WhatsApp
+                        </a>
                     </div>
+
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER: Dark & Bold -->
-    <footer id="contact" class="bg-charcoal text-cream pt-24 pb-12">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 mb-20">
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-stone-400 py-16 text-center md:text-left">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
             <div>
-                <h2 class="text-5xl md:text-7xl font-serif mb-8">Let's create <br>something <span class="italic text-gold-accent">beautiful.</span></h2>
-                <a href="mailto:hello@lumiere.id" class="text-2xl border-b border-gold-accent pb-1 hover:text-gold-accent transition">hello@lumiere.id</a>
+                <h2 class="text-2xl font-serif text-white mb-4">Lumière.</h2>
+                <p class="text-sm leading-relaxed mb-6">Menghadirkan kehangatan dan kemewahan dalam setiap sajian untuk momen berharga Anda.</p>
             </div>
-            
-            <div class="grid grid-cols-2 gap-8 text-sm font-light text-cream/60">
-                <div>
-                    <h4 class="text-cream uppercase tracking-widest mb-4">Studio</h4>
-                    <p>Jl. Senopati No. 88<br>Jakarta Selatan, 12190</p>
-                </div>
-                <div>
-                    <h4 class="text-cream uppercase tracking-widest mb-4">Social</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="hover:text-gold-accent transition">Instagram</a></li>
-                        <li><a href="#" class="hover:text-gold-accent transition">Pinterest</a></li>
-                    </ul>
-                </div>
+            <div>
+                <h4 class="text-white text-xs uppercase tracking-widest mb-4">Kontak</h4>
+                <p class="text-sm mb-2">hello@lumiere-catering.id</p>
+                <p class="text-sm">+62 812 3456 7890</p>
+            </div>
+            <div>
+                <h4 class="text-white text-xs uppercase tracking-widest mb-4">Alamat</h4>
+                <p class="text-sm">Jl. Senopati No. 88<br>Jakarta Selatan, 12190</p>
             </div>
         </div>
-        <div class="border-t border-white/10 pt-8 text-center text-xs text-cream/30 uppercase tracking-widest">
-            &copy; 2026 Lumière Catering. All Rights Reserved.
+        <div class="border-t border-white/10 mt-12 pt-8 text-center text-xs text-stone-600">
+            &copy; 2026 Lumière Catering. All rights reserved.
         </div>
     </footer>
 
-    <!-- Logic Scripts -->
-    <script>
-        // Hero Slider Logic
-        function heroSlider() {
-            return {
-                activeSlide: 0,
-                slides: [
-                    { img: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1974&auto=format&fit=crop' }, // Bright elegant table
-                    { img: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2070&auto=format&fit=crop' }, // Cocktail bright
-                    { img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070&auto=format&fit=crop' }  // Fine dining bright
-                ],
-                startTimer() {
-                    setInterval(() => {
-                        this.activeSlide = (this.activeSlide + 1) % this.slides.length;
-                    }, 6000);
-                },
-                setSlide(index) {
-                    this.activeSlide = index;
-                }
-            }
-        }
-
-        // GSAP Animations
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Animate elements on scroll
-        gsap.utils.toArray('.reveal-on-scroll').forEach(element => {
-            gsap.fromTo(element, 
-                { opacity: 0, y: 50 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1.2,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: element,
-                        start: "top 80%",
-                    }
-                }
-            );
-        });
-
-        // Initial Hero Text Animation
-        gsap.to(".animate-slide-up", {
-            y: 0,
-            duration: 1.5,
-            stagger: 0.2,
-            ease: "power4.out",
-            delay: 0.5
-        });
-        
-        gsap.to(".animate-fade-in", {
-            opacity: 1,
-            duration: 1.5,
-            delay: 1
-        });
-    </script>
-    
-    <style>
-        /* Additional Animations */
-        @keyframes slow-zoom {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.1); }
-        }
-        .animate-slow-zoom {
-            animation: slow-zoom 20s infinite alternate linear;
-        }
-        
-        .animate-slide-up { transform: translateY(100%); }
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-500 { animation-delay: 0.5s; }
-        .delay-700 { animation-delay: 0.7s; }
-    </style>
 </body>
 </html>
