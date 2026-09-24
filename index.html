@@ -1,360 +1,486 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Royal Banquet | High-End Catering</title>
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Alpine.js -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    
-    <!-- Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'royal-green': '#0f3d2e',
-                        'royal-gold': '#c5a059',
-                        'cream': '#f9f7f2',
-                        'charcoal': '#1a1a1a'
-                    },
-                    fontFamily: {
-                        serif: ['"Cormorant Garamond"', 'serif'],
-                        sans: ['"Montserrat"', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        body { background-color: #f9f7f2; color: #0f3d2e; }
-        
-        /* Card Hover Effect */
-        .menu-card:hover .card-img { transform: scale(1.1); }
-        
-        /* Map Grayscale Filter */
-        .map-grayscale iframe { filter: grayscale(100%) invert(90%) contrast(85%); transition: filter 0.5s; }
-        .map-grayscale:hover iframe { filter: none; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Warung 99 — Catering Masakan Rumahan, Diantar Cepat</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#f7f1e8; --card:#fffcf7; --ink:#241e19; --muted:#7a7065;
+  --maroon:#9b1c1c; --maroon-d:#7f1616; --line:#e7dccb; --dark:#2a231d; --gold:#d9a441;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--cream);color:var(--ink);line-height:1.6}
+h1,h2,h3,.serif{font-family:'Playfair Display',serif}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.accent{color:var(--maroon)}
+.btn{display:inline-flex;align-items:center;gap:8px;border:none;border-radius:12px;padding:12px 22px;font-weight:700;font-family:inherit;font-size:.95rem;cursor:pointer;text-decoration:none;transition:.2s}
+.btn-primary{background:var(--maroon);color:#fff}
+.btn-primary:hover{background:var(--maroon-d)}
+.btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn-block{width:100%;justify-content:center}
+.topbar{background:var(--maroon);color:#fff;text-align:center;font-size:.85rem;font-weight:600;padding:8px 16px}
+header{position:sticky;top:0;z-index:50;background:rgba(247,241,232,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.brand-mark{width:42px;height:42px;background:var(--maroon);border-radius:10px;display:grid;place-items:center;font-size:22px}
+.brand strong{font-family:'Playfair Display',serif;font-size:1.25rem;display:block;line-height:1.1}
+.brand small{font-size:.62rem;letter-spacing:.18em;color:var(--muted);font-weight:700}
+nav.menu{display:flex;gap:26px}
+nav.menu a{text-decoration:none;color:var(--ink);font-weight:600;font-size:.92rem;padding-bottom:4px;border-bottom:2px solid transparent}
+nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon)}
+/* HERO */
+.hero{padding:64px 0 56px;display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:start}
+.eyebrow{color:var(--maroon);font-weight:800;font-size:.78rem;letter-spacing:.14em;margin-bottom:14px}
+.hero h1{font-size:clamp(2.2rem,4.6vw,3.5rem);line-height:1.12;font-weight:800}
+.hero .sub{color:var(--muted);margin:16px 0 24px;max-width:46ch}
+.toggle{display:flex;gap:10px;margin-bottom:14px}
+.toggle button{flex:1;max-width:160px;padding:11px;border-radius:10px;border:1px solid var(--line);background:#fff;font-weight:700;font-family:inherit;cursor:pointer;color:var(--muted)}
+.toggle button.on{background:var(--maroon);color:#fff;border-color:var(--maroon)}
+.address{display:flex;gap:10px;margin-bottom:18px}
+.address input{flex:1;padding:12px 16px;border-radius:10px;border:1px solid var(--line);background:#fff;font-family:inherit;font-size:.92rem}
+.rating{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 16px;font-size:.85rem;width:fit-content}
+.rating .stars{color:var(--gold);letter-spacing:2px}
+/* CART */
+.cart-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 18px 44px rgba(60,40,20,.10);position:sticky;top:90px}
+.cart-head{display:flex;justify-content:space-between;align-items:center;font-weight:800;margin-bottom:14px}
+.cart-badge{background:var(--maroon);color:#fff;border-radius:999px;font-size:.72rem;padding:2px 9px}
+.cart-items{list-style:none;max-height:230px;overflow:auto;margin-bottom:12px}
+.cart-items li{display:flex;gap:10px;align-items:center;padding:9px 0;border-bottom:1px dashed var(--line)}
+.cart-items .ci-emoji{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#f3e6d2,#e9d5b8);display:grid;place-items:center;font-size:22px;flex:none}
+.ci-info{flex:1;min-width:0}
+.ci-info b{font-size:.85rem;display:block}
+.ci-info span{font-size:.78rem;color:var(--muted)}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:24px;height:24px;border-radius:6px;border:1px solid var(--line);background:#fff;cursor:pointer;font-weight:800;color:var(--maroon)}
+.cart-empty{color:var(--muted);font-size:.88rem;text-align:center;padding:18px 0}
+.cart-lines{font-size:.88rem;margin-bottom:14px}
+.cart-lines div{display:flex;justify-content:space-between;padding:3px 0;color:var(--muted)}
+.cart-lines .total{color:var(--ink);font-weight:800;font-size:1rem;border-top:1px solid var(--line);margin-top:6px;padding-top:8px}
+.cart-note{text-align:center;font-size:.75rem;color:var(--muted);margin-top:10px}
+/* STRIP */
+.strip{background:var(--dark);color:#fff;padding:26px 0}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.strip .f{display:flex;gap:12px;align-items:center;border-right:1px solid rgba(255,255,255,.12);padding-right:18px}
+.strip .f:last-child{border:none}
+.strip .ico{font-size:24px;color:#e07b7b}
+.strip b{display:block;font-size:.92rem}
+.strip span{font-size:.76rem;color:#cbbfae}
+/* SECTIONS */
+section{padding:64px 0}
+.sec-head{text-align:center;max-width:640px;margin:0 auto 40px}
+.sec-head h2{font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:800;line-height:1.2}
+.sec-head p{color:var(--muted);margin-top:10px}
+/* QUICK */
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:18px}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;text-align:center;transition:.2s}
+.qcard:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(60,40,20,.10)}
+.qcard .ico{font-size:26px;color:var(--maroon)}
+.qcard b{display:block;margin:8px 0 4px}
+.qcard span{font-size:.8rem;color:var(--muted)}
+.reorder{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.reorder h3{font-size:1.05rem}
+.reorder p{font-size:.8rem;color:var(--muted)}
+.ro-item{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px}
+.ro-item .ci-emoji{width:40px;height:40px;font-size:20px}
+.ro-item b{font-size:.82rem;display:block}
+.ro-item span{font-size:.75rem;color:var(--muted)}
+/* MENU */
+.tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:30px}
+.tabs button{padding:9px 20px;border-radius:999px;border:1px solid var(--line);background:#fff;font-family:inherit;font-weight:700;font-size:.86rem;cursor:pointer;color:var(--muted)}
+.tabs button.on{background:var(--maroon);color:#fff;border-color:var(--maroon)}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}
+.mcard{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:.2s}
+.mcard:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(60,40,20,.10)}
+.m-photo{height:120px;background:linear-gradient(135deg,#f3e6d2,#e5cda9);display:grid;place-items:center;font-size:52px}
+.m-body{padding:16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.m-body b{font-size:.95rem}
+.m-body p{font-size:.78rem;color:var(--muted);flex:1}
+.m-foot{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
+.m-foot .price{font-weight:800;color:var(--maroon)}
+.m-foot .unit{font-size:.72rem;color:var(--muted);font-weight:500}
+.add{width:34px;height:34px;border-radius:9px;border:none;background:var(--maroon);color:#fff;font-size:18px;font-weight:800;cursor:pointer}
+.add:hover{background:var(--maroon-d)}
+/* STEPS */
+.steps-ind{display:flex;justify-content:center;align-items:center;gap:0;margin-bottom:34px}
+.step-dot{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:800;border:2px solid var(--line);background:#fff;color:var(--muted)}
+.step-dot.on{background:var(--maroon);border-color:var(--maroon);color:#fff}
+.step-line{width:90px;height:2px;background:var(--line)}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.scard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;display:flex;gap:16px;align-items:flex-start}
+.scard .num{width:44px;height:44px;flex:none;border-radius:50%;background:var(--maroon);color:#fff;display:grid;place-items:center;font-weight:800}
+.scard b{display:block;margin-bottom:6px}
+.scard p{font-size:.85rem;color:var(--muted)}
+/* INFO */
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.icard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+.icard h3{font-size:1rem;margin-bottom:12px;display:flex;gap:8px;align-items:center}
+.icard h3 .ico{color:var(--maroon)}
+.icard ul{list-style:none;font-size:.85rem}
+.icard li{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--line)}
+.icard li:last-child{border:none}
+.icard .note{font-size:.78rem;color:var(--muted);margin-top:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 14px;font-size:.8rem;font-weight:600}
+.pop{display:flex;gap:10px;align-items:center;padding:7px 0;border-bottom:1px dashed var(--line)}
+.pop:last-of-type{border:none}
+.pop .ci-emoji{width:40px;height:40px;font-size:20px}
+.pop b{font-size:.84rem;display:block}
+.pop span{font-size:.76rem;color:var(--muted)}
+.pop .price{margin-left:auto;font-weight:800;color:var(--maroon);font-size:.85rem}
+.bar{height:7px;background:#efe4d2;border-radius:99px;margin:5px 0}
+.bar i{display:block;height:100%;background:var(--gold);border-radius:99px}
+.quote{background:#fff;border-left:3px solid var(--maroon);border-radius:8px;padding:10px 14px;font-size:.8rem;color:var(--muted);margin-top:10px}
+.promo-box{background:var(--maroon);color:#fff;border-radius:12px;padding:16px;margin-bottom:10px}
+.promo-box .tag{background:#fff;color:var(--maroon);font-size:.65rem;font-weight:800;border-radius:6px;padding:2px 8px;letter-spacing:.08em}
+.promo-box b{display:block;font-family:'Playfair Display',serif;font-size:1.15rem;margin:6px 0 2px}
+.promo-box span{font-size:.78rem;opacity:.9}
+.payrow{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line);font-size:.85rem;font-weight:600}
+.payrow:last-of-type{border:none}
+.payrow em{font-style:normal;font-size:.75rem;color:var(--muted);font-weight:500}
+/* CTA + FOOTER */
+.cta-card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:52px 40px;text-align:center}
+.cta-card h2{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:800}
+.cta-card p{color:var(--muted);margin:12px auto 26px;max-width:52ch}
+.cta-points{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:22px;font-size:.85rem;font-weight:600;color:var(--muted)}
+footer{background:var(--dark);color:#cbbfae;padding:36px 0;font-size:.85rem}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+footer .serif{color:#fff;font-size:1.1rem}
+/* MINIBAR, TOAST, MODAL */
+.minibar{position:fixed;left:0;right:0;bottom:0;background:var(--dark);color:#fff;padding:12px 20px;display:none;justify-content:center;align-items:center;gap:18px;z-index:60}
+.minibar.show{display:flex}
+.minibar b{font-size:.92rem}
+.toast{position:fixed;bottom:76px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--dark);color:#fff;padding:10px 22px;border-radius:999px;font-size:.85rem;font-weight:600;opacity:0;pointer-events:none;transition:.3s;z-index:70}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.modal{position:fixed;inset:0;background:rgba(30,22,15,.55);display:none;place-items:center;z-index:80;padding:20px}
+.modal.show{display:grid}
+.modal-card{background:var(--card);border-radius:20px;max-width:460px;width:100%;padding:28px;max-height:88vh;overflow:auto}
+.modal-card h3{font-size:1.4rem;margin-bottom:4px}
+.modal-card .msub{font-size:.83rem;color:var(--muted);margin-bottom:18px}
+.field{margin-bottom:14px}
+.field label{font-size:.78rem;font-weight:700;display:block;margin-bottom:5px}
+.field input,.field select{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font-family:inherit;font-size:.9rem;background:#fff}
+.pay-opts{display:grid;gap:8px}
+.pay-opts label{display:flex;gap:10px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:.87rem;font-weight:600;cursor:pointer}
+.pay-opts input{accent-color:var(--maroon)}
+.success{text-align:center;padding:20px 0}
+.success .big{font-size:52px}
+.success h3{margin:10px 0 6px}
+.success p{font-size:.88rem;color:var(--muted)}
+.success .code{font-weight:800;color:var(--maroon);font-size:1.1rem;letter-spacing:.06em}
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .cart-card{position:static}
+  .strip .wrap{grid-template-columns:repeat(2,1fr)}
+  .strip .f{border:none;padding:0}
+  .quick-grid{grid-template-columns:repeat(2,1fr)}
+  .steps-grid{grid-template-columns:1fr}
+  nav.menu{display:none}
+}
+@media(max-width:560px){
+  .quick-grid{grid-template-columns:1fr}
+  .strip .wrap{grid-template-columns:1fr}
+  .step-line{width:40px}
+}
+</style>
 </head>
-<body class="font-sans antialiased selection:bg-royal-gold selection:text-white">
+<body>
 
-    <!-- TOP BAR -->
-    <div class="bg-royal-green text-white/80 py-2 text-[10px] md:text-xs uppercase tracking-widest border-b border-white/10">
-        <div class="max-w-[1600px] mx-auto px-6 flex justify-between items-center">
-            <div class="flex gap-6">
-                <span class="flex items-center gap-2"><i data-lucide="phone" class="w-3 h-3 text-royal-gold"></i> +62 21 555 0199</span>
-                <span class="hidden md:flex items-center gap-2"><i data-lucide="mail" class="w-3 h-3 text-royal-gold"></i> concierge@royalbanquet.id</span>
-            </div>
-            <div class="flex gap-4">
-                <a href="#" class="hover:text-royal-gold transition">Instagram</a>
-                <span class="text-white/20">|</span>
-                <a href="#" class="hover:text-royal-gold transition">LinkedIn</a>
-            </div>
-        </div>
+<div class="topbar">🛵 GRATIS ONGKIR untuk pesanan di atas Rp150.000 — berlaku setiap hari</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#beranda">
+      <span class="brand-mark">🍛</span>
+      <span><strong>Warung 99</strong><small>CITA RASA RUMAHAN</small></span>
+    </a>
+    <nav class="menu">
+      <a href="#beranda" class="active">Beranda</a>
+      <a href="#menu">Menu</a>
+      <a href="#layanan">Layanan</a>
+      <a href="#tentang">Tentang</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+    <a class="btn btn-primary" href="#menu">Pesan Sekarang 🛍️</a>
+  </div>
+</header>
+
+<main>
+<!-- ============ HERO ============ -->
+<section id="beranda" style="padding-top:48px">
+  <div class="wrap hero">
+    <div>
+      <p class="eyebrow">🍚 100% MASAKAN RUMAHAN. DIMASAK HARI INI.</p>
+      <h1>Masakan Rumahan Indonesia, <span class="accent">Diantar Cepat</span></h1>
+      <p class="sub">Catering harian, nasi kotak, sampai prasmanan acara — dimasak pagi ini, sampai di meja Anda selagi hangat.</p>
+      <div class="toggle">
+        <button id="modeAntar" class="on" onclick="setMode('antar')">🛵 Antar</button>
+        <button id="modeAmbil" onclick="setMode('ambil')">🛍️ Ambil Sendiri</button>
+      </div>
+      <form class="address" onsubmit="cekArea(event)">
+        <input id="alamat" type="text" placeholder="Masukkan alamat pengantaran…">
+        <button class="btn btn-primary" type="submit">Cek Area</button>
+      </form>
+      <div class="rating"><span class="stars">★★★★★</span><b>4.8</b><span>(1.250+ ulasan) · Dipercaya keluarga &amp; kantor se-Indonesia</span></div>
     </div>
 
-        <!-- NAVBAR: Clean, Solid & Elegant -->
-    <nav class="fixed top-0 w-full z-50 bg-cream shadow-sm border-b border-royal-green/10 transition-all duration-300 py-4">
-        <div class="max-w-[1800px] mx-auto px-6 md:px-12 flex justify-between items-center relative">
-            
-            <!-- Left Side Menu -->
-            <div class="hidden lg:flex items-center gap-10 flex-1 justify-end pr-12">
-                <a href="#home" class="group relative text-xs uppercase tracking-[0.2em] font-medium text-royal-green hover:text-royal-gold transition-colors duration-300">
-                    Beranda
-                    <span class="absolute -bottom-1 left-1/2 w-0 h-px bg-royal-gold transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
-                </a>
-                <a href="#menu" class="group relative text-xs uppercase tracking-[0.2em] font-medium text-royal-green hover:text-royal-gold transition-colors duration-300">
-                    Koleksi Menu
-                    <span class="absolute -bottom-1 left-1/2 w-0 h-px bg-royal-gold transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
-                </a>
-            </div>
+    <aside class="cart-card" id="cart">
+      <div class="cart-head">Pesanan Anda <span class="cart-badge" id="cartCount">0</span></div>
+      <ul class="cart-items" id="cartItems"><li class="cart-empty">Keranjang masih kosong.<br>Yuk tambah menu favorit di bawah 👇</li></ul>
+      <div class="cart-lines">
+        <div><span>Subtotal</span><span id="subTotal">Rp0</span></div>
+        <div><span>Ongkos Antar</span><span id="delFee">Rp0</span></div>
+        <div class="total"><span>Total</span><span id="grandTotal">Rp0</span></div>
+      </div>
+      <button class="btn btn-primary btn-block" onclick="openCheckout()">Checkout Sekarang →</button>
+      <p class="cart-note">🍛 Dimasak segar setiap hari · Halal</p>
+    </aside>
+  </div>
+</section>
 
-            <!-- Center Logo -->
-            <div class="flex-shrink-0 z-10">
-                <a href="#" class="text-3xl font-serif font-bold text-royal-green tracking-tighter hover:scale-105 transition-transform duration-500">
-                    Royal<span class="text-royal-gold italic">.</span>
-                </a>
-            </div>
+<!-- ============ STRIP ============ -->
+<div class="strip">
+  <div class="wrap">
+    <div class="f"><span class="ico">🛵</span><div><b>Pengiriman Cepat</b><span>Dilacak real-time</span></div></div>
+    <div class="f"><span class="ico">🛍️</span><div><b>Ambil Mudah</b><span>Lewati antrean</span></div></div>
+    <div class="f"><span class="ico">⭐</span><div><b>Rating Tertinggi</b><span>4.8 dari 1.250+ ulasan</span></div></div>
+    <div class="f"><span class="ico">🌙</span><div><b>Buka Sampai Malam</b><span>Hingga 21.00 setiap hari</span></div></div>
+  </div>
+</div>
 
-            <!-- Right Side Menu & CTA -->
-            <div class="hidden lg:flex items-center gap-10 flex-1 justify-start pl-12">
-                <a href="#events" class="group relative text-xs uppercase tracking-[0.2em] font-medium text-royal-green hover:text-royal-gold transition-colors duration-300">
-                    Rancang Acara
-                    <span class="absolute -bottom-1 left-1/2 w-0 h-px bg-royal-gold transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
-                </a>
-                
-                <!-- Elegant Button -->
-                <a href="#contact" class="relative overflow-hidden px-8 py-3 bg-royal-green text-white text-[10px] uppercase tracking-[0.2em] font-bold group shadow-lg hover:shadow-xl transition-all duration-300">
-                    <span class="relative z-10 group-hover:text-royal-green transition-colors duration-300">Reservasi VIP</span>
-                    <div class="absolute inset-0 bg-royal-gold transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-out"></div>
-                </a>
-            </div>
+<!-- ============ QUICK ACTIONS ============ -->
+<section>
+  <div class="wrap">
+    <div class="quick-grid">
+      <div class="qcard"><span class="ico">🛍️</span><b>Pesan Online</b><span>Order dalam hitungan detik</span></div>
+      <div class="qcard"><span class="ico">📖</span><b>Lihat Menu</b><span>Jelajahi menu lengkap</span></div>
+      <div class="qcard"><span class="ico">🚚</span><b>Lacak Pesanan</b><span>Update real-time</span></div>
+      <div class="qcard"><span class="ico">🎁</span><b>Loyalitas</b><span>Kumpul stempel, dapat hadiah</span></div>
+    </div>
+    <div class="reorder">
+      <div><h3>Pesan Ulang, Cepat</h3><p>Favorit Anda, siap kapan pun dibutuhkan.</p></div>
+      <div class="ro-item"><span class="ci-emoji">🍗</span><div><b>Nasi Kotak Ayam Bakar</b><span>Rp25.000 / kotak</span></div><button class="btn btn-primary" style="padding:8px 14px;font-size:.8rem" onclick="add('nk1')">Pesan Ulang</button></div>
+      <div class="ro-item"><span class="ci-emoji">🍛</span><div><b>Nasi Kotak Rendang</b><span>Rp28.000 / kotak</span></div><button class="btn btn-primary" style="padding:8px 14px;font-size:.8rem" onclick="add('nk2')">Pesan Ulang</button></div>
+    </div>
+  </div>
+</section>
 
-            <!-- Mobile Menu Button -->
-            <button class="lg:hidden text-royal-green p-2">
-                <i data-lucide="menu" class="w-6 h-6"></i>
-            </button>
+<!-- ============ MENU ============ -->
+<section id="menu" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Menu yang Bikin <span class="accent">Kangen Rumah</span></h2>
+      <p>Pilih kategori, tambah ke keranjang, checkout dalam hitungan detik.</p>
+    </div>
+    <div class="tabs" id="tabs"></div>
+    <div class="menu-grid" id="menuGrid"></div>
+  </div>
+</section>
+
+<!-- ============ STEPS ============ -->
+<section id="layanan">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Pesan Catering Semudah <span class="accent">1-2-3</span></h2>
+      <p>Tanpa ribet. Tanpa bingung. Hanya jalan mulus menuju makanan enak.</p>
+    </div>
+    <div class="steps-ind">
+      <div class="step-dot on">1</div><div class="step-line"></div>
+      <div class="step-dot">2</div><div class="step-line"></div>
+      <div class="step-dot">3</div>
+    </div>
+    <div class="steps-grid">
+      <div class="scard"><span class="num">1</span><div><b>Pilih Paket Anda</b><p>Telusuri menu per kategori dan tambahkan favorit Anda ke keranjang.</p></div></div>
+      <div class="scard"><span class="num">2</span><div><b>Konfirmasi &amp; Pengantaran</b><p>Cek pesanan, pilih antar atau ambil, atur alamat dan jam dalam sekejap.</p></div></div>
+      <div class="scard"><span class="num">3</span><div><b>Bayar &amp; Selesai</b><p>Bayar aman via QRIS/transfer/COD. Pesanan diproses, Anda tinggal tunggu.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INFO ============ -->
+<section id="tentang" style="background:#f1e9db">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Informasi Penting <span class="accent">Sebelum Memesan</span></h2>
+      <p>Pesanan lebih cepat saat menu, jam buka, detail antar, dan ulasan mudah ditemukan.</p>
+    </div>
+    <div class="info-grid">
+      <div class="icard">
+        <h3><span class="ico">🍽️</span> Kategori Menu</h3>
+        <div class="chips"><span>Nasi Kotak</span><span>Prasmanan</span><span>Snack &amp; Kue</span><span>Minuman</span><span>Paket Acara</span><span>Tumpeng</span></div>
+      </div>
+      <div class="icard">
+        <h3><span class="ico">🔥</span> Hidangan Populer</h3>
+        <div class="pop"><span class="ci-emoji">🍗</span><div><b>Nasi Kotak Ayam Bakar</b><span>Best seller sepanjang masa</span></div><span class="price">Rp25.000</span></div>
+        <div class="pop"><span class="ci-emoji">🍛</span><div><b>Nasi Kotak Rendang</b><span>Rendang sapi 8 jam</span></div><span class="price">Rp28.000</span></div>
+        <div class="pop"><span class="ci-emoji">🍲</span><div><b>Prasmanan Arisan</b><span>Min. 15 pax</span></div><span class="price">Rp45.000</span></div>
+      </div>
+      <div class="icard">
+        <h3><span class="ico">🕐</span> Jam Operasional</h3>
+        <ul>
+          <li><span>Senin – Jumat</span><span>08.00 – 21.00</span></li>
+          <li><span>Sabtu</span><span>08.00 – 22.00</span></li>
+          <li><span>Minggu</span><span>09.00 – 20.00</span></li>
+        </ul>
+        <p class="note">📍 Jl. Melati No. 99, Jakarta Selatan · <a href="#kontak" style="color:var(--maroon)">Lihat di Maps →</a></p>
+      </div>
+      <div class="icard">
+        <h3><span class="ico">🗺️</span> Area Pengiriman</h3>
+        <ul>
+          <li><span>Gratis ongkir</span><span>&lt; 5 km</span></li>
+          <li><span>Standar Rp10.000</span><span>5 – 12 km</span></li>
+        </ul>
+        <p class="note"><a href="#beranda" style="color:var(--maroon);font-weight:700">Cek apakah kami antar ke alamat Anda →</a></p>
+      </div>
+      <div class="icard">
+        <h3><span class="ico">⭐</span> Rating &amp; Ulasan</h3>
+        <div style="font-size:1.6rem;font-weight:800">4.8 <span style="font-size:.8rem;color:var(--muted);font-weight:500">(1.250+ ulasan)</span></div>
+        <div class="bar"><i style="width:90%"></i></div>
+        <div class="bar"><i style="width:7%"></i></div>
+        <div class="bar"><i style="width:3%"></i></div>
+        <div class="quote">“Nasi kotak terenak se-Jakarta Selatan! Antarnya selalu tepat waktu dan masih hangat.” — Bu Sarah, pelanggan setia</div>
+      </div>
+      <div class="icard">
+        <h3><span class="ico">🎉</span> Promo Spesial</h3>
+        <div class="promo-box"><span class="tag">TERBATAS</span><b>Paket Rapat Rp99.000</b><span>10 nasi kotak + 10 es teh, hari kerja</span></div>
+        <p class="note">Diskon 10% pesanan pertama! Kode: <b style="color:var(--maroon)">WARUNG99</b></p>
+      </div>
+      <div class="icard">
+        <h3><span class="ico">🔒</span> Pembayaran Aman</h3>
+        <div class="payrow"><span>💳 Transfer Bank</span><em>BCA · Mandiri · BRI</em></div>
+        <div class="payrow"><span>📱 QRIS</span><em>Semua e-wallet</em></div>
+        <div class="payrow"><span>💵 COD</span><em>Bayar di tempat</em></div>
+        <p class="note">🛡️ Checkout terenkripsi. Data pembayaran Anda selalu aman.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section id="kontak">
+  <div class="wrap">
+    <div class="cta-card">
+      <h2>Siap Pesan Catering yang <span class="accent">Lebih Mudah?</span></h2>
+      <p>Warung 99 — catering modern untuk keluarga, kantor, dan acara Anda. Cita rasa rumahan, layanan profesional.</p>
+      <a class="btn btn-primary" href="#menu" style="font-size:1.05rem;padding:14px 34px">Mulai Pesan Sekarang →</a>
+      <div class="cta-points"><span>• Menu jelas</span><span>• Checkout cepat</span><span>• Pengantaran tepat waktu</span></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><span class="serif">🍛 Warung 99</span><br>Bahan berkualitas. Pengalaman lebih baik.</div>
+    <div>WA: 0812-3456-7890 · halo@warung99.id<br>©2026 Warung 99. Seluruh hak cipta.</div>
+  </div>
+</footer>
+
+<div class="minibar" id="minibar"><b id="miniText"></b><button class="btn btn-primary" style="padding:9px 18px;font-size:.85rem" onclick="document.getElementById('cart').scrollIntoView()">Lihat Pesanan</button></div>
+<div class="toast" id="toast"></div>
+
+<!-- MODAL CHECKOUT -->
+<div class="modal" id="modal">
+  <div class="modal-card" id="modalBody">
+    <h3>Checkout Pesanan</h3>
+    <p class="msub">Lengkapi data, pesanan langsung kami proses. 🍛</p>
+    <form onsubmit="placeOrder(event)">
+      <div class="field"><label>Nama Pemesan</label><input required type="text" placeholder="Nama Anda"></div>
+      <div class="field"><label>No. WhatsApp</label><input required type="tel" placeholder="08xx xxxx xxxx"></div>
+      <div class="field"><label>Alamat / Keterangan Ambil</label><input required type="text" id="fAlamat" placeholder="Alamat lengkap atau titik ambil"></div>
+      <div class="field"><label>Jam Pengantaran</label><select><option>Hari ini, 11.00 – 13.00</option><option>Hari ini, 17.00 – 19.00</option><option>Besok pagi, 08.00 – 10.00</option></select></div>
+      <div class="field"><label>Metode Pembayaran</label>
+        <div class="pay-opts">
+          <label><input type="radio" name="pay" checked> QRIS (semua e-wallet)</label>
+          <label><input type="radio" name="pay"> Transfer Bank</label>
+          <label><input type="radio" name="pay"> COD / Bayar di Tempat</label>
         </div>
-    </nav>
+      </div>
+      <button class="btn btn-primary btn-block" type="submit">🔒 Buat Pesanan</button>
+      <button class="btn btn-ghost btn-block" style="margin-top:8px" type="button" onclick="closeModal()">Kembali</button>
+    </form>
+  </div>
+</div>
 
-    <!-- HERO SECTION: Slider -->
-    <section id="home" class="relative h-[85vh] w-full overflow-hidden bg-royal-green" x-data="heroSlider()" x-init="startTimer()">
-        <template x-for="(slide, index) in slides" :key="index">
-            <div class="absolute inset-0 transition-all duration-1000 ease-in-out" :class="activeSlide === index ? 'opacity-100 z-10 scale-105' : 'opacity-0 z-0 scale-100'">
-                <img :src="slide.img" class="w-full h-full object-cover" alt="Luxury Event">
-                <div class="absolute inset-0 bg-gradient-to-r from-royal-green/90 via-royal-green/40 to-transparent"></div>
-            </div>
-        </template>
+<script>
+const MENU=[
+ {id:'nk1',cat:'nasi',emoji:'🍗',name:'Nasi Kotak Ayam Bakar',desc:'Nasi, ayam bakar, tempe sambal goreng, tumis sayur, sambal, buah.',price:25000,unit:'kotak'},
+ {id:'nk2',cat:'nasi',emoji:'🍛',name:'Nasi Kotak Rendang',desc:'Nasi, rendang sapi, gulai daun singkong, telur balado, sambal ijo.',price:28000,unit:'kotak'},
+ {id:'nk3',cat:'nasi',emoji:'🍚',name:'Nasi Kuning Komplit',desc:'Nasi kuning, ayam suwir, tempe manis, telur dadar, kacang.',price:23000,unit:'kotak'},
+ {id:'pr1',cat:'prasmanan',emoji:'🥘',name:'Prasmanan Kantor',desc:'Min. 20 pax: 2 utama, 3 pendamping, dessert, air mineral.',price:55000,unit:'pax'},
+ {id:'pr2',cat:'prasmanan',emoji:'🍲',name:'Prasmanan Arisan',desc:'Min. 15 pax: soto spesial, hidangan utama, snack, es campur.',price:45000,unit:'pax'},
+ {id:'pr3',cat:'prasmanan',emoji:'🎉',name:'Tumpeng Mini Nusantara',desc:'Tumpeng mini dengan 9 lauk pauk, cocok untuk syukuran.',price:350000,unit:'set'},
+ {id:'sn1',cat:'snack',emoji:'🥟',name:'Risoles Mayo Smoked',desc:'Mayo creamy & ayam smoked, kulit crispy.',price:5000,unit:'pcs'},
+ {id:'sn2',cat:'snack',emoji:'🍙',name:'Lemper Ayam Panggang',desc:'Ketan isi ayam suwir, dibakar aroma daun pisang.',price:4500,unit:'pcs'},
+ {id:'sn3',cat:'snack',emoji:'🍰',name:'Box Kue Tradisional',desc:'Isi 10: lapis legit, kue klepon, bolu pandan.',price:35000,unit:'box'},
+ {id:'mn1',cat:'minuman',emoji:'🧋',name:'Kopi Susu Gula Aren',desc:'Espresso robusta, gula aren, susu segar.',price:15000,unit:'cup'},
+ {id:'mn2',cat:'minuman',emoji:'🍊',name:'Es Jeruk Peras Murni',desc:'Diperas langsung, tanpa esens.',price:8000,unit:'cup'},
+ {id:'mn3',cat:'minuman',emoji:'🍹',name:'Es Teh Manis Jumbo',desc:'Ukuran 1 liter, cocok untuk sharing di kantor.',price:12000,unit:'cup'},
+ {id:'pa1',cat:'paket',emoji:'💼',name:'Paket Rapat Kantor (20 pax)',desc:'20 nasi kotak + 2 snack + 20 minuman, bisa 2x kirim.',price:600000,unit:'paket'},
+ {id:'pa2',cat:'paket',emoji:'🕌',name:'Paket Syukuran (50 pax)',desc:'Prasmanan mini + 50 nasi kotak + tumpeng centerpiece.',price:1250000,unit:'paket'},
+];
+const CATS=[{key:'nasi',label:'Nasi Kotak'},{key:'prasmanan',label:'Prasmanan'},{key:'snack',label:'Snack & Kue'},{key:'minuman',label:'Minuman'},{key:'paket',label:'Paket Acara'}];
+let cart={}, mode='antar', activeCat='nasi';
+const rp=n=>'Rp'+n.toLocaleString('id-ID');
+const $=id=>document.getElementById(id);
 
-        <div class="absolute inset-0 z-20 flex items-center px-6 md:px-20">
-            <div class="max-w-3xl text-white">
-                <p class="text-royal-gold text-xs md:text-sm uppercase tracking-[0.4em] mb-6">Exquisite Catering Service</p>
-                <h1 class="text-5xl md:text-7xl font-serif font-light leading-none mb-6">
-                    Cita Rasa <br> <span class="italic text-royal-gold font-normal">Kemewahan</span>
-                </h1>
-                <p class="text-white/80 font-light text-lg max-w-lg mb-8 leading-relaxed">
-                    Menghadirkan pengalaman bersantap tak terlupakan dengan sentuhan elegan untuk momen paling berharga dalam hidup Anda.
-                </p>
-                <a href="#menu" class="inline-block px-10 py-4 border border-white text-white text-xs uppercase tracking-widest hover:bg-white hover:text-royal-green transition duration-500">
-                    Jelajahi Menu
-                </a>
-            </div>
-        </div>
-        
-        <!-- Slide Indicators -->
-        <div class="absolute bottom-12 left-6 md:left-20 z-30 flex gap-4">
-            <template x-for="(slide, index) in slides" :key="index">
-                <button @click="setSlide(index)" 
-                        class="h-1 rounded-full transition-all duration-500"
-                        :class="activeSlide === index ? 'w-12 bg-royal-gold' : 'w-6 bg-white/30 hover:bg-white/60'">
-                </button>
-            </template>
-        </div>
-    </section>
-
-    <!-- MENU SECTION: MODERN ROUNDED CARDS -->
-    <section id="menu" class="py-16 bg-cream relative">
-        <div class="absolute top-0 right-0 w-64 h-64 bg-royal-gold/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-
-        <div class="max-w-[1600px] mx-auto px-6 relative z-10">
-            
-            <div class="flex flex-col md:flex-row justify-between items-end mb-10 border-b border-royal-green/10 pb-4">
-                <div>
-                    <span class="text-royal-gold text-xs font-bold uppercase tracking-[0.3em]">Curated Selection</span>
-                    <h2 class="text-3xl md:text-4xl font-serif text-royal-green mt-2">Koleksi Istimewa</h2>
-                </div>
-                <div class="flex gap-6 mt-4 md:mt-0 text-xs uppercase tracking-widest text-royal-green/60" x-data="{ activeTab: 'all' }">
-                    <button @click="activeTab = 'all'" :class="activeTab === 'all' ? 'text-royal-green border-b-2 border-royal-gold' : ''" class="pb-1 transition">Semua</button>
-                    <button @click="activeTab = 'wedding'" :class="activeTab === 'wedding' ? 'text-royal-green border-b-2 border-royal-gold' : ''" class="pb-1 transition">Pernikahan</button>
-                    <button @click="activeTab = 'corporate'" :class="activeTab === 'corporate' ? 'text-royal-green border-b-2 border-royal-gold' : ''" class="pb-1 transition">Korporat</button>
-                </div>
-            </div>
-
-            <!-- Grid: 2 Mobile, 4 Desktop -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-                
-                <!-- Card 1 -->
-                <div class="menu-card group cursor-pointer relative h-[400px] overflow-hidden rounded-t-[40px] rounded-b-lg shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500" x-show="true">
-                    <img src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&q=80&w=600" class="card-img absolute inset-0 w-full h-full object-cover transition duration-700 ease-out" alt="Lobster">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition duration-500"></div>
-                    <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition duration-500">
-                        <span class="block text-royal-gold text-[10px] uppercase tracking-[0.2em] mb-2 opacity-0 group-hover:opacity-100 transition delay-100">Signature</span>
-                        <h3 class="font-serif text-2xl italic leading-none mb-2">Lobster Thermidor</h3>
-                        <p class="text-white/70 text-xs font-light line-clamp-2 mb-4 opacity-0 group-hover:opacity-100 transition delay-200">Lobster segar dipanggang dengan saus krim cognac dan keju gruyere.</p>
-                        <div class="flex justify-between items-center border-t border-white/20 pt-3 mt-2">
-                            <span class="font-medium text-lg">IDR 185k</span>
-                            <span class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm group-hover:bg-royal-gold group-hover:text-royal-green transition">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="menu-card group cursor-pointer relative h-[400px] overflow-hidden rounded-t-[40px] rounded-b-lg shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
-                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=600" class="card-img absolute inset-0 w-full h-full object-cover transition duration-700 ease-out" alt="Wagyu">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition duration-500"></div>
-                    <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition duration-500">
-                        <span class="block text-royal-gold text-[10px] uppercase tracking-[0.2em] mb-2 opacity-0 group-hover:opacity-100 transition delay-100">Main Course</span>
-                        <h3 class="font-serif text-2xl italic leading-none mb-2">Wagyu Ribeye A5</h3>
-                        <p class="text-white/70 text-xs font-light line-clamp-2 mb-4 opacity-0 group-hover:opacity-100 transition delay-200">Daging sapi Jepang grade tertinggi dengan truffle mashed potato.</p>
-                        <div class="flex justify-between items-center border-t border-white/20 pt-3 mt-2">
-                            <span class="font-medium text-lg">IDR 250k</span>
-                            <span class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm group-hover:bg-royal-gold group-hover:text-royal-green transition">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="menu-card group cursor-pointer relative h-[400px] overflow-hidden rounded-t-[40px] rounded-b-lg shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
-                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=600" class="card-img absolute inset-0 w-full h-full object-cover transition duration-700 ease-out" alt="Salad">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition duration-500"></div>
-                    <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition duration-500">
-                        <span class="block text-royal-gold text-[10px] uppercase tracking-[0.2em] mb-2 opacity-0 group-hover:opacity-100 transition delay-100">Appetizer</span>
-                        <h3 class="font-serif text-2xl italic leading-none mb-2">Organic Garden</h3>
-                        <p class="text-white/70 text-xs font-light line-clamp-2 mb-4 opacity-0 group-hover:opacity-100 transition delay-200">Sayuran hidroponik segar dengan dressing balsamic buatan sendiri.</p>
-                        <div class="flex justify-between items-center border-t border-white/20 pt-3 mt-2">
-                            <span class="font-medium text-lg">IDR 65k</span>
-                            <span class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm group-hover:bg-royal-gold group-hover:text-royal-green transition">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="menu-card group cursor-pointer relative h-[400px] overflow-hidden rounded-t-[40px] rounded-b-lg shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
-                    <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&q=80&w=600" class="card-img absolute inset-0 w-full h-full object-cover transition duration-700 ease-out" alt="Scallops">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition duration-500"></div>
-                    <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition duration-500">
-                        <span class="block text-royal-gold text-[10px] uppercase tracking-[0.2em] mb-2 opacity-0 group-hover:opacity-100 transition delay-100">Seafood</span>
-                        <h3 class="font-serif text-2xl italic leading-none mb-2">Scallops Platter</h3>
-                        <p class="text-white/70 text-xs font-light line-clamp-2 mb-4 opacity-0 group-hover:opacity-100 transition delay-200">Kerang laut premium dengan saus lemon butter dan kaviar hitam.</p>
-                        <div class="flex justify-between items-center border-t border-white/20 pt-3 mt-2">
-                            <span class="font-medium text-lg">IDR 120k</span>
-                            <span class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm group-hover:bg-royal-gold group-hover:text-royal-green transition">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- FULL WIDTH CALCULATOR -->
-    <section id="events" class="w-full bg-royal-green text-white relative overflow-hidden py-16">
-        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
-        
-        <div class="relative z-10 max-w-[1600px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="space-y-4">
-                <h2 class="text-4xl md:text-5xl font-serif leading-tight">Rancang Acara <br><span class="text-royal-gold italic">Impian Anda</span></h2>
-                <p class="text-white/70 font-light text-base max-w-md leading-relaxed">
-                    Dapatkan estimasi biaya awal secara instan. Transparansi harga adalah komitmen kami.
-                </p>
-            </div>
-
-            <div class="bg-white/5 backdrop-blur-xl border border-white/10 p-6 md:p-8 rounded-sm" x-data="{ pax: 50, type: 'wedding', rate: 250000 }">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="space-y-6">
-                        <div>
-                            <label class="flex justify-between text-[10px] uppercase tracking-widest text-royal-gold mb-2">
-                                Jumlah Tamu <span x-text="pax + ' Pax'"></span>
-                            </label>
-                            <input type="range" min="20" max="500" step="10" x-model="pax" class="w-full h-1 bg-white/20 rounded-lg appearance-none cursor-pointer accent-royal-gold">
-                        </div>
-                        <div>
-                            <label class="block text-[10px] uppercase tracking-widest text-royal-gold mb-3">Jenis Paket</label>
-                            <div class="flex gap-2">
-                                <button @click="type = 'wedding'; rate = 250000" :class="type === 'wedding' ? 'bg-royal-gold text-royal-green' : 'border border-white/20 text-white'" class="flex-1 py-2 text-[10px] uppercase tracking-wide transition">Wedding</button>
-                                <button @click="type = 'corporate'; rate = 150000" :class="type === 'corporate' ? 'bg-royal-gold text-royal-green' : 'border border-white/20 text-white'" class="flex-1 py-2 text-[10px] uppercase tracking-wide transition">Korporat</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex flex-col justify-center items-center border-l border-white/10 pl-0 md:pl-8">
-                        <p class="text-[10px] uppercase tracking-widest text-white/40 mb-1">Estimasi Total</p>
-                        <p class="text-3xl font-serif text-white mb-4" x-text="'IDR ' + (pax * rate).toLocaleString('id-ID')"></p>
-                        <a href="https://wa.me/" class="w-full py-3 bg-royal-gold text-royal-green font-bold uppercase tracking-widest text-[10px] hover:bg-white transition duration-300 text-center">
-                            Konsultasi
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer id="contact" class="bg-charcoal text-white pt-16 pb-8 border-t-4 border-royal-gold">
-        <div class="max-w-[1600px] mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-                
-                <!-- Brand -->
-                <div class="space-y-6">
-                    <a href="#" class="text-3xl font-serif font-bold tracking-tighter">Royal<span class="text-royal-gold">.</span></a>
-                    <p class="text-white/50 text-sm leading-relaxed font-light">
-                        Mendefinisikan ulang standar katering premium dengan integritas, rasa, dan pelayanan yang tak tertandingi.
-                    </p>
-                </div>
-
-                <!-- Navigation -->
-                <div>
-                    <h4 class="text-royal-gold text-xs uppercase tracking-widest mb-6">Navigasi</h4>
-                    <ul class="space-y-3 text-sm text-white/60 font-light">
-                        <li><a href="#home" class="hover:text-white transition">Beranda</a></li>
-                        <li><a href="#menu" class="hover:text-white transition">Koleksi Menu</a></li>
-                        <li><a href="#events" class="hover:text-white transition">Rancang Acara</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact -->
-                <div>
-                    <h4 class="text-royal-gold text-xs uppercase tracking-widest mb-6">Kontak</h4>
-                    <ul class="space-y-3 text-sm text-white/60 font-light">
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="map-pin" class="w-4 h-4 text-royal-gold mt-1"></i>
-                            <span>Jl. Senopati No. 88,<br>Jakarta Selatan, 12190</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="phone" class="w-4 h-4 text-royal-gold"></i>
-                            <span>+62 21 555 0199</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Map -->
-                <div class="h-40 w-full map-grayscale rounded-sm overflow-hidden border border-white/10">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3966.666427006446!2d106.8068887!3d-6.2297469!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f15a6b0b0b0b%3A0x0!2zNsKwMTMnNDUuMSJTIDEwNsKwNDgnMjQuOCJF!5e0!3m2!1sen!2sid!4v1600000000000!5m2!1sen!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                </div>
-            </div>
-
-            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-[10px] text-white/30 uppercase tracking-widest">&copy; 2026 The Royal Banquet. All Rights Reserved.</p>
-                <div class="flex gap-6">
-                    <a href="#" class="text-white/30 hover:text-royal-gold transition"><i data-lucide="instagram" class="w-4 h-4"></i></a>
-                    <a href="#" class="text-white/30 hover:text-royal-gold transition"><i data-lucide="facebook" class="w-4 h-4"></i></a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script>
-        lucide.createIcons();
-
-        function heroSlider() {
-            return {
-                activeSlide: 0,
-                slides: [
-                    { img: 'https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=2000&auto=format&fit=crop' },
-                    { img: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2000&auto=format&fit=crop' },
-                    { img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2000&auto=format&fit=crop' }
-                ],
-                startTimer() {
-                    setInterval(() => {
-                        this.activeSlide = (this.activeSlide + 1) % this.slides.length;
-                    }, 5000);
-                },
-                setSlide(index) {
-                    this.activeSlide = index;
-                }
-            }
-        }
-    </script>
+function renderTabs(){
+  $('tabs').innerHTML=CATS.map(c=>`<button class="${c.key===activeCat?'on':''}" onclick="setCat('${c.key}')">${c.label}</button>`).join('');
+}
+function setCat(k){activeCat=k;renderTabs();renderMenu();}
+function renderMenu(){
+  $('menuGrid').innerHTML=MENU.filter(m=>m.cat===activeCat).map(m=>`
+   <div class="mcard">
+     <div class="m-photo">${m.emoji}</div>
+     <div class="m-body"><b>${m.name}</b><p>${m.desc}</p>
+       <div class="m-foot"><span class="price">${rp(m.price)} <span class="unit">/ ${m.unit}</span></span>
+       <button class="add" onclick="add('${m.id}')">+</button></div>
+     </div>
+   </div>`).join('');
+}
+function add(id){cart[id]=(cart[id]||0)+1;renderCart();toast('Ditambahkan ke pesanan ✓');}
+function chg(id,d){cart[id]=(cart[id]||0)+d;if(cart[id]<=0)delete cart[id];renderCart();}
+function totals(){
+  const sub=Object.entries(cart).reduce((s,[id,q])=>s+MENU.find(m=>m.id===id).price*q,0);
+  const fee=(mode==='antar'&&sub>0&&sub<150000)?10000:0;
+  return{sub,fee,total:sub+fee};
+}
+function renderCart(){
+  const ids=Object.keys(cart);
+  $('cartCount').textContent=ids.reduce((s,i)=>s+cart[i],0);
+  $('cartItems').innerHTML=ids.length?ids.map(id=>{const m=MENU.find(x=>x.id===id);return `
+    <li><span class="ci-emoji">${m.emoji}</span>
+      <div class="ci-info"><b>${m.name}</b><span>${rp(m.price)} / ${m.unit}</span></div>
+      <div class="qty"><button onclick="chg('${id}',-1)">−</button><b>${cart[id]}</b><button onclick="chg('${id}',1)">+</button></div>
+    </li>`}).join(''):'<li class="cart-empty">Keranjang masih kosong.<br>Yuk tambah menu favorit di bawah 👇</li>';
+  const t=totals();
+  $('subTotal').textContent=rp(t.sub);
+  $('delFee').textContent=t.fee?rp(t.fee):(t.sub>=150000&&t.sub>0?'GRATIS':rp(0));
+  $('grandTotal').textContent=rp(t.total);
+  const mini=$('minibar');
+  if(ids.length){mini.classList.add('show');$('miniText').textContent=`${$('cartCount').textContent} item • ${rp(t.total)} • ${mode==='antar'?'Diantar':'Ambil sendiri'}`;}
+  else mini.classList.remove('show');
+}
+function setMode(m){mode=m;$('modeAntar').classList.toggle('on',m==='antar');$('modeAmbil').classList.toggle('on',m==='ambil');renderCart();}
+function cekArea(e){e.preventDefault();const v=$('alamat').value.trim();toast(v?'✅ Alamat terlayani area pengantaran kami!':'Isi alamat dulu ya, bro 😄');}
+function openCheckout(){
+  if(!Object.keys(cart).length){toast('Keranjang masih kosong 🍽️');return;}
+  $('modalBody').querySelector('form').style.display='';
+  $('modal').classList.add('show');
+}
+function closeModal(){$('modal').classList.remove('show');}
+function placeOrder(e){
+  e.preventDefault();
+  const code='W99-'+Math.floor(1000+Math.random()*9000);
+  $('modalBody').innerHTML=`<div class="success"><div class="big">✅</div><h3>Pesanan Diterima!</h3>
+   <p>Kode pesanan: <span class="code">${code}</span><br>Dapur kami mulai memasak. Link pelacakan dikirim via WhatsApp. Terima kasih! 🍛</p>
+   <button class="btn btn-primary" style="margin-top:18px" onclick="closeModal();location.reload()">Selesai</button></div>`;
+  cart={};renderCart();
+}
+let tT;function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(tT);tT=setTimeout(()=>t.classList.remove('show'),2200);}
+renderTabs();renderMenu();renderCart();
+</script>
 </body>
 </html>
