@@ -61,7 +61,7 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 
 /* ===== HERO ===== */
 .hero-sec{position:relative;padding:20px 0 84px;overflow:hidden}
-/* -- foto Lombok: KONTRAS LEBIH NENDANG + CROP NAIK LAGI -- */
+/* -- foto Lombok: KONTRAS NENDANG + CROP ATAS -- */
 .hero-photo{position:absolute;inset:0;z-index:0;background:url('hero-lombok.jpg') center 0%/cover no-repeat;opacity:.75;filter:saturate(1.35) contrast(1.32);pointer-events:none;
  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 10%,#000 72%,transparent 96%);
  mask-image:linear-gradient(180deg,transparent 0,#000 10%,#000 72%,transparent 96%)}
@@ -85,7 +85,9 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
  background-image:radial-gradient(rgba(155,28,28,.14) 1.2px,transparent 1.2px);background-size:26px 26px;
  -webkit-mask-image:radial-gradient(ellipse at 50% 40%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 40%,#000 20%,transparent 75%)}
 .hero-watermark{position:absolute;font-family:'Playfair Display',serif;font-weight:800;font-size:24vw;line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(155,28,28,.09);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;user-select:none;z-index:1}
-.hero{display:grid;grid-template-columns:1.12fr .88fr;gap:40px;align-items:start;position:relative;z-index:2}
+/* GRID DIKUNCI: minmax(0,..) supaya kolom kiri tidak bisa melebar mendorong card */
+.hero{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:40px;align-items:start;position:relative;z-index:2}
+.hero-copy{min-width:0}
 /* badge eyebrow — FONT KECIL */
 .eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--maroon);font-weight:800;font-size:.64rem;letter-spacing:.14em;margin-bottom:14px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;box-shadow:0 6px 16px rgba(60,35,15,.08)}
 .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--maroon2);animation:pulse 1.6s infinite}
@@ -108,11 +110,11 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 .toggle button{flex:1;max-width:170px;padding:12px;border-radius:12px;border:1px solid var(--line);background:#fff;font-weight:700;font-family:inherit;cursor:pointer;color:var(--muted);transition:.25s}
 .toggle button.on{background:var(--grad-maroon);color:#fff;border-color:transparent;box-shadow:0 10px 22px rgba(155,28,28,.3)}
 .address{display:flex;gap:10px;margin-bottom:20px}
-.address input{flex:1;padding:13px 18px;border-radius:12px;border:1px solid var(--line);background:#fff;font-family:inherit;font-size:.92rem;transition:.2s}
+.address input{flex:1;min-width:0;padding:13px 18px;border-radius:12px;border:1px solid var(--line);background:#fff;font-family:inherit;font-size:.92rem;transition:.2s}
 .address input:focus{outline:none;border-color:var(--maroon);box-shadow:0 0 0 4px rgba(155,28,28,.12)}
-/* ===== CART CARD — PORTRAIT, RAMPING, STATIS, BERSIH ===== */
+/* ===== CART CARD — TETAP DI KANAN HERO ===== */
 .cart-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:0 12px 32px rgba(60,35,15,.10);z-index:4;
- width:min(330px,100%);margin-left:auto;min-height:460px;display:flex;flex-direction:column}
+ width:min(330px,100%);margin-left:auto;min-height:460px;display:flex;flex-direction:column;min-width:0}
 .cart-card .btn-primary::after{display:none}
 .cart-head{display:flex;justify-content:space-between;align-items:center;font-weight:800;margin-bottom:10px;font-size:.95rem}
 .cart-badge{background:var(--grad-maroon);color:#fff;border-radius:999px;font-size:.72rem;padding:3px 10px;box-shadow:0 4px 10px rgba(155,28,28,.4)}
@@ -136,14 +138,14 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
 @keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
 
-/* ===== MARQUEE STRIP — KINI NAIK KE DALAM HERO ===== */
+/* ===== MARQUEE — KINI DI DALAM HERO, TERKURUNG RAPI ===== */
 .strip{background:var(--dark);color:#fff;padding:20px 0;overflow:hidden;position:relative}
 .strip::before,.strip::after{content:"";position:absolute;top:0;bottom:0;width:90px;z-index:2}
 .strip::before{left:0;background:linear-gradient(90deg,var(--dark),transparent)}
 .strip::after{right:0;background:linear-gradient(-90deg,var(--dark),transparent)}
-.hero-strip{border-radius:16px;padding:14px 0;box-shadow:0 16px 34px rgba(34,26,20,.28)}
+.hero-strip{border-radius:16px;padding:14px 0;box-shadow:0 16px 34px rgba(34,26,20,.28);max-width:100%;min-width:0;width:100%}
 .hero-strip::before,.hero-strip::after{width:70px}
-.marquee{display:flex;gap:56px;width:max-content;animation:mq 26s linear infinite}
+.marquee{display:flex;gap:56px;width:max-content;max-width:none;animation:mq 26s linear infinite}
 .strip:hover .marquee{animation-play-state:paused}
 @keyframes mq{to{transform:translateX(-50%)}}
 .strip .f{display:flex;gap:12px;align-items:center;white-space:nowrap}
@@ -345,7 +347,7 @@ footer .serif{color:#fff;font-size:1.15rem}
   <div class="hero-watermark">99</div>
 
   <div class="wrap hero">
-    <div>
+    <div class="hero-copy">
       <p class="eyebrow"><span class="dot"></span> 🍚 100% MASAKAN RUMAHAN. DIMASAK HARI INI.</p>
       <div class="title-row">
         <h1>
