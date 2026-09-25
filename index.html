@@ -75,7 +75,6 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 .hero h1 .line{display:block;overflow:hidden}
 .hero h1 .line>span{display:block;transform:translateY(110%);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
 .hero h1 .line:nth-child(2)>span{animation-delay:.12s}
-.hero h1 .line:nth-child(3)>span{animation-delay:.24s}
 @keyframes rise{to{transform:translateY(0)}}
 .hero .sub{color:var(--muted);margin:18px 0 26px;max-width:46ch;font-size:1.02rem}
 .toggle{display:flex;gap:10px;margin-bottom:14px}
@@ -99,25 +98,26 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 .ring text{font-size:10.5px;font-weight:800;letter-spacing:.22em;fill:var(--maroon)}
 .ring .core{position:absolute;inset:0;display:grid;place-items:center;font-size:30px;animation:spin 16s linear infinite reverse}
 @keyframes spin{to{transform:rotate(360deg)}}
-/* cart glass card */
-.cart-card{position:relative;background:rgba(255,252,247,.75);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.7);border-radius:24px;padding:26px;box-shadow:var(--shadow);transform-style:preserve-3d;transition:transform .15s ease-out;z-index:4}
-.cart-card::before{content:"";position:absolute;inset:-1.5px;border-radius:25px;z-index:-1;background:conic-gradient(from 180deg,var(--maroon),var(--gold),var(--maroon2),var(--maroon));opacity:.55;animation:spin 8s linear infinite}
-.cart-head{display:flex;justify-content:space-between;align-items:center;font-weight:800;margin-bottom:14px;font-size:1.02rem}
+/* ===== CART CARD — KOTAK POLOS, RAMPING, MINIMALIS ===== */
+.cart-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:0 12px 32px rgba(60,35,15,.10);z-index:4}
+.cart-card .btn-primary::after{display:none}
+.cart-head{display:flex;justify-content:space-between;align-items:center;font-weight:800;margin-bottom:10px;font-size:.95rem}
 .cart-badge{background:var(--grad-maroon);color:#fff;border-radius:999px;font-size:.72rem;padding:3px 10px;box-shadow:0 4px 10px rgba(155,28,28,.4)}
-.cart-items{list-style:none;max-height:225px;overflow:auto;margin-bottom:12px}
-.cart-items li{display:flex;gap:10px;align-items:center;padding:9px 0;border-bottom:1px dashed var(--line)}
-.cart-items .ci-emoji{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#f3e6d2,#e9d5b8);display:grid;place-items:center;font-size:23px;flex:none;box-shadow:inset 0 -6px 12px rgba(120,80,30,.12)}
+.cart-items{list-style:none;max-height:190px;overflow:auto;margin-bottom:10px}
+.cart-items li{display:flex;gap:9px;align-items:center;padding:7px 0;border-bottom:1px dashed var(--line)}
+.cart-items .ci-emoji{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#f3e6d2,#e9d5b8);display:grid;place-items:center;font-size:20px;flex:none;box-shadow:inset 0 -6px 12px rgba(120,80,30,.12)}
 .ci-info{flex:1;min-width:0}
-.ci-info b{font-size:.85rem;display:block}
-.ci-info span{font-size:.78rem;color:var(--muted)}
-.qty{display:flex;align-items:center;gap:8px}
-.qty button{width:26px;height:26px;border-radius:8px;border:1px solid var(--line);background:#fff;cursor:pointer;font-weight:800;color:var(--maroon);transition:.15s}
+.ci-info b{font-size:.82rem;display:block}
+.ci-info span{font-size:.74rem;color:var(--muted)}
+.qty{display:flex;align-items:center;gap:7px}
+.qty button{width:24px;height:24px;border-radius:7px;border:1px solid var(--line);background:#fff;cursor:pointer;font-weight:800;color:var(--maroon);transition:.15s}
 .qty button:hover{background:var(--maroon);color:#fff}
-.cart-empty{color:var(--muted);font-size:.88rem;text-align:center;padding:18px 0}
-.cart-lines{font-size:.88rem;margin-bottom:16px}
-.cart-lines div{display:flex;justify-content:space-between;padding:3px 0;color:var(--muted)}
-.cart-lines .total{color:var(--ink);font-weight:800;font-size:1.05rem;border-top:1px solid var(--line);margin-top:6px;padding-top:9px}
-.cart-note{text-align:center;font-size:.75rem;color:var(--muted);margin-top:11px}
+.cart-empty{color:var(--muted);font-size:.85rem;text-align:center;padding:14px 0}
+.cart-lines{font-size:.82rem;margin-bottom:12px}
+.cart-lines div{display:flex;justify-content:space-between;padding:2px 0;color:var(--muted)}
+.cart-lines .total{color:var(--ink);font-weight:800;font-size:.98rem;border-top:1px solid var(--line);margin-top:5px;padding-top:8px}
+.cart-card .btn{padding:11px 18px;font-size:.9rem;border-radius:11px}
+.cart-note{text-align:center;font-size:.72rem;color:var(--muted);margin-top:9px}
 .scroll-hint{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);font-size:.72rem;letter-spacing:.2em;color:var(--muted);font-weight:700;z-index:3;animation:bob 2s infinite}
 .scroll-hint::after{content:"";display:block;width:1.5px;height:26px;background:var(--maroon);margin:6px auto 0;animation:drop 2s infinite}
 @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
@@ -225,7 +225,6 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 .in .bar i{width:var(--w)}
 .quote{background:#fff;border-left:3px solid var(--maroon);border-radius:10px;padding:11px 15px;font-size:.8rem;color:var(--muted);margin-top:12px;font-style:italic}
 .promo-box{background:var(--grad-maroon);color:#fff;border-radius:14px;padding:18px;margin-bottom:11px;box-shadow:0 12px 26px rgba(155,28,28,.3);position:relative;overflow:hidden}
-.promo-box::after{content:"";position:absolute;right:-8px;bottom:-14px;font-size:4rem;opacity:.18;transform:rotate(-12deg)}
 .promo-box .tag{background:#fff;color:var(--maroon);font-size:.65rem;font-weight:800;border-radius:6px;padding:3px 9px;letter-spacing:.08em}
 .promo-box b{display:block;font-family:'Playfair Display',serif;font-size:1.18rem;margin:7px 0 2px}
 .promo-box span{font-size:.78rem;opacity:.9}
@@ -599,15 +598,11 @@ function placeOrder(e){
 }
 let tT;function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(tT);tT=setTimeout(()=>t.classList.remove('show'),2200);}
 
-/* ===== WOW EFFECTS ===== */
-// header shadow
+/* ===== WOW EFFECTS (kartu keranjang sengaja statis) ===== */
 addEventListener('scroll',()=>$('hdr').classList.toggle('scrolled',scrollY>10));
-// scroll reveal
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-// marquee duplicate for seamless loop
 $('marquee').innerHTML+=$('marquee').innerHTML;
-// hero parallax on mouse move
 const heroSec=document.querySelector('.hero-sec');
 heroSec.addEventListener('mousemove',e=>{
   const r=heroSec.getBoundingClientRect();
@@ -617,14 +612,6 @@ heroSec.addEventListener('mousemove',e=>{
     el.style.translate=`${x*f}px ${y*f}px`;
   });
 });
-// 3D tilt on cart card
-const card=$('cart');
-card.addEventListener('mousemove',e=>{
-  const r=card.getBoundingClientRect();
-  const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
-  card.style.transform=`perspective(900px) rotateY(${x*7}deg) rotateX(${-y*7}deg)`;
-});
-card.addEventListener('mouseleave',()=>card.style.transform='');
 
 renderTabs();renderMenu();renderCart();
 </script>
