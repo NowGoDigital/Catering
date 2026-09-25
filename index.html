@@ -85,7 +85,7 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
  background-image:radial-gradient(rgba(155,28,28,.14) 1.2px,transparent 1.2px);background-size:26px 26px;
  -webkit-mask-image:radial-gradient(ellipse at 50% 40%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 40%,#000 20%,transparent 75%)}
 .hero-watermark{position:absolute;font-family:'Playfair Display',serif;font-weight:800;font-size:24vw;line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(155,28,28,.09);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;user-select:none;z-index:1}
-/* GRID DIKUNCI: minmax(0,..) supaya kolom kiri tidak bisa melebar mendorong card */
+/* GRID DIKUNCI minmax(0,..) */
 .hero{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:40px;align-items:start;position:relative;z-index:2}
 .hero-copy{min-width:0}
 /* badge eyebrow — FONT KECIL */
@@ -112,7 +112,7 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 .address{display:flex;gap:10px;margin-bottom:20px}
 .address input{flex:1;min-width:0;padding:13px 18px;border-radius:12px;border:1px solid var(--line);background:#fff;font-family:inherit;font-size:.92rem;transition:.2s}
 .address input:focus{outline:none;border-color:var(--maroon);box-shadow:0 0 0 4px rgba(155,28,28,.12)}
-/* ===== CART CARD — TETAP DI KANAN HERO ===== */
+/* ===== CART CARD — TETAP DI KANAN HERO, DI ATAS TICKER ===== */
 .cart-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:0 12px 32px rgba(60,35,15,.10);z-index:4;
  width:min(330px,100%);margin-left:auto;min-height:460px;display:flex;flex-direction:column;min-width:0}
 .cart-card .btn-primary::after{display:none}
@@ -138,13 +138,19 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
 @keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
 
-/* ===== MARQUEE — KINI DI DALAM HERO, TERKURUNG RAPI ===== */
+/* ===== MARQUEE — FULL LEBAR LAYAR, TRANSPARAN, DI BAWAH CARD ===== */
 .strip{background:var(--dark);color:#fff;padding:20px 0;overflow:hidden;position:relative}
 .strip::before,.strip::after{content:"";position:absolute;top:0;bottom:0;width:90px;z-index:2}
 .strip::before{left:0;background:linear-gradient(90deg,var(--dark),transparent)}
 .strip::after{right:0;background:linear-gradient(-90deg,var(--dark),transparent)}
-.hero-strip{border-radius:16px;padding:14px 0;box-shadow:0 16px 34px rgba(34,26,20,.28);max-width:100%;min-width:0;width:100%}
-.hero-strip::before,.hero-strip::after{width:70px}
+.hero-strip{position:absolute;left:0;right:0;bottom:96px;z-index:1;padding:12px 0;
+ background:transparent;color:var(--ink);border-radius:0;box-shadow:none;
+ -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%);
+ mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%)}
+.hero-strip::before,.hero-strip::after{display:none}
+.hero-strip b{color:var(--ink);text-shadow:0 1px 3px rgba(246,239,228,.9),0 0 12px rgba(246,239,228,.7)}
+.hero-strip span{color:#5a4c3c;text-shadow:0 1px 3px rgba(246,239,228,.9)}
+.hero-strip .sep{color:var(--maroon)}
 .marquee{display:flex;gap:56px;width:max-content;max-width:none;animation:mq 26s linear infinite}
 .strip:hover .marquee{animation-play-state:paused}
 @keyframes mq{to{transform:translateX(-50%)}}
@@ -298,6 +304,7 @@ footer .serif{color:#fff;font-size:1.15rem}
   .hero{grid-template-columns:1fr;gap:40px}
   .ring,.hero-watermark,.scroll-hint{display:none}
   .cart-card{width:100%;margin-left:0;min-height:0}
+  .hero-strip{bottom:64px}
   .quick-grid{grid-template-columns:repeat(2,1fr)}
   .steps-grid{grid-template-columns:1fr}
   nav.menu{display:none}
@@ -369,14 +376,6 @@ footer .serif{color:#fff;font-size:1.15rem}
         <input id="alamat" type="text" placeholder="Masukkan alamat pengantaran…">
         <button class="btn btn-primary" type="submit">Cek Area</button>
       </form>
-      <div class="strip hero-strip">
-        <div class="marquee" id="marquee">
-          <div class="f"><span class="ico">🛵</span><div><b>Pengiriman Cepat</b><span> · Dilacak real-time</span></div></div><span class="sep">✦</span>
-          <div class="f"><span class="ico">🛍️</span><div><b>Ambil Mudah</b><span> · Lewati antrean</span></div></div><span class="sep">✦</span>
-          <div class="f"><span class="ico">⭐</span><div><b>Rating Tertinggi</b><span> · 4.8 dari 1.250+ ulasan</span></div></div><span class="sep">✦</span>
-          <div class="f"><span class="ico">🌙</span><div><b>Buka Sampai Malam</b><span> · Hingga 21.00 setiap hari</span></div></div><span class="sep">✦</span>
-        </div>
-      </div>
     </div>
 
     <aside class="cart-card" id="cart">
@@ -391,6 +390,17 @@ footer .serif{color:#fff;font-size:1.15rem}
       <p class="cart-note">🍛 Dimasak segar setiap hari · Halal</p>
     </aside>
   </div>
+
+  <!-- TICKER: FULL LEBAR LAYAR, TRANSPARAN, LAPISAN DI BAWAH CARD -->
+  <div class="strip hero-strip">
+    <div class="marquee" id="marquee">
+      <div class="f"><span class="ico">🛵</span><div><b>Pengiriman Cepat</b><span> · Dilacak real-time</span></div></div><span class="sep">✦</span>
+      <div class="f"><span class="ico">🛍️</span><div><b>Ambil Mudah</b><span> · Lewati antrean</span></div></div><span class="sep">✦</span>
+      <div class="f"><span class="ico">⭐</span><div><b>Rating Tertinggi</b><span> · 4.8 dari 1.250+ ulasan</span></div></div><span class="sep">✦</span>
+      <div class="f"><span class="ico">🌙</span><div><b>Buka Sampai Malam</b><span> · Hingga 21.00 setiap hari</span></div></div><span class="sep">✦</span>
+    </div>
+  </div>
+
   <div class="scroll-hint">SCROLL</div>
   <div class="hero-caption">🌶️ Ayam Taliwang • Plecing Kangkung • Sate Rembiga — Kuliner Lombok</div>
 </section>
