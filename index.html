@@ -61,10 +61,11 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 
 /* ===== HERO ===== */
 .hero-sec{position:relative;padding:20px 0 84px;overflow:hidden}
-.hero-photo{position:absolute;inset:0;z-index:0;background:url('hero-lombok.webp') center 12%/cover no-repeat;opacity:.62;filter:saturate(1.25) contrast(1.22);pointer-events:none;
- -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 14%,#000 66%,transparent 94%);
- mask-image:linear-gradient(180deg,transparent 0,#000 14%,#000 66%,transparent 94%)}
-.hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(246,239,228,.05),rgba(246,239,228,.38) 84%,var(--cream) 100%)}
+/* -- foto Lombok: KONTRAS LEBIH NENDANG + CROP NAIK LAGI -- */
+.hero-photo{position:absolute;inset:0;z-index:0;background:url('hero-lombok.jpg') center 0%/cover no-repeat;opacity:.75;filter:saturate(1.35) contrast(1.32);pointer-events:none;
+ -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 10%,#000 72%,transparent 96%);
+ mask-image:linear-gradient(180deg,transparent 0,#000 10%,#000 72%,transparent 96%)}
+.hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(246,239,228,.03),rgba(246,239,228,.30) 86%,var(--cream) 100%)}
 .steam{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
 .steam i{position:absolute;bottom:20%;width:66px;height:150px;border-radius:50%;
  background:radial-gradient(ellipse at 50% 62%,rgba(118,84,48,.20),rgba(118,84,48,0) 70%);
@@ -96,7 +97,6 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 .hero h1 .line>span{display:block;transform:translateY(110%);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
 .hero h1 .line:nth-child(2)>span{animation-delay:.12s}
 @keyframes rise{to{transform:translateY(0)}}
-/* ring badge — kini mengalir di sebelah kanan judul */
 .ring{position:relative;width:118px;height:118px;flex:none;animation:spin 16s linear infinite}
 .ring text{font-size:10.5px;font-weight:800;letter-spacing:.22em;fill:var(--maroon)}
 .ring .core{position:absolute;inset:0;display:grid;place-items:center;font-size:30px;animation:spin 16s linear infinite reverse}
@@ -110,8 +110,6 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 .address{display:flex;gap:10px;margin-bottom:20px}
 .address input{flex:1;padding:13px 18px;border-radius:12px;border:1px solid var(--line);background:#fff;font-family:inherit;font-size:.92rem;transition:.2s}
 .address input:focus{outline:none;border-color:var(--maroon);box-shadow:0 0 0 4px rgba(155,28,28,.12)}
-.rating{display:inline-flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 18px;font-size:.85rem;box-shadow:0 8px 20px rgba(60,35,15,.08)}
-.rating .stars{color:var(--gold);letter-spacing:2px;text-shadow:0 2px 6px rgba(217,164,65,.5)}
 /* ===== CART CARD — PORTRAIT, RAMPING, STATIS, BERSIH ===== */
 .cart-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:0 12px 32px rgba(60,35,15,.10);z-index:4;
  width:min(330px,100%);margin-left:auto;min-height:460px;display:flex;flex-direction:column}
@@ -138,11 +136,13 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
 @keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
 
-/* ===== MARQUEE STRIP ===== */
+/* ===== MARQUEE STRIP — KINI NAIK KE DALAM HERO ===== */
 .strip{background:var(--dark);color:#fff;padding:20px 0;overflow:hidden;position:relative}
 .strip::before,.strip::after{content:"";position:absolute;top:0;bottom:0;width:90px;z-index:2}
 .strip::before{left:0;background:linear-gradient(90deg,var(--dark),transparent)}
 .strip::after{right:0;background:linear-gradient(-90deg,var(--dark),transparent)}
+.hero-strip{border-radius:16px;padding:14px 0;box-shadow:0 16px 34px rgba(34,26,20,.28)}
+.hero-strip::before,.hero-strip::after{width:70px}
 .marquee{display:flex;gap:56px;width:max-content;animation:mq 26s linear infinite}
 .strip:hover .marquee{animation-play-state:paused}
 @keyframes mq{to{transform:translateX(-50%)}}
@@ -367,7 +367,14 @@ footer .serif{color:#fff;font-size:1.15rem}
         <input id="alamat" type="text" placeholder="Masukkan alamat pengantaran…">
         <button class="btn btn-primary" type="submit">Cek Area</button>
       </form>
-      <div class="rating"><span class="stars">★★★★★</span><b>4.8</b><span>(1.250+ ulasan) · Dipercaya keluarga &amp; kantor se-Indonesia</span></div>
+      <div class="strip hero-strip">
+        <div class="marquee" id="marquee">
+          <div class="f"><span class="ico">🛵</span><div><b>Pengiriman Cepat</b><span> · Dilacak real-time</span></div></div><span class="sep">✦</span>
+          <div class="f"><span class="ico">🛍️</span><div><b>Ambil Mudah</b><span> · Lewati antrean</span></div></div><span class="sep">✦</span>
+          <div class="f"><span class="ico">⭐</span><div><b>Rating Tertinggi</b><span> · 4.8 dari 1.250+ ulasan</span></div></div><span class="sep">✦</span>
+          <div class="f"><span class="ico">🌙</span><div><b>Buka Sampai Malam</b><span> · Hingga 21.00 setiap hari</span></div></div><span class="sep">✦</span>
+        </div>
+      </div>
     </div>
 
     <aside class="cart-card" id="cart">
@@ -385,16 +392,6 @@ footer .serif{color:#fff;font-size:1.15rem}
   <div class="scroll-hint">SCROLL</div>
   <div class="hero-caption">🌶️ Ayam Taliwang • Plecing Kangkung • Sate Rembiga — Kuliner Lombok</div>
 </section>
-
-<!-- ============ MARQUEE ============ -->
-<div class="strip">
-  <div class="marquee" id="marquee">
-    <div class="f"><span class="ico">🛵</span><div><b>Pengiriman Cepat</b><span> · Dilacak real-time</span></div></div><span class="sep">✦</span>
-    <div class="f"><span class="ico">🛍️</span><div><b>Ambil Mudah</b><span> · Lewati antrean</span></div></div><span class="sep">✦</span>
-    <div class="f"><span class="ico">⭐</span><div><b>Rating Tertinggi</b><span> · 4.8 dari 1.250+ ulasan</span></div></div><span class="sep">✦</span>
-    <div class="f"><span class="ico">🌙</span><div><b>Buka Sampai Malam</b><span> · Hingga 21.00 setiap hari</span></div></div><span class="sep">✦</span>
-  </div>
-</div>
 
 <!-- ============ QUICK ACTIONS ============ -->
 <section>
