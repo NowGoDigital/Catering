@@ -42,9 +42,9 @@ section{padding:72px 0;scroll-margin-top:90px}
 .btn-ghost:hover{border-color:var(--maroon);color:var(--maroon)}
 .btn-block{width:100%;justify-content:center}
 
-/* ===== TOPBAR — PROMO MEPET KIRI + ICON, TICKER KULINER DI KANAN ===== */
+/* ===== TOPBAR — PROMO MEPET KIRI + ICON, TICKER KULINER DI KANAN, PADDING SISI TIPIS ===== */
 .topbar{background:var(--grad-maroon);color:#fff;font-size:.7rem;font-weight:600;padding:5px 0;letter-spacing:.02em}
-.topbar-in{display:flex;align-items:center;gap:20px}
+.topbar-in{display:flex;align-items:center;gap:20px;width:100%;padding:0 14px}
 .tb-promo{display:flex;align-items:center;gap:8px;white-space:nowrap;flex:none}
 .tb-ico{width:19px;height:19px;flex:none;display:grid;place-items:center;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.28);border-radius:6px;font-size:.66rem;animation:tbPulse 2.2s ease-in-out infinite}
 @keyframes tbPulse{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.15) rotate(-10deg)}}
@@ -343,7 +343,7 @@ footer .serif{color:#fff;font-size:1.15rem}
 <div class="grain"></div>
 
 <div class="topbar">
-  <div class="wrap topbar-in">
+  <div class="topbar-in">
     <div class="tb-promo"><span class="tb-ico">🏷️</span><span>🛵 GRATIS ONGKIR untuk pesanan di atas Rp150.000 — berlaku setiap hari</span></div>
     <div class="tb-marquee"><div class="tb-track" id="tbTrack"><span>🌶️ Ayam Taliwang • Plecing Kangkung • Sate Rembiga — Kuliner Lombok</span></div></div>
   </div>
