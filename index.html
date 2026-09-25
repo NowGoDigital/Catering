@@ -61,7 +61,6 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 
 /* ===== HERO ===== */
 .hero-sec{position:relative;padding:20px 0 84px;overflow:hidden}
-/* -- foto Lombok: KONTRAS NENDANG + CROP ATAS -- */
 .hero-photo{position:absolute;inset:0;z-index:0;background:url('hero-lombok.webp') center 0%/cover no-repeat;opacity:.75;filter:saturate(1.35) contrast(1.32);pointer-events:none;
  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 10%,#000 72%,transparent 96%);
  mask-image:linear-gradient(180deg,transparent 0,#000 10%,#000 72%,transparent 96%)}
@@ -85,14 +84,11 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
  background-image:radial-gradient(rgba(155,28,28,.14) 1.2px,transparent 1.2px);background-size:26px 26px;
  -webkit-mask-image:radial-gradient(ellipse at 50% 40%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 40%,#000 20%,transparent 75%)}
 .hero-watermark{position:absolute;font-family:'Playfair Display',serif;font-weight:800;font-size:24vw;line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(155,28,28,.09);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;user-select:none;z-index:1}
-/* GRID DIKUNCI minmax(0,..) */
 .hero{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:40px;align-items:start;position:relative;z-index:2}
 .hero-copy{min-width:0}
-/* badge eyebrow — FONT KECIL */
 .eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--maroon);font-weight:800;font-size:.64rem;letter-spacing:.14em;margin-bottom:14px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;box-shadow:0 6px 16px rgba(60,35,15,.08)}
 .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--maroon2);animation:pulse 1.6s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(192,39,39,.5)}70%{box-shadow:0 0 0 10px rgba(192,39,39,0)}100%{box-shadow:0 0 0 0 rgba(192,39,39,0)}}
-/* judul 2 baris + ring di kanan judul */
 .title-row{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
 .hero h1{font-size:clamp(2.05rem,3.1vw,2.9rem);line-height:1.14;font-weight:800;letter-spacing:-.01em;flex:0 1 auto;min-width:0}
 .hero h1 .line{display:block;overflow:hidden}
@@ -103,7 +99,6 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 .ring text{font-size:10.5px;font-weight:800;letter-spacing:.22em;fill:var(--maroon)}
 .ring .core{position:absolute;inset:0;display:grid;place-items:center;font-size:30px;animation:spin 16s linear infinite reverse}
 @keyframes spin{to{transform:rotate(360deg)}}
-/* deskripsi: 2 baris, espresso + halo krem */
 .hero .sub{color:#46392b;font-weight:500;margin:16px 0 24px;max-width:560px;font-size:1rem;
  text-shadow:0 1px 2px rgba(246,239,228,.9),0 0 14px rgba(246,239,228,.85)}
 .toggle{display:flex;gap:10px;margin-bottom:14px}
@@ -138,7 +133,7 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
 @keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
 
-/* ===== MARQUEE — FULL LEBAR LAYAR, TRANSPARAN, DI BAWAH CARD ===== */
+/* ===== MARQUEE — FULL LEBAR, TRANSPARAN, DI BAWAH CARD, TEKS KONTRAS MAKSIMAL ===== */
 .strip{background:var(--dark);color:#fff;padding:20px 0;overflow:hidden;position:relative}
 .strip::before,.strip::after{content:"";position:absolute;top:0;bottom:0;width:90px;z-index:2}
 .strip::before{left:0;background:linear-gradient(90deg,var(--dark),transparent)}
@@ -148,9 +143,24 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%);
  mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%)}
 .hero-strip::before,.hero-strip::after{display:none}
-.hero-strip b{color:var(--ink);text-shadow:0 1px 3px rgba(246,239,228,.9),0 0 12px rgba(246,239,228,.7)}
-.hero-strip span{color:#5a4c3c;text-shadow:0 1px 3px rgba(246,239,228,.9)}
-.hero-strip .sep{color:var(--maroon)}
+/* judul item: ink pekat + outline krem penuh (efek stiker) */
+.hero-strip b{color:#1c1510;font-weight:800;font-size:.98rem;letter-spacing:.01em;
+ text-shadow:
+  0 1px 0 rgba(246,239,228,.95), 0 -1px 0 rgba(246,239,228,.95),
+  1px 0 0 rgba(246,239,228,.95), -1px 0 0 rgba(246,239,228,.95),
+  1px 1px 0 rgba(246,239,228,.9), -1px 1px 0 rgba(246,239,228,.9),
+  1px -1px 0 rgba(246,239,228,.9), -1px -1px 0 rgba(246,239,228,.9),
+  0 0 10px rgba(246,239,228,.95), 0 0 24px rgba(246,239,228,.8)}
+/* keterangan item: cokelat gelap + outline krem penuh */
+.hero-strip span{color:#33291d;font-weight:700;font-size:.8rem;
+ text-shadow:
+  0 1px 0 rgba(246,239,228,.95), 0 -1px 0 rgba(246,239,228,.95),
+  1px 0 0 rgba(246,239,228,.95), -1px 0 0 rgba(246,239,228,.95),
+  0 0 10px rgba(246,239,228,.9), 0 0 20px rgba(246,239,228,.75)}
+/* pemisah & emoji ikut diberi halo agar tidak tenggelam */
+.hero-strip .sep{color:var(--maroon);font-weight:800;
+ text-shadow:0 0 8px rgba(246,239,228,.95),0 0 16px rgba(246,239,228,.85),0 0 26px rgba(246,239,228,.7)}
+.hero-strip .ico{filter:drop-shadow(0 1px 0 rgba(246,239,228,.9)) drop-shadow(0 0 8px rgba(246,239,228,.95)) drop-shadow(0 0 16px rgba(246,239,228,.8))}
 .marquee{display:flex;gap:56px;width:max-content;max-width:none;animation:mq 26s linear infinite}
 .strip:hover .marquee{animation-play-state:paused}
 @keyframes mq{to{transform:translateX(-50%)}}
@@ -391,7 +401,7 @@ footer .serif{color:#fff;font-size:1.15rem}
     </aside>
   </div>
 
-  <!-- TICKER: FULL LEBAR LAYAR, TRANSPARAN, LAPISAN DI BAWAH CARD -->
+  <!-- TICKER: FULL LEBAR, TRANSPARAN, DI BAWAH CARD -->
   <div class="strip hero-strip">
     <div class="marquee" id="marquee">
       <div class="f"><span class="ico">🛵</span><div><b>Pengiriman Cepat</b><span> · Dilacak real-time</span></div></div><span class="sep">✦</span>
