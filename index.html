@@ -229,6 +229,10 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 .confirm-card .pay-opts label:hover{border-color:var(--maroon)}
 .confirm-card .pay-opts input{accent-color:var(--maroon)}
 .confirm-card .btn{margin-top:12px}
+/* Toggle di dalam form konfirmasi */
+.confirm-card .toggle{display:flex;gap:8px;margin-bottom:0}
+.confirm-card .toggle button{flex:1;max-width:none;padding:10px;border-radius:11px;border:1px solid var(--line);background:#fff;font-weight:700;font-family:inherit;font-size:.82rem;cursor:pointer;color:var(--muted);transition:.25s}
+.confirm-card .toggle button.on{background:var(--grad-maroon);color:#fff;border-color:transparent;box-shadow:0 8px 18px rgba(155,28,28,.3)}
 
 .info-sec{background:linear-gradient(180deg,#f1e8d8,#f6efe4)}
 .info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px}
@@ -432,7 +436,7 @@ footer .serif{color:#fff;font-size:1.15rem}
     </div>
 
     <div class="steps-bottom reveal">
-      <!-- Kolom 1: Card Checkout (di bawah card "Pilih Paket Anda") -->
+      <!-- Kolom 1: Card Checkout -->
       <aside class="cart-card" id="cart">
         <div class="cart-head">Pesanan Anda <span class="cart-badge" id="cartCount">0</span></div>
         <ul class="cart-items" id="cartItems"><li class="cart-empty">Keranjang masih kosong.<br>Yuk tambah menu favorit di atas 👆</li></ul>
@@ -445,7 +449,7 @@ footer .serif{color:#fff;font-size:1.15rem}
         <p class="cart-note">🍛 Dimasak segar setiap hari · Halal</p>
       </aside>
 
-      <!-- Kolom 2: Form Konfirmasi Data (di bawah card "Konfirmasi & Pengantaran") -->
+      <!-- Kolom 2: Form Konfirmasi Data -->
       <div class="confirm-card hidden" id="confirmCard">
         <h3><span class="ico">📋</span> Konfirmasi Pesanan</h3>
         <form id="confirmForm" onsubmit="placeOrder(event)">
@@ -459,10 +463,16 @@ footer .serif{color:#fff;font-size:1.15rem}
               <option>Besok pagi, 08.00 – 10.00</option>
             </select>
           </div>
+          <div class="field"><label>Metode Pengambilan</label>
+            <div class="toggle">
+              <button type="button" id="modeAntar2" class="on" onclick="setMode('antar')">🛵 Antar</button>
+              <button type="button" id="modeAmbil2" onclick="setMode('ambil')">🛍️ Ambil Sendiri</button>
+            </div>
+          </div>
         </form>
       </div>
 
-      <!-- Kolom 3: Metode Pembayaran (di bawah card "Bayar & Selesai") -->
+      <!-- Kolom 3: Metode Pembayaran -->
       <div class="confirm-card hidden" id="paymentCard">
         <h3><span class="ico">💳</span> Metode Pembayaran</h3>
         <div class="field">
@@ -637,7 +647,14 @@ function renderCart(){
   if(ids.length){mini.classList.add('show');$('miniText').textContent=`${$('cartCount').textContent} item • ${rp(t.total)} • ${mode==='antar'?'Diantar':'Ambil sendiri'}`;}
   else mini.classList.remove('show');
 }
-function setMode(m){mode=m;$('modeAntar').classList.toggle('on',m==='antar');$('modeAmbil').classList.toggle('on',m==='ambil');renderCart();}
+function setMode(m){
+  mode=m;
+  $('modeAntar').classList.toggle('on',m==='antar');
+  $('modeAmbil').classList.toggle('on',m==='ambil');
+  $('modeAntar2').classList.toggle('on',m==='antar');
+  $('modeAmbil2').classList.toggle('on',m==='ambil');
+  renderCart();
+}
 function cekArea(e){e.preventDefault();const v=$('alamat').value.trim();toast(v?'✅ Alamat terlayani area pengantaran kami!':'Isi alamat dulu ya, bro 😄');}
 function openCheckout(){
   if(!Object.keys(cart).length){toast('Keranjang masih kosong 🍽️');return;}
