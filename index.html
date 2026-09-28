@@ -89,7 +89,7 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
  background-image:radial-gradient(rgba(155,28,28,.14) 1.2px,transparent 1.2px);background-size:26px 26px;
  -webkit-mask-image:radial-gradient(ellipse at 50% 40%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 40%,#000 20%,transparent 75%)}
 .hero-watermark{position:absolute;font-family:'Playfair Display',serif;font-weight:800;font-size:24vw;line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(155,28,28,.09);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;user-select:none;z-index:1}
-.hero{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:40px;align-items:start;position:relative;z-index:2}
+.hero{display:grid;grid-template-columns:1fr;position:relative;z-index:2}
 .hero-copy{min-width:0}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--maroon);font-weight:800;font-size:.64rem;letter-spacing:.14em;margin-bottom:14px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;box-shadow:0 6px 16px rgba(60,35,15,.08)}
 .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--maroon2);animation:pulse 1.6s infinite}
@@ -112,8 +112,9 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 .address{display:flex;gap:10px;margin-bottom:20px}
 .address input{flex:1;min-width:0;padding:13px 18px;border-radius:12px;border:1px solid var(--line);background:#fff;font-family:inherit;font-size:.92rem;transition:.2s}
 .address input:focus{outline:none;border-color:var(--maroon);box-shadow:0 0 0 4px rgba(155,28,28,.12)}
+
 .cart-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:0 12px 32px rgba(60,35,15,.10);z-index:4;
- width:min(330px,100%);margin-left:auto;min-height:460px;display:flex;flex-direction:column;min-width:0}
+ width:100%;min-height:0;display:flex;flex-direction:column;min-width:0}
 .cart-card .btn-primary::after{display:none}
 .cart-head{display:flex;justify-content:space-between;align-items:center;font-weight:800;margin-bottom:10px;font-size:.95rem}
 .cart-badge{background:var(--grad-maroon);color:#fff;border-radius:999px;font-size:.72rem;padding:3px 10px;box-shadow:0 4px 10px rgba(155,28,28,.4)}
@@ -212,6 +213,22 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 .scard b{display:block;margin-bottom:6px;font-size:1.02rem}
 .scard p{font-size:.85rem;color:var(--muted)}
 
+/* ===== GRID BAWAH STEPS (CART + FORM) ===== */
+.steps-bottom{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;align-items:start}
+.confirm-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;transition:.3s;position:relative;overflow:hidden}
+.confirm-card:hover{box-shadow:var(--shadow)}
+.confirm-card h3{font-size:1.02rem;margin-bottom:16px;display:flex;gap:9px;align-items:center}
+.confirm-card h3 .ico{color:var(--maroon)}
+.confirm-card .field{margin-bottom:12px}
+.confirm-card .field label{font-size:.75rem;font-weight:700;display:block;margin-bottom:5px}
+.confirm-card .field input,.confirm-card .field select{width:100%;padding:10px 13px;border:1px solid var(--line);border-radius:11px;font-family:inherit;font-size:.85rem;background:#fff;transition:.2s}
+.confirm-card .field input:focus,.confirm-card .field select:focus{outline:none;border-color:var(--maroon);box-shadow:0 0 0 3px rgba(155,28,28,.12)}
+.confirm-card .pay-opts{display:grid;gap:7px}
+.confirm-card .pay-opts label{display:flex;gap:8px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:11px;padding:9px 12px;font-size:.82rem;font-weight:600;cursor:pointer;transition:.2s}
+.confirm-card .pay-opts label:hover{border-color:var(--maroon)}
+.confirm-card .pay-opts input{accent-color:var(--maroon)}
+.confirm-card .btn{margin-top:12px}
+
 .info-sec{background:linear-gradient(180deg,#f1e8d8,#f6efe4)}
 .info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px}
 .icard{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;transition:.3s;position:relative;overflow:hidden}
@@ -245,7 +262,7 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 .payrow:last-of-type{border:none}
 .payrow em{font-style:normal;font-size:.75rem;color:var(--muted);font-weight:500}
 
-/* ===== CTA / KONTAK (FULL WIDTH, PADDING SEMPIT) ===== */
+/* ===== CTA / KONTAK ===== */
 #kontak{padding:18px 0}
 .cta-card{background:var(--dark);color:#fff;border-radius:0;padding:36px 24px;text-align:center;position:relative;overflow:hidden;box-shadow:0 30px 70px rgba(34,26,20,.4);width:100%}
 .cta-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 20%,rgba(192,39,39,.35),transparent 50%),radial-gradient(circle at 80% 70%,rgba(217,164,65,.22),transparent 50%)}
@@ -292,11 +309,11 @@ footer .serif{color:#fff;font-size:1.15rem}
   .title-row{gap:18px}
 }
 @media(max-width:960px){
-  .hero{grid-template-columns:1fr;gap:40px}
+  .hero{grid-template-columns:1fr}
   .ring,.hero-watermark,.scroll-hint{display:none}
-  .cart-card{width:100%;margin-left:0;min-height:0}
   .hero-strip{bottom:64px}
   .steps-grid{grid-template-columns:1fr}
+  .steps-bottom{grid-template-columns:1fr}
   nav.menu{display:none}
 }
 @media(max-width:560px){
@@ -371,18 +388,6 @@ footer .serif{color:#fff;font-size:1.15rem}
         <button class="btn btn-primary" type="submit">Cek Area</button>
       </form>
     </div>
-
-    <aside class="cart-card" id="cart">
-      <div class="cart-head">Pesanan Anda <span class="cart-badge" id="cartCount">0</span></div>
-      <ul class="cart-items" id="cartItems"><li class="cart-empty">Keranjang masih kosong.<br>Yuk tambah menu favorit di bawah 👇</li></ul>
-      <div class="cart-lines">
-        <div><span>Subtotal</span><span id="subTotal">Rp0</span></div>
-        <div><span>Ongkos Antar</span><span id="delFee">Rp0</span></div>
-        <div class="total"><span>Total</span><span id="grandTotal">Rp0</span></div>
-      </div>
-      <button class="btn btn-primary btn-block" onclick="openCheckout()">Checkout Sekarang →</button>
-      <p class="cart-note">🍛 Dimasak segar setiap hari · Halal</p>
-    </aside>
   </div>
 
   <div class="strip hero-strip">
@@ -423,6 +428,44 @@ footer .serif{color:#fff;font-size:1.15rem}
       <div class="scard"><span class="ghost">1</span><span class="num">1</span><div><b>Pilih Paket Anda</b><p>Telusuri menu per kategori dan tambahkan favorit Anda ke keranjang.</p></div></div>
       <div class="scard"><span class="ghost">2</span><span class="num">2</span><div><b>Konfirmasi &amp; Pengantaran</b><p>Cek pesanan, pilih antar atau ambil, atur alamat dan jam dalam sekejap.</p></div></div>
       <div class="scard"><span class="ghost">3</span><span class="num">3</span><div><b>Bayar &amp; Selesai</b><p>Bayar aman via QRIS/transfer/COD. Pesanan diproses, Anda tinggal tunggu.</p></div></div>
+    </div>
+
+    <div class="steps-bottom reveal">
+      <aside class="cart-card" id="cart">
+        <div class="cart-head">Pesanan Anda <span class="cart-badge" id="cartCount">0</span></div>
+        <ul class="cart-items" id="cartItems"><li class="cart-empty">Keranjang masih kosong.<br>Yuk tambah menu favorit di atas 👆</li></ul>
+        <div class="cart-lines">
+          <div><span>Subtotal</span><span id="subTotal">Rp0</span></div>
+          <div><span>Ongkos Antar</span><span id="delFee">Rp0</span></div>
+          <div class="total"><span>Total</span><span id="grandTotal">Rp0</span></div>
+        </div>
+        <button class="btn btn-primary btn-block" onclick="openCheckout()">Checkout Sekarang →</button>
+        <p class="cart-note">🍛 Dimasak segar setiap hari · Halal</p>
+      </aside>
+
+      <div class="confirm-card">
+        <h3><span class="ico">📋</span> Konfirmasi Pesanan</h3>
+        <form onsubmit="placeOrder(event)">
+          <div class="field"><label>Nama Pemesan</label><input required type="text" placeholder="Nama Anda"></div>
+          <div class="field"><label>No. WhatsApp</label><input required type="tel" placeholder="08xx xxxx xxxx"></div>
+          <div class="field"><label>Alamat / Keterangan Ambil</label><input required type="text" id="fAlamat" placeholder="Alamat lengkap atau titik ambil"></div>
+          <div class="field"><label>Jam Pengantaran</label>
+            <select>
+              <option>Hari ini, 11.00 – 13.00</option>
+              <option>Hari ini, 17.00 – 19.00</option>
+              <option>Besok pagi, 08.00 – 10.00</option>
+            </select>
+          </div>
+          <div class="field"><label>Metode Pembayaran</label>
+            <div class="pay-opts">
+              <label><input type="radio" name="pay" checked> QRIS (semua e-wallet)</label>
+              <label><input type="radio" name="pay"> Transfer Bank</label>
+              <label><input type="radio" name="pay"> COD / Bayar di Tempat</label>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-block" type="submit">🔒 Buat Pesanan</button>
+        </form>
+      </div>
     </div>
   </div>
 </section>
@@ -512,7 +555,7 @@ footer .serif{color:#fff;font-size:1.15rem}
     <form onsubmit="placeOrder(event)">
       <div class="field"><label>Nama Pemesan</label><input required type="text" placeholder="Nama Anda"></div>
       <div class="field"><label>No. WhatsApp</label><input required type="tel" placeholder="08xx xxxx xxxx"></div>
-      <div class="field"><label>Alamat / Keterangan Ambil</label><input required type="text" id="fAlamat" placeholder="Alamat lengkap atau titik ambil"></div>
+      <div class="field"><label>Alamat / Keterangan Ambil</label><input required type="text" placeholder="Alamat lengkap atau titik ambil"></div>
       <div class="field"><label>Jam Pengantaran</label><select><option>Hari ini, 11.00 – 13.00</option><option>Hari ini, 17.00 – 19.00</option><option>Besok pagi, 08.00 – 10.00</option></select></div>
       <div class="field"><label>Metode Pembayaran</label>
         <div class="pay-opts">
@@ -577,7 +620,7 @@ function renderCart(){
     <li><span class="ci-emoji">${m.emoji}</span>
       <div class="ci-info"><b>${m.name}</b><span>${rp(m.price)} / ${m.unit}</span></div>
       <div class="qty"><button onclick="chg('${id}',-1)">−</button><b>${cart[id]}</b><button onclick="chg('${id}',1)">+</button></div>
-    </li>`}).join(''):'<li class="cart-empty">Keranjang masih kosong.<br>Yuk tambah menu favorit di bawah 👇</li>';
+    </li>`}).join(''):'<li class="cart-empty">Keranjang masih kosong.<br>Yuk tambah menu favorit di atas 👆</li>';
   const t=totals();
   $('subTotal').textContent=rp(t.sub);
   $('delFee').textContent=t.fee?rp(t.fee):(t.sub>=150000&&t.sub>0?'GRATIS':rp(0));
