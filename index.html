@@ -128,14 +128,14 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%);
  mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%)}
 .hero-strip::before,.hero-strip::after{display:none}
-.hero-strip b{color:#1c1510;font-weight:800;font-size:.98rem;letter-spacing:.01em;
+.hero-strip b{color:#1c1510;font-weight:800;font-size:.98rem;letter-spacing:.01em;display:inline;
  text-shadow:
   0 1px 0 rgba(246,239,228,.95), 0 -1px 0 rgba(246,239,228,.95),
   1px 0 0 rgba(246,239,228,.95), -1px 0 0 rgba(246,239,228,.95),
   1px 1px 0 rgba(246,239,228,.9), -1px 1px 0 rgba(246,239,228,.9),
   1px -1px 0 rgba(246,239,228,.9), -1px -1px 0 rgba(246,239,228,.9),
   0 0 10px rgba(246,239,228,.95), 0 0 24px rgba(246,239,228,.8)}
-.hero-strip span{color:#33291d;font-weight:700;font-size:.8rem;
+.hero-strip span{color:#33291d;font-weight:700;font-size:.8rem;display:inline;
  text-shadow:
   0 1px 0 rgba(246,239,228,.95), 0 -1px 0 rgba(246,239,228,.95),
   1px 0 0 rgba(246,239,228,.95), -1px 0 0 rgba(246,239,228,.95),
@@ -143,9 +143,20 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 .hero-strip .sep{color:var(--maroon);font-weight:800;
  text-shadow:0 0 8px rgba(246,239,228,.95),0 0 16px rgba(246,239,228,.85),0 0 26px rgba(246,239,228,.7)}
 .hero-strip .ico{filter:drop-shadow(0 1px 0 rgba(246,239,228,.9)) drop-shadow(0 0 8px rgba(246,239,228,.95)) drop-shadow(0 0 16px rgba(246,239,228,.8))}
-.marquee{display:flex;gap:56px;width:max-content;max-width:none;animation:mq 26s linear infinite}
-.strip:hover .marquee{animation-play-state:paused}
+/* Item marquee: semua dalam satu baris horizontal */
+.hero-strip .f{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.hero-strip .f .ico{font-size:18px;flex:none}
+.hero-strip .f b{font-size:.82rem}
+.hero-strip .f span{font-size:.72rem}
+.marquee{display:flex;gap:40px;width:max-content;max-width:none;animation:mq 26s linear infinite;align-items:center}
+.hero-strip:hover .marquee{animation-play-state:paused}
 @keyframes mq{to{transform:translateX(-50%)}}
+.hero-strip .sep{color:var(--gold);align-self:center;font-size:.7rem}
+
+.strip{background:var(--dark);color:#fff;padding:20px 0;overflow:hidden;position:relative}
+.strip::before,.strip::after{content:"";position:absolute;top:0;bottom:0;width:90px;z-index:2}
+.strip::before{left:0;background:linear-gradient(90deg,var(--dark),transparent)}
+.strip::after{right:0;background:linear-gradient(-90deg,var(--dark),transparent)}
 .strip .f{display:flex;gap:12px;align-items:center;white-space:nowrap}
 .strip .ico{font-size:22px;filter:drop-shadow(0 0 8px rgba(224,123,123,.6))}
 .strip b{font-size:.92rem}
@@ -176,11 +187,6 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 .scroll-hint::after{content:"";display:block;width:1.5px;height:26px;background:var(--maroon);margin:6px auto 0;animation:drop 2s infinite}
 @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
 @keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
-
-.strip{background:var(--dark);color:#fff;padding:20px 0;overflow:hidden;position:relative}
-.strip::before,.strip::after{content:"";position:absolute;top:0;bottom:0;width:90px;z-index:2}
-.strip::before{left:0;background:linear-gradient(90deg,var(--dark),transparent)}
-.strip::after{right:0;background:linear-gradient(-90deg,var(--dark),transparent)}
 
 .sec-head{text-align:center;max-width:660px;margin:0 auto 32px}
 .sec-head h2{font-size:clamp(1.8rem,3.6vw,2.7rem);font-weight:800;line-height:1.2}
@@ -412,10 +418,10 @@ footer .serif{color:#fff;font-size:1.15rem}
         </form>
         <div class="hero-strip">
           <div class="marquee" id="marquee">
-            <div class="f"><span class="ico">🛵</span><div><b>Pengiriman Cepat</b><span> · Dilacak real-time</span></div></div><span class="sep">✦</span>
-            <div class="f"><span class="ico">🛍️</span><div><b>Ambil Mudah</b><span> · Lewati antrean</span></div></div><span class="sep">✦</span>
-            <div class="f"><span class="ico">⭐</span><div><b>Rating Tertinggi</b><span> · 4.8 dari 1.250+ ulasan</span></div></div><span class="sep">✦</span>
-            <div class="f"><span class="ico">🌙</span><div><b>Buka Sampai Malam</b><span> · Hingga 21.00 setiap hari</span></div></div><span class="sep">✦</span>
+            <span class="f"><span class="ico">🛵</span><b>Pengiriman Cepat</b><span>· Dilacak real-time</span></span><span class="sep">✦</span>
+            <span class="f"><span class="ico">🛍️</span><b>Ambil Mudah</b><span>· Lewati antrean</span></span><span class="sep">✦</span>
+            <span class="f"><span class="ico">⭐</span><b>Rating Tertinggi</b><span>· 4.8 dari 1.250+ ulasan</span></span><span class="sep">✦</span>
+            <span class="f"><span class="ico">🌙</span><b>Buka Sampai Malam</b><span>· Hingga 21.00 setiap hari</span></span><span class="sep">✦</span>
           </div>
         </div>
       </div>
