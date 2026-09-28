@@ -180,34 +180,6 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 .reveal{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
 .reveal.in{opacity:1;transform:none}
 
-/* ===== QUICK ROW ===== */
-.quick-row{display:grid;grid-template-columns:1fr auto;gap:20px;margin-bottom:20px;align-items:stretch}
-
-/* ===== REORDER ===== */
-.reorder{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px 20px;display:flex;flex-direction:column;align-items:flex-start;gap:14px;transition:.3s}
-.reorder:hover{box-shadow:var(--shadow)}
-.reorder-head{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
-.reorder-head h3{font-size:1.05rem;margin:0;white-space:nowrap}
-.reorder-head p{font-size:.85rem;color:var(--muted);margin:0;white-space:nowrap}
-.reorder-items{display:flex;gap:12px;flex-wrap:wrap;width:100%}
-.ro-item{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px 12px;transition:.25s;flex:1;min-width:220px}
-.ro-item:hover{border-color:var(--maroon);transform:translateY(-3px)}
-.ro-item .ci-emoji{width:42px;height:42px;font-size:21px;border-radius:11px;background:linear-gradient(135deg,#f3e6d2,#e9d5b8);display:grid;place-items:center;flex:none}
-.ro-item b{font-size:.82rem;display:block}
-.ro-item span{font-size:.75rem;color:var(--muted)}
-
-/* ===== QUICK (LOYALITAS) ===== */
-.quick-grid{display:grid;grid-template-columns:auto;gap:20px;margin-bottom:20px;justify-content:end}
-.qcard{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:6px 10px;display:inline-flex;align-items:center;gap:12px;transition:.3s;position:relative;overflow:hidden;white-space:nowrap;width:auto}
-.qcard::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(155,28,28,.08),transparent 65%);opacity:0;transition:.3s}
-.qcard:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:rgba(155,28,28,.35)}
-.qcard:hover::before{opacity:1}
-.qcard .ico{font-size:30px;flex:none;transition:.3s}
-.qcard:hover .ico{transform:scale(1.2) rotate(-8deg)}
-.qcard-text{flex:none;min-width:0}
-.qcard b{display:block;margin:0 0 2px;font-size:.92rem;white-space:nowrap}
-.qcard span{font-size:.76rem;color:var(--muted);white-space:nowrap;display:block}
-
 .tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:34px}
 .tabs button{padding:10px 22px;border-radius:999px;border:1px solid var(--line);background:#fff;font-family:inherit;font-weight:700;font-size:.86rem;cursor:pointer;color:var(--muted);transition:.25s}
 .tabs button:hover{border-color:var(--maroon);color:var(--maroon)}
@@ -321,7 +293,6 @@ footer .serif{color:#fff;font-size:1.15rem}
   .ring,.hero-watermark,.scroll-hint{display:none}
   .cart-card{width:100%;margin-left:0;min-height:0}
   .hero-strip{bottom:64px}
-  .quick-row{grid-template-columns:1fr}
   .steps-grid{grid-template-columns:1fr}
   nav.menu{display:none}
 }
@@ -330,8 +301,6 @@ footer .serif{color:#fff;font-size:1.15rem}
   .cta-card{padding:48px 26px}
   .tb-marquee{display:none}
   .tb-promo{white-space:normal}
-  .reorder-head{flex-direction:column;gap:2px}
-  .ro-item{min-width:100%}
 }
 </style>
 </head>
@@ -423,32 +392,6 @@ footer .serif{color:#fff;font-size:1.15rem}
   </div>
 
   <div class="scroll-hint">SCROLL</div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="quick-row reveal">
-      <div class="reorder">
-        <div class="reorder-head">
-          <h3>Pesan Ulang, Cepat</h3>
-          <p>· Favorit Anda, siap kapan pun dibutuhkan.</p>
-        </div>
-        <div class="reorder-items">
-          <div class="ro-item"><span class="ci-emoji">🍗</span><div><b>Nasi Kotak Ayam Bakar</b><span>Rp25.000 / kotak</span></div><button class="btn btn-primary" style="padding:9px 15px;font-size:.8rem" onclick="add('nk1')">Pesan Ulang</button></div>
-          <div class="ro-item"><span class="ci-emoji">🍛</span><div><b>Nasi Kotak Rendang</b><span>Rp28.000 / kotak</span></div><button class="btn btn-primary" style="padding:9px 15px;font-size:.8rem" onclick="add('nk2')">Pesan Ulang</button></div>
-        </div>
-      </div>
-      <div class="quick-grid">
-        <div class="qcard">
-          <span class="ico">🎁</span>
-          <div class="qcard-text">
-            <b>Loyalitas</b>
-            <span>Kumpul stempel, dapat hadiah</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 
 <section id="menu">
