@@ -42,7 +42,7 @@ section{padding:72px 0;scroll-margin-top:90px}
 .btn-ghost:hover{border-color:var(--maroon);color:var(--maroon)}
 .btn-block{width:100%;justify-content:center}
 
-/* ===== TOPBAR — PROMO MEPET KIRI + ICON, TICKER KULINER DI KANAN, PADDING SISI TIPIS ===== */
+/* ===== TOPBAR ===== */
 .topbar{background:var(--grad-maroon);color:#fff;font-size:.7rem;font-weight:600;padding:5px 0;letter-spacing:.02em}
 .topbar-in{display:flex;align-items:center;gap:20px;width:100%;padding:0 14px}
 .tb-promo{display:flex;align-items:center;gap:8px;white-space:nowrap;flex:none}
@@ -56,7 +56,7 @@ section{padding:72px 0;scroll-margin-top:90px}
 .tb-track span{white-space:nowrap;padding-right:56px;color:#ffe3b3;font-weight:700}
 @keyframes tbmq{to{transform:translateX(-50%)}}
 
-/* ===== HEADER / NAVBAR — PENDEK, MENU MEPET KANAN ===== */
+/* ===== HEADER / NAVBAR ===== */
 header{position:sticky;top:0;z-index:50;background:rgba(246,239,228,.82);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:.3s}
 header.scrolled{border-color:var(--line);box-shadow:0 10px 30px rgba(60,35,15,.08)}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:7px 0;gap:16px}
@@ -117,7 +117,6 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 .address{display:flex;gap:10px;margin-bottom:20px}
 .address input{flex:1;min-width:0;padding:13px 18px;border-radius:12px;border:1px solid var(--line);background:#fff;font-family:inherit;font-size:.92rem;transition:.2s}
 .address input:focus{outline:none;border-color:var(--maroon);box-shadow:0 0 0 4px rgba(155,28,28,.12)}
-/* ===== CART CARD — TETAP DI KANAN HERO, DI ATAS TICKER ===== */
 .cart-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:0 12px 32px rgba(60,35,15,.10);z-index:4;
  width:min(330px,100%);margin-left:auto;min-height:460px;display:flex;flex-direction:column;min-width:0}
 .cart-card .btn-primary::after{display:none}
@@ -143,7 +142,7 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
 @keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
 
-/* ===== MARQUEE HERO — FULL LEBAR, FROSTED KREM, DI BAWAH CARD ===== */
+/* ===== MARQUEE HERO ===== */
 .strip{background:var(--dark);color:#fff;padding:20px 0;overflow:hidden;position:relative}
 .strip::before,.strip::after{content:"";position:absolute;top:0;bottom:0;width:90px;z-index:2}
 .strip::before{left:0;background:linear-gradient(90deg,var(--dark),transparent)}
@@ -187,6 +186,11 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 .sec-head p{color:var(--muted);margin-top:12px}
 .reveal{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
 .reveal.in{opacity:1;transform:none}
+
+/* ===== QUICK ROW (LAYOUT BARU) ===== */
+.quick-row{display:grid;grid-template-columns:minmax(280px,340px) 1fr;gap:20px;margin-bottom:20px;align-items:stretch}
+.quick-row .reorder{margin-bottom:0}
+.quick-row .quick-grid{margin-bottom:0}
 
 /* ===== QUICK ===== */
 .quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:20px}
@@ -326,6 +330,7 @@ footer .serif{color:#fff;font-size:1.15rem}
   .ring,.hero-watermark,.scroll-hint{display:none}
   .cart-card{width:100%;margin-left:0;min-height:0}
   .hero-strip{bottom:64px}
+  .quick-row{grid-template-columns:1fr}
   .quick-grid{grid-template-columns:repeat(2,1fr)}
   .steps-grid{grid-template-columns:1fr}
   nav.menu{display:none}
@@ -418,7 +423,7 @@ footer .serif{color:#fff;font-size:1.15rem}
     </aside>
   </div>
 
-  <!-- TICKER: FULL LEBAR, FROSTED KREM, DI BAWAH CARD -->
+  <!-- TICKER -->
   <div class="strip hero-strip">
     <div class="marquee" id="marquee">
       <div class="f"><span class="ico">🛵</span><div><b>Pengiriman Cepat</b><span> · Dilacak real-time</span></div></div><span class="sep">✦</span>
@@ -431,19 +436,21 @@ footer .serif{color:#fff;font-size:1.15rem}
   <div class="scroll-hint">SCROLL</div>
 </section>
 
-<!-- ============ QUICK ACTIONS ============ -->
+<!-- ============ QUICK ROW (LAYOUT BARU — REORDER DI KIRI) ============ -->
 <section>
   <div class="wrap">
-    <div class="quick-grid reveal">
-      <div class="qcard"><span class="ico">🛍️</span><b>Pesan Online</b><span>Order dalam hitungan detik</span></div>
-      <div class="qcard"><span class="ico">📖</span><b>Lihat Menu</b><span>Jelajahi menu lengkap</span></div>
-      <div class="qcard"><span class="ico">🚚</span><b>Lacak Pesanan</b><span>Update real-time</span></div>
-      <div class="qcard"><span class="ico">🎁</span><b>Loyalitas</b><span>Kumpul stempel, dapat hadiah</span></div>
-    </div>
-    <div class="reorder reveal">
-      <div><h3>Pesan Ulang, Cepat</h3><p>Favorit Anda, siap kapan pun dibutuhkan.</p></div>
-      <div class="ro-item"><span class="ci-emoji">🍗</span><div><b>Nasi Kotak Ayam Bakar</b><span>Rp25.000 / kotak</span></div><button class="btn btn-primary" style="padding:9px 15px;font-size:.8rem" onclick="add('nk1')">Pesan Ulang</button></div>
-      <div class="ro-item"><span class="ci-emoji">🍛</span><div><b>Nasi Kotak Rendang</b><span>Rp28.000 / kotak</span></div><button class="btn btn-primary" style="padding:9px 15px;font-size:.8rem" onclick="add('nk2')">Pesan Ulang</button></div>
+    <div class="quick-row reveal">
+      <div class="reorder">
+        <div><h3>Pesan Ulang, Cepat</h3><p>Favorit Anda, siap kapan pun dibutuhkan.</p></div>
+        <div class="ro-item"><span class="ci-emoji">🍗</span><div><b>Nasi Kotak Ayam Bakar</b><span>Rp25.000 / kotak</span></div><button class="btn btn-primary" style="padding:9px 15px;font-size:.8rem" onclick="add('nk1')">Pesan Ulang</button></div>
+        <div class="ro-item"><span class="ci-emoji">🍛</span><div><b>Nasi Kotak Rendang</b><span>Rp28.000 / kotak</span></div><button class="btn btn-primary" style="padding:9px 15px;font-size:.8rem" onclick="add('nk2')">Pesan Ulang</button></div>
+      </div>
+      <div class="quick-grid">
+        <div class="qcard"><span class="ico">🛍️</span><b>Pesan Online</b><span>Order dalam hitungan detik</span></div>
+        <div class="qcard"><span class="ico">📖</span><b>Lihat Menu</b><span>Jelajahi menu lengkap</span></div>
+        <div class="qcard"><span class="ico">🚚</span><b>Lacak Pesanan</b><span>Update real-time</span></div>
+        <div class="qcard"><span class="ico">🎁</span><b>Loyalitas</b><span>Kumpul stempel, dapat hadiah</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -660,7 +667,6 @@ function placeOrder(e){
 }
 let tT;function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(tT);tT=setTimeout(()=>t.classList.remove('show'),2200);}
 
-/* ===== WOW EFFECTS (kartu keranjang sengaja statis) ===== */
 addEventListener('scroll',()=>$('hdr').classList.toggle('scrolled',scrollY>10));
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
