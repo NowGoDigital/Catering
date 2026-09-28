@@ -183,7 +183,7 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 /* ===== QUICK ROW ===== */
 .quick-row{display:grid;grid-template-columns:1fr 240px;gap:20px;margin-bottom:20px;align-items:stretch}
 
-/* ===== REORDER (JUDUL+SUBTITLE SATU BARIS, ITEM DI BAWAH MEPET KIRI) ===== */
+/* ===== REORDER ===== */
 .reorder{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px 20px;display:flex;flex-direction:column;align-items:flex-start;gap:14px;transition:.3s}
 .reorder:hover{box-shadow:var(--shadow)}
 .reorder-head{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
@@ -196,17 +196,17 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 .ro-item b{font-size:.82rem;display:block}
 .ro-item span{font-size:.75rem;color:var(--muted)}
 
-/* ===== QUICK (LOYALITAS HORIZONTAL) ===== */
+/* ===== QUICK (LOYALITAS — PADDING MINIMAL, TEKS 1 BARIS) ===== */
 .quick-grid{display:grid;grid-template-columns:1fr;gap:20px;margin-bottom:20px}
-.qcard{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px 14px;display:flex;align-items:center;gap:14px;transition:.3s;position:relative;overflow:hidden}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:12px 10px;display:flex;align-items:center;gap:12px;transition:.3s;position:relative;overflow:hidden}
 .qcard::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(155,28,28,.08),transparent 65%);opacity:0;transition:.3s}
 .qcard:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:rgba(155,28,28,.35)}
 .qcard:hover::before{opacity:1}
-.qcard .ico{font-size:32px;flex:none;transition:.3s}
+.qcard .ico{font-size:30px;flex:none;transition:.3s}
 .qcard:hover .ico{transform:scale(1.2) rotate(-8deg)}
-.qcard-text{flex:1;min-width:0}
-.qcard b{display:block;margin:0 0 2px;font-size:.95rem}
-.qcard span{font-size:.78rem;color:var(--muted)}
+.qcard-text{flex:1;min-width:0;overflow:hidden}
+.qcard b{display:block;margin:0 0 2px;font-size:.92rem;white-space:nowrap}
+.qcard span{font-size:.76rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
 
 .tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:34px}
 .tabs button{padding:10px 22px;border-radius:999px;border:1px solid var(--line);background:#fff;font-family:inherit;font-weight:700;font-size:.86rem;cursor:pointer;color:var(--muted);transition:.25s}
