@@ -245,7 +245,9 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 .payrow:last-of-type{border:none}
 .payrow em{font-style:normal;font-size:.75rem;color:var(--muted);font-weight:500}
 
-.cta-card{background:var(--dark);color:#fff;border-radius:28px;padding:64px 44px;text-align:center;position:relative;overflow:hidden;box-shadow:0 30px 70px rgba(34,26,20,.4)}
+/* ===== CTA / KONTAK (FULL WIDTH, PADDING SEMPIT) ===== */
+#kontak{padding:18px 0}
+.cta-card{background:var(--dark);color:#fff;border-radius:0;padding:36px 24px;text-align:center;position:relative;overflow:hidden;box-shadow:0 30px 70px rgba(34,26,20,.4);width:100%}
 .cta-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 20%,rgba(192,39,39,.35),transparent 50%),radial-gradient(circle at 80% 70%,rgba(217,164,65,.22),transparent 50%)}
 .cta-card::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.08) 1px,transparent 1px);background-size:22px 22px}
 .cta-card>*{position:relative;z-index:2}
@@ -255,6 +257,7 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 .cta-card .btn-primary{font-size:1.05rem;padding:15px 38px;animation:glow 2.4s infinite}
 @keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(192,39,39,.55)}50%{box-shadow:0 0 0 16px rgba(192,39,39,0)}}
 .cta-points{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;margin-top:24px;font-size:.85rem;font-weight:600;color:#cbbfae}
+
 footer{background:#1b1510;color:#cbbfae;padding:38px 0;font-size:.85rem}
 footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
 footer .serif{color:#fff;font-size:1.15rem}
@@ -298,7 +301,7 @@ footer .serif{color:#fff;font-size:1.15rem}
 }
 @media(max-width:560px){
   .step-line{width:44px}
-  .cta-card{padding:48px 26px}
+  .cta-card{padding:32px 18px}
   .tb-marquee{display:none}
   .tb-promo{white-space:normal}
 }
@@ -483,13 +486,11 @@ footer .serif{color:#fff;font-size:1.15rem}
 </section>
 
 <section id="kontak">
-  <div class="wrap">
-    <div class="cta-card reveal">
-      <h2>Siap Pesan Catering yang <span class="accent">Lebih Mudah?</span></h2>
-      <p>Warung 99 — catering modern untuk keluarga, kantor, dan acara Anda. Cita rasa rumahan, layanan profesional.</p>
-      <a class="btn btn-primary" href="#menu">Mulai Pesan Sekarang →</a>
-      <div class="cta-points"><span>• Menu jelas</span><span>• Checkout cepat</span><span>• Pengantaran tepat waktu</span></div>
-    </div>
+  <div class="cta-card reveal">
+    <h2>Siap Pesan Catering yang <span class="accent">Lebih Mudah?</span></h2>
+    <p>Warung 99 — catering modern untuk keluarga, kantor, dan acara Anda. Cita rasa rumahan, layanan profesional.</p>
+    <a class="btn btn-primary" href="#menu">Mulai Pesan Sekarang →</a>
+    <div class="cta-points"><span>• Menu jelas</span><span>• Checkout cepat</span><span>• Pengantaran tepat waktu</span></div>
   </div>
 </section>
 </main>
