@@ -180,28 +180,32 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 .reveal{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
 .reveal.in{opacity:1;transform:none}
 
-/* ===== QUICK ROW (2 KOLOM SEIMBANG) ===== */
-.quick-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;align-items:stretch}
+/* ===== QUICK ROW (KOLOM KIRI LEBIH LEBAR) ===== */
+.quick-row{display:grid;grid-template-columns:1fr 240px;gap:20px;margin-bottom:20px;align-items:stretch}
 
-/* ===== QUICK (HANYA 1 CARD LOYALITAS) ===== */
-.quick-grid{display:grid;grid-template-columns:1fr;gap:20px;margin-bottom:20px}
-.qcard{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 20px;text-align:center;transition:.3s;position:relative;overflow:hidden}
-.qcard::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(155,28,28,.08),transparent 65%);opacity:0;transition:.3s}
-.qcard:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:rgba(155,28,28,.35)}
-.qcard:hover::before{opacity:1}
-.qcard .ico{font-size:28px;display:inline-block;transition:.3s}
-.qcard:hover .ico{transform:scale(1.25) rotate(-8deg)}
-.qcard b{display:block;margin:10px 0 4px}
-.qcard span{font-size:.8rem;color:var(--muted)}
-.reorder{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 26px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:space-between;transition:.3s}
+/* ===== REORDER (SATU BARIS HORIZONTAL) ===== */
+.reorder{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px 20px;display:flex;gap:14px;align-items:center;flex-wrap:nowrap;transition:.3s}
+.reorder > div:first-child{flex:1;min-width:0}
 .reorder:hover{box-shadow:var(--shadow)}
 .reorder h3{font-size:1.1rem}
 .reorder p{font-size:.8rem;color:var(--muted)}
-.ro-item{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:9px 14px;transition:.25s}
+.ro-item{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px 12px;transition:.25s;flex:0 0 auto}
 .ro-item:hover{border-color:var(--maroon);transform:translateY(-3px)}
 .ro-item .ci-emoji{width:42px;height:42px;font-size:21px;border-radius:11px;background:linear-gradient(135deg,#f3e6d2,#e9d5b8);display:grid;place-items:center}
 .ro-item b{font-size:.82rem;display:block}
 .ro-item span{font-size:.75rem;color:var(--muted)}
+
+/* ===== QUICK (LOYALITAS HORIZONTAL, PADDING MINIMAL) ===== */
+.quick-grid{display:grid;grid-template-columns:1fr;gap:20px;margin-bottom:20px}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px 14px;display:flex;align-items:center;gap:14px;transition:.3s;position:relative;overflow:hidden}
+.qcard::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(155,28,28,.08),transparent 65%);opacity:0;transition:.3s}
+.qcard:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:rgba(155,28,28,.35)}
+.qcard:hover::before{opacity:1}
+.qcard .ico{font-size:32px;flex:none;transition:.3s}
+.qcard:hover .ico{transform:scale(1.2) rotate(-8deg)}
+.qcard-text{flex:1;min-width:0}
+.qcard b{display:block;margin:0 0 2px;font-size:.95rem}
+.qcard span{font-size:.78rem;color:var(--muted)}
 
 .tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:34px}
 .tabs button{padding:10px 22px;border-radius:999px;border:1px solid var(--line);background:#fff;font-family:inherit;font-weight:700;font-size:.86rem;cursor:pointer;color:var(--muted);transition:.25s}
@@ -317,6 +321,7 @@ footer .serif{color:#fff;font-size:1.15rem}
   .cart-card{width:100%;margin-left:0;min-height:0}
   .hero-strip{bottom:64px}
   .quick-row{grid-template-columns:1fr}
+  .reorder{flex-wrap:wrap}
   .steps-grid{grid-template-columns:1fr}
   nav.menu{display:none}
 }
@@ -427,7 +432,13 @@ footer .serif{color:#fff;font-size:1.15rem}
         <div class="ro-item"><span class="ci-emoji">🍛</span><div><b>Nasi Kotak Rendang</b><span>Rp28.000 / kotak</span></div><button class="btn btn-primary" style="padding:9px 15px;font-size:.8rem" onclick="add('nk2')">Pesan Ulang</button></div>
       </div>
       <div class="quick-grid">
-        <div class="qcard"><span class="ico">🎁</span><b>Loyalitas</b><span>Kumpul stempel, dapat hadiah</span></div>
+        <div class="qcard">
+          <span class="ico">🎁</span>
+          <div class="qcard-text">
+            <b>Loyalitas</b>
+            <span>Kumpul stempel, dapat hadiah</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
