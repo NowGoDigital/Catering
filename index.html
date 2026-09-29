@@ -223,14 +223,16 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 .scard b{display:block;margin-bottom:6px;font-size:1.02rem}
 .scard p{font-size:.85rem;color:var(--muted)}
 
-/* ===== NOTICE KERANJANG KOSONG (ELEGAN) ===== */
+/* ===== NOTICE KERANJANG KOSONG (MINIMALIS, ICON KIRI) ===== */
 .cart-empty-notice{
   margin-top:20px;
   background:var(--card);
   border:1.5px dashed rgba(155,28,28,.25);
-  border-radius:20px;
-  padding:32px 24px;
-  text-align:center;
+  border-radius:14px;
+  padding:12px 16px;
+  display:flex;
+  align-items:center;
+  gap:12px;
   transition:.3s;
   position:relative;
   overflow:hidden;
@@ -242,18 +244,17 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
   pointer-events:none;
 }
 .cart-empty-notice .cen-ico{
-  font-size:36px;
-  display:inline-block;
-  margin-bottom:10px;
+  font-size:22px;
+  flex:none;
   animation:cenFloat 3s ease-in-out infinite;
 }
 @keyframes cenFloat{
   0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-6px)}
+  50%{transform:translateY(-4px)}
 }
 .cart-empty-notice p{
   color:var(--muted);
-  font-size:.9rem;
+  font-size:.85rem;
   font-weight:600;
   margin:0;
 }
@@ -498,13 +499,13 @@ footer .serif{color:#fff;font-size:1.15rem}
       <div class="scard"><span class="ghost">3</span><span class="num">3</span><div><b>Bayar &amp; Selesai</b><p>Bayar aman via QRIS/transfer/COD. Pesanan diproses, Anda tinggal tunggu.</p></div></div>
     </div>
 
-    <!-- Notice Keranjang Kosong (muncul saat belum ada pesanan) -->
+    <!-- Notice Keranjang Kosong -->
     <div class="cart-empty-notice reveal" id="cartEmptyNotice">
       <span class="cen-ico">🍽️</span>
       <p>Keranjang masih kosong. <a href="#menu">Yuk tambah menu favorit di atas 👆</a></p>
     </div>
 
-    <!-- Steps Bottom (tersembunyi saat keranjang kosong) -->
+    <!-- Steps Bottom -->
     <div class="steps-bottom reveal hidden" id="stepsBottom">
       <aside class="cart-card" id="cart">
         <div class="cart-head">Pesanan Anda <span class="cart-badge" id="cartCount">0</span></div>
@@ -703,7 +704,6 @@ function renderCart(){
   const stepsBottom=$('stepsBottom');
   const emptyNotice=$('cartEmptyNotice');
 
-  // Toggle visibility: notice vs steps-bottom
   if(ids.length){
     stepsBottom.classList.remove('hidden');
     emptyNotice.classList.add('hidden');
