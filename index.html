@@ -40,6 +40,7 @@ section{padding:44px 0;scroll-margin-top:90px}
 .btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
 .btn-ghost:hover{border-color:var(--maroon);color:var(--maroon)}
 .btn-block{width:100%;justify-content:center}
+.btn:disabled{opacity:.7;cursor:not-allowed;transform:none !important}
 
 .topbar{background:var(--grad-maroon);color:#fff;font-size:.7rem;font-weight:600;padding:5px 0;letter-spacing:.02em}
 .topbar-in{display:flex;align-items:center;gap:20px;width:100%;padding:0 14px}
@@ -766,11 +767,11 @@ footer::before{
         <button id="modeAntar" class="on" onclick="setMode('antar')">🛵 Antar</button>
         <button id="modeAmbil" onclick="setMode('ambil')">🛍️ Ambil Sendiri</button>
       </div>
+      <form class="address" onsubmit="cekArea(event)">
+        <input id="alamat" type="text" placeholder="Masukkan alamat pengantaran…">
+        <button class="btn btn-primary" type="submit">Cek Area</button>
+      </form>
       <div class="address-strip">
-        <form class="address" onsubmit="cekArea(event)">
-          <input id="alamat" type="text" placeholder="Masukkan alamat pengantaran…">
-          <button class="btn btn-primary" type="submit">Cek Area</button>
-        </form>
         <div class="hero-strip">
           <div class="marquee" id="marquee">
             <span class="f"><span class="ico">🛵</span><b>Pengiriman Cepat</b><span>· Dilacak real-time</span></span><span class="sep">✦</span>
@@ -1060,6 +1061,21 @@ let cart={}, mode='antar', activeCat='nasi';
 const rp=n=>'Rp'+n.toLocaleString('id-ID');
 const $=id=>document.getElementById(id);
 
+/* ===== KONFIGURASI CEK AREA ===== */
+const WARUNG_LOCATION = { lat: -8.5833, lng: 116.1167 }; // Warung 99 - Mataram, NTB
+const MAX_DELIVERY_RADIUS_KM = 10;
+
+function haversineDistance(lat1, lng1, lat2, lng2) {
+  const R = 6371; // Radius bumi dalam km
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLng = (lng2 - lng1) * Math.PI / 180;
+  const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+            Math.sin(dLng/2) * Math.sin(dLng/2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  return R * c;
+}
+
 function renderTabs(){
   $('tabs').innerHTML=CATS.map(c=>`<button class="${c.key===activeCat?'on':''}" onclick="setCat('${c.key}')">${c.label}</button>`).join('');
 }
@@ -1116,7 +1132,45 @@ function setMode(m){
   $('modeAmbil2').classList.toggle('on',m==='ambil');
   renderCart();
 }
-function cekArea(e){e.preventDefault();const v=$('alamat').value.trim();toast(v?'✅ Alamat terlayani area pengantaran kami!':'Isi alamat dulu ya, bro 😄');}
+
+/* ===== CEK AREA (FUNGSIONAL DENGAN GEOCODING + HAVERSINE) ===== */
+function cekArea(e){
+  e.preventDefault();
+  const v=$('alamat').value.trim();
+  if(!v){toast('Isi alamat dulu ya, bro 😄');return;}
+
+  const btn=e.target.querySelector('button[type="submit"]');
+  const originalText=btn.innerHTML;
+  btn.innerHTML='🔍 Mencari...';
+  btn.disabled=true;
+
+  fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(v)}&format=json&limit=1&countrycodes=id`)
+    .then(res=>res.json())
+    .then(data=>{
+      btn.innerHTML=originalText;
+      btn.disabled=false;
+      if(!data.length){
+        toast('❌ Lokasi tidak ditemukan. Coba alamat lain ya bro.');
+        return;
+      }
+      const lat=parseFloat(data[0].lat);
+      const lng=parseFloat(data[0].lon);
+      const distance=haversineDistance(WARUNG_LOCATION.lat,WARUNG_LOCATION.lng,lat,lng);
+      const distanceKm=distance.toFixed(1);
+
+      if(distance<=MAX_DELIVERY_RADIUS_KM){
+        toast(`✅ Terlayani! Jarak ${distanceKm} km dari Warung 99.`);
+      } else {
+        toast(`❌ Maaf, jarak ${distanceKm} km melebihi radius antar ${MAX_DELIVERY_RADIUS_KM} km.`);
+      }
+    })
+    .catch(err=>{
+      btn.innerHTML=originalText;
+      btn.disabled=false;
+      toast('⚠️ Gagal mencari lokasi. Coba lagi nanti ya bro.');
+    });
+}
+
 function openCheckout(){
   if(!Object.keys(cart).length){toast('Keranjang masih kosong 🍽️');return;}
   $('confirmCard').classList.remove('hidden');
