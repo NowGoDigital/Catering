@@ -223,7 +223,6 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 .scard b{display:block;margin-bottom:6px;font-size:1.02rem}
 .scard p{font-size:.85rem;color:var(--muted)}
 
-/* ===== NOTICE KERANJANG KOSONG (MINIMALIS, ICON KIRI) ===== */
 .cart-empty-notice{
   margin-top:20px;
   background:var(--card);
@@ -499,13 +498,11 @@ footer .serif{color:#fff;font-size:1.15rem}
       <div class="scard"><span class="ghost">3</span><span class="num">3</span><div><b>Bayar &amp; Selesai</b><p>Bayar aman via QRIS/transfer/COD. Pesanan diproses, Anda tinggal tunggu.</p></div></div>
     </div>
 
-    <!-- Notice Keranjang Kosong -->
     <div class="cart-empty-notice reveal" id="cartEmptyNotice">
       <span class="cen-ico">🍽️</span>
       <p>Keranjang masih kosong. <a href="#menu">Yuk tambah menu favorit di atas 👆</a></p>
     </div>
 
-    <!-- Steps Bottom -->
     <div class="steps-bottom reveal hidden" id="stepsBottom">
       <aside class="cart-card" id="cart">
         <div class="cart-head">Pesanan Anda <span class="cart-badge" id="cartCount">0</span></div>
@@ -664,6 +661,7 @@ const MENU=[
  {id:'pr1',cat:'prasmanan',emoji:'🥘',name:'Prasmanan Kantor',desc:'Min. 20 pax: 2 utama, 3 pendamping, dessert, air mineral.',price:55000,unit:'pax'},
  {id:'pr2',cat:'prasmanan',emoji:'🍲',name:'Prasmanan Arisan',desc:'Min. 15 pax: soto spesial, hidangan utama, snack, es campur.',price:45000,unit:'pax'},
  {id:'pr3',cat:'prasmanan',emoji:'🎉',name:'Tumpeng Mini Nusantara',desc:'Tumpeng mini dengan 9 lauk pauk, cocok untuk syukuran.',price:350000,unit:'set'},
+ {id:'pr4',cat:'prasmanan',emoji:'💒',name:'Prasmanan Resepsi',desc:'Min. 100 pax: menu lengkap resepsi, stall live cooking, dessert corner, dekorasi standar.',price:75000,unit:'pax'},
  {id:'sn1',cat:'snack',emoji:'🥟',name:'Risoles Mayo Smoked',desc:'Mayo creamy & ayam smoked, kulit crispy.',price:5000,unit:'pcs'},
  {id:'sn2',cat:'snack',emoji:'🍙',name:'Lemper Ayam Panggang',desc:'Ketan isi ayam suwir, dibakar aroma daun pisang.',price:4500,unit:'pcs'},
  {id:'sn3',cat:'snack',emoji:'🍰',name:'Box Kue Tradisional',desc:'Isi 10: lapis legit, kue klepon, bolu pandan.',price:35000,unit:'box'},
