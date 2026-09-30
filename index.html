@@ -730,14 +730,36 @@ footer::before{
   .hero-sec{padding:12px 0 48px}
   .ring{display:none}
   .hero-watermark{font-size:34vw;right:4%;top:20%}
-  .title-row{gap:14px}
-  .hero h1{font-size:1.6rem}
-  .hero .sub{font-size:.9rem;margin:12px 0 18px}
-  .eyebrow{font-size:.6rem;padding:5px 12px}
-  .toggle{max-width:100%}
+  .title-row{gap:14px;justify-content:center}
+  .hero h1{font-size:1.6rem;text-align:center}
+  .hero .sub{font-size:.9rem;margin:12px 0 18px;text-align:center}
   .sec-head{margin-bottom:20px}
   .sec-head h2{font-size:1.45rem}
   .sec-head p{font-size:.88rem}
+
+  /* 1. Topbar satu baris */
+  .topbar{font-size:.6rem}
+  .topbar-in{padding:0 12px}
+  .tb-promo{font-size:.6rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tb-marquee{display:none}
+
+  /* 2. Navbar: hanya logo+nama, tombol jadi icon keranjang */
+  nav.menu{display:none}
+  header .btn{padding:9px 12px;font-size:0;gap:0}
+  header .btn::before{content:"🛒";font-size:18px}
+
+  /* 3. Eyebrow satu baris rata tengah */
+  .eyebrow{display:flex;justify-content:center;white-space:nowrap;font-size:.55rem;padding:5px 12px}
+
+  /* 4. Hero title rata tengah (sudah di atas) */
+
+  /* 5. Cek Area lebar sama dengan toggle */
+  .toggle{max-width:100%}
+  .address{width:100%;flex:1}
+  .address input{flex:1;width:auto}
+
+  /* 6. Strip hero diberi jarak dari Cek Area */
+  .address-strip{gap:16px;margin-top:4px}
 
   /* Steps */
   .steps-ind{gap:0;margin-bottom:22px}
@@ -758,7 +780,6 @@ footer::before{
   .steps-bottom{gap:14px}
 
   /* Address strip */
-  .address-strip{gap:10px}
   .hero-strip{padding:8px 0}
   .hero-strip .f{gap:8px}
   .hero-strip .f .ico{font-size:14px}
@@ -820,12 +841,6 @@ footer::before{
   .cta-card p{font-size:.88rem;margin:12px auto 24px}
   .cta-card .btn-primary{padding:13px 28px;font-size:.95rem}
   .cta-points{gap:14px;font-size:.78rem}
-
-  /* Topbar mobile fix */
-  .topbar{font-size:.62rem}
-  .topbar-in{padding:0 12px}
-  .tb-promo{font-size:.62rem;white-space:normal}
-  .tb-marquee{display:none}
 }
 </style>
 </head>
