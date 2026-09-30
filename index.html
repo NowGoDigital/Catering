@@ -817,7 +817,6 @@ footer::before{
   .hero-strip .f span{font-size:.65rem}
   .marquee{gap:24px}
 
-  /* ===== MENU MOBILE: 2 KOLOM ===== */
   .menu-grid{grid-template-columns:repeat(2,1fr);gap:12px}
   .m-photo{height:100px;font-size:40px}
   .m-body{padding:12px 10px}
@@ -1212,6 +1211,8 @@ const MENU=[
  {id:'pr2',cat:'prasmanan',emoji:'🍲',name:'Prasmanan Arisan',desc:'Min. 15 pax: soto spesial, hidangan utama, snack, es campur.',price:45000,unit:'pax'},
  {id:'pr3',cat:'prasmanan',emoji:'🎉',name:'Tumpeng Mini Nusantara',desc:'Tumpeng mini dengan 9 lauk pauk, cocok untuk syukuran.',price:350000,unit:'set'},
  {id:'pr4',cat:'prasmanan',emoji:'💒',name:'Prasmanan Resepsi',desc:'Min. 100 pax: menu lengkap resepsi, stall live cooking, dessert corner, dekorasi standar.',price:75000,unit:'pax'},
+ {id:'lp1',cat:'lauk',emoji:'🥩',name:'Lawar Daging',desc:'Lawar daging khas Lombok, daging cincang dengan kelapa & bumbu rempah.',price:18000,unit:'porsi'},
+ {id:'lp2',cat:'lauk',emoji:'🐟',name:'Ikan Bumbu Kuning',desc:'Ikan segar dimasak bumbu kuning kunyit khas, gurih & meresap.',price:15000,unit:'porsi'},
  {id:'sn1',cat:'snack',emoji:'🥟',name:'Risoles Mayo Smoked',desc:'Mayo creamy & ayam smoked, kulit crispy.',price:5000,unit:'pcs'},
  {id:'sn2',cat:'snack',emoji:'🍙',name:'Lemper Ayam Panggang',desc:'Ketan isi ayam suwir, dibakar aroma daun pisang.',price:4500,unit:'pcs'},
  {id:'sn3',cat:'snack',emoji:'🍰',name:'Box Kue Tradisional',desc:'Isi 10: lapis legit, kue klepon, bolu pandan.',price:35000,unit:'box'},
@@ -1221,7 +1222,7 @@ const MENU=[
  {id:'pa1',cat:'paket',emoji:'💼',name:'Paket Rapat Kantor (20 pax)',desc:'20 nasi kotak + 2 snack + 20 minuman, bisa 2x kirim.',price:600000,unit:'paket'},
  {id:'pa2',cat:'paket',emoji:'🕌',name:'Paket Syukuran (50 pax)',desc:'Prasmanan mini + 50 nasi kotak + tumpeng centerpiece.',price:1250000,unit:'paket'},
 ];
-const CATS=[{key:'nasi',label:'Nasi Kotak'},{key:'prasmanan',label:'Prasmanan'},{key:'snack',label:'Snack & Kue'},{key:'minuman',label:'Minuman'},{key:'paket',label:'Paket Acara'}];
+const CATS=[{key:'nasi',label:'Nasi Kotak'},{key:'prasmanan',label:'Prasmanan'},{key:'lauk',label:'Lauk Pauk'},{key:'snack',label:'Snack & Kue'},{key:'minuman',label:'Minuman'},{key:'paket',label:'Paket Acara'}];
 let cart={}, mode='antar', activeCat='nasi';
 const rp=n=>'Rp'+n.toLocaleString('id-ID');
 const $=id=>document.getElementById(id);
