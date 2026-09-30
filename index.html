@@ -90,9 +90,27 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
 .hero-dots{position:absolute;inset:0;pointer-events:none;opacity:.5;
  background-image:radial-gradient(rgba(155,28,28,.14) 1.2px,transparent 1.2px);background-size:26px 26px;
  -webkit-mask-image:radial-gradient(ellipse at 50% 40%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 40%,#000 20%,transparent 75%)}
-.hero-watermark{position:absolute;font-family:'Playfair Display',serif;font-weight:800;font-size:24vw;line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(155,28,28,.09);top:18%;left:auto;right:25%;transform:translateY(-50%);pointer-events:none;user-select:none;z-index:1;max-width:100%}
+
+/* ===== WATERMARK 99 (DI BAWAH BADGE, RATA TENGAH) ===== */
+.hero-copy{min-width:0;position:relative}
+.hero-watermark{
+  position:relative;
+  font-family:'Playfair Display',serif;
+  font-weight:800;
+  font-size:6rem;
+  line-height:1;
+  color:transparent;
+  -webkit-text-stroke:1.5px rgba(155,28,28,.09);
+  text-align:center;
+  pointer-events:none;
+  user-select:none;
+  z-index:0;
+  margin-top:-10px;
+  margin-bottom:-20px;
+}
+.hero-copy > *:not(.hero-watermark){position:relative;z-index:1}
+
 .hero{display:grid;grid-template-columns:1fr;position:relative;z-index:2}
-.hero-copy{min-width:0}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--maroon);font-weight:800;font-size:.64rem;letter-spacing:.14em;margin-bottom:14px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;box-shadow:0 6px 16px rgba(60,35,15,.08)}
 .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--maroon2);animation:pulse 1.6s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(192,39,39,.5)}70%{box-shadow:0 0 0 10px rgba(192,39,39,0)}100%{box-shadow:0 0 0 0 rgba(192,39,39,0)}}
@@ -690,7 +708,6 @@ footer::before{
   section{padding:32px 0}
   .hero-sec{padding:16px 0 60px}
   .hero{grid-template-columns:1fr}
-  .hero-watermark{font-size:28vw;right:10%}
   .ring{width:80px;height:80px}
   .ring text{font-size:9px}
   .ring .core{font-size:24px}
@@ -721,6 +738,7 @@ footer::before{
   .cta-points{gap:18px;font-size:.82rem}
   .modal-card{padding:26px;border-radius:20px}
   .modal-card h3{font-size:1.3rem}
+  .hero-watermark{font-size:5rem}
 }
 
 /* ===== MOBILE (≤560px) ===== */
@@ -729,7 +747,6 @@ footer::before{
   .wrap{padding:0 16px}
   .hero-sec{padding:12px 0 48px}
   .ring{display:none}
-  .hero-watermark{font-size:34vw;right:4%;top:20%}
   .title-row{gap:14px;justify-content:center}
   .hero h1{font-size:1.6rem;text-align:center}
   .hero .sub{font-size:.9rem;margin:12px 0 18px;text-align:center}
@@ -737,29 +754,30 @@ footer::before{
   .sec-head h2{font-size:1.45rem}
   .sec-head p{font-size:.88rem}
 
-  /* 1. Topbar satu baris */
+  /* Topbar satu baris */
   .topbar{font-size:.6rem}
   .topbar-in{padding:0 12px}
   .tb-promo{font-size:.6rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .tb-marquee{display:none}
 
-  /* 2. Navbar: hanya logo+nama, tombol jadi icon keranjang */
+  /* Navbar: hanya logo+nama, tombol jadi icon keranjang */
   nav.menu{display:none}
   header .btn{padding:9px 12px;font-size:0;gap:0}
   header .btn::before{content:"🛒";font-size:18px}
 
-  /* 3. Eyebrow satu baris rata tengah */
+  /* Eyebrow satu baris rata tengah */
   .eyebrow{display:flex;justify-content:center;white-space:nowrap;font-size:.55rem;padding:5px 12px}
 
-  /* 4. Hero title rata tengah (sudah di atas) */
-
-  /* 5. Cek Area lebar sama dengan toggle */
+  /* Cek Area lebar sama dengan toggle */
   .toggle{max-width:100%}
   .address{width:100%;flex:1}
   .address input{flex:1;width:auto}
 
-  /* 6. Strip hero diberi jarak dari Cek Area */
+  /* Strip hero diberi jarak dari Cek Area */
   .address-strip{gap:16px;margin-top:4px}
+
+  /* Watermark mobile */
+  .hero-watermark{font-size:4rem;margin-top:-8px;margin-bottom:-14px}
 
   /* Steps */
   .steps-ind{gap:0;margin-bottom:22px}
@@ -883,11 +901,11 @@ footer::before{
     <i style="left:56%;animation-delay:.9s"></i>
     <i style="left:82%;animation-delay:2.7s"></i>
   </div>
-  <div class="hero-watermark">99</div>
 
   <div class="wrap hero">
     <div class="hero-copy">
       <p class="eyebrow"><span class="dot"></span> 🍚 100% MASAKAN RUMAHAN. DIMASAK HARI INI.</p>
+      <div class="hero-watermark">99</div>
       <div class="title-row">
         <h1>
           <span class="line"><span>Masakan Rumahan</span></span>
