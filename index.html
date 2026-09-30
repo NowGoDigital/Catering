@@ -768,14 +768,12 @@ footer::before{
   .sec-head h2{font-size:1.45rem}
   .sec-head p{font-size:.88rem}
 
-  /* ===== WATERMARK MOBILE: hide desktop, show mobile ===== */
   .hero-watermark{display:none}
   .hero-watermark-mobile{
     display:block;
     font-size:4rem;
     margin:0;
   }
-  /* Samakan jarak badge→watermark dan watermark→judul */
   .eyebrow{margin-bottom:0}
   .title-row{margin-top:0}
 
@@ -819,11 +817,16 @@ footer::before{
   .hero-strip .f span{font-size:.65rem}
   .marquee{gap:24px}
 
-  .menu-grid{gap:14px}
-  .m-photo{height:110px;font-size:44px}
-  .m-body{padding:14px}
-  .m-body b{font-size:.9rem}
-  .m-body p{font-size:.74rem}
+  /* ===== MENU MOBILE: 2 KOLOM ===== */
+  .menu-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .m-photo{height:100px;font-size:40px}
+  .m-body{padding:12px 10px}
+  .m-body b{font-size:.85rem}
+  .m-body p{font-size:.7rem}
+  .m-foot{gap:6px}
+  .m-foot .price{font-size:.85rem}
+  .m-foot .unit{font-size:.65rem}
+  .add{width:32px;height:32px;font-size:17px}
 
   .info-grid{gap:14px}
   .icard{padding:20px}
