@@ -91,7 +91,6 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
  background-image:radial-gradient(rgba(155,28,28,.14) 1.2px,transparent 1.2px);background-size:26px 26px;
  -webkit-mask-image:radial-gradient(ellipse at 50% 40%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 40%,#000 20%,transparent 75%)}
 
-/* ===== WATERMARK DESKTOP (25% dari kanan, sejajar judul hero) ===== */
 .hero-watermark{
   position:absolute;
   font-family:'Playfair Display',serif;
@@ -110,7 +109,6 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
   max-width:100%;
 }
 
-/* ===== WATERMARK MOBILE (di bawah badge, rata tengah) ===== */
 .hero-watermark-mobile{
   display:none;
   position:relative;
@@ -124,7 +122,7 @@ nav.menu a:hover,nav.menu a.active{border-color:var(--maroon);color:var(--maroon
   text-align:center;
   pointer-events:none;
   user-select:none;
-  margin:-10px 0 -20px;
+  margin:0;
 }
 
 .hero{display:grid;grid-template-columns:1fr;position:relative;z-index:2}
@@ -715,14 +713,12 @@ footer::before{
 .confirm-summary .cs-total{border-top:2px solid var(--maroon);margin-top:8px;padding-top:10px}
 .confirm-summary .cs-total .cs-label,.confirm-summary .cs-total .cs-val{color:var(--maroon);font-weight:800;font-size:.95rem}
 
-/* ===== TABLET (≤1200px) ===== */
 @media(max-width:1200px){
   .ring{width:100px;height:100px}
   .title-row{gap:18px}
   .hero-watermark-mobile{font-size:5rem}
 }
 
-/* ===== TABLET / MOBILE BESAR (≤960px) ===== */
 @media(max-width:960px){
   section{padding:32px 0}
   .hero-sec{padding:16px 0 60px}
@@ -760,7 +756,6 @@ footer::before{
   .modal-card h3{font-size:1.3rem}
 }
 
-/* ===== MOBILE (≤560px) ===== */
 @media(max-width:560px){
   section{padding:28px 0}
   .wrap{padding:0 16px}
@@ -778,32 +773,29 @@ footer::before{
   .hero-watermark-mobile{
     display:block;
     font-size:4rem;
-    margin:-8px 0 -14px;
+    margin:0;
   }
+  /* Samakan jarak badge→watermark dan watermark→judul */
+  .eyebrow{margin-bottom:0}
+  .title-row{margin-top:0}
 
-  /* Topbar satu baris */
   .topbar{font-size:.6rem}
   .topbar-in{padding:0 12px}
   .tb-promo{font-size:.6rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .tb-marquee{display:none}
 
-  /* Navbar: hanya logo+nama, tombol jadi icon keranjang */
   nav.menu{display:none}
   header .btn{padding:9px 12px;font-size:0;gap:0}
   header .btn::before{content:"🛒";font-size:18px}
 
-  /* Eyebrow satu baris rata tengah */
   .eyebrow{display:flex;justify-content:center;white-space:nowrap;font-size:.55rem;padding:5px 12px}
 
-  /* Cek Area lebar sama dengan toggle */
   .toggle{max-width:100%}
   .address{width:100%;flex:1}
   .address input{flex:1;width:auto}
 
-  /* Strip hero diberi jarak dari Cek Area */
   .address-strip{gap:16px;margin-top:4px}
 
-  /* Steps */
   .steps-ind{gap:0;margin-bottom:22px}
   .step-dot{width:32px;height:32px;font-size:.82rem}
   .step-line{width:28px}
@@ -812,7 +804,6 @@ footer::before{
   .scard .ghost{font-size:4rem}
   .scard .num{width:38px;height:38px;font-size:.9rem}
 
-  /* Cart & Confirm */
   .cart-card{padding:14px 16px}
   .cart-items{max-height:160px}
   .cart-note{font-size:.68rem}
@@ -821,7 +812,6 @@ footer::before{
   .confirm-card .toggle button{max-width:100%}
   .steps-bottom{gap:14px}
 
-  /* Address strip */
   .hero-strip{padding:8px 0}
   .hero-strip .f{gap:8px}
   .hero-strip .f .ico{font-size:14px}
@@ -829,32 +819,27 @@ footer::before{
   .hero-strip .f span{font-size:.65rem}
   .marquee{gap:24px}
 
-  /* Menu */
   .menu-grid{gap:14px}
   .m-photo{height:110px;font-size:44px}
   .m-body{padding:14px}
   .m-body b{font-size:.9rem}
   .m-body p{font-size:.74rem}
 
-  /* Info */
   .info-grid{gap:14px}
   .icard{padding:20px}
 
-  /* Profile */
   .profil-grid{gap:24px}
   .foto-frame{max-width:220px}
   .foto-placeholder{font-size:60px}
   .profil-info h3{font-size:1.2rem}
   .profil-info > p{font-size:.86rem}
 
-  /* Footer */
   .footer-inner{padding:40px 0 0}
   .footer-grid{gap:32px;padding-bottom:32px}
   .footer-tagline{font-size:.8rem}
   .footer-contact-grid{gap:8px}
   .footer-bottom{flex-direction:column;text-align:center;gap:8px}
 
-  /* Toast full-width */
   .toast{
     left:16px;right:16px;
     transform:translateX(0) translateY(20px);
@@ -864,7 +849,6 @@ footer::before{
   }
   .toast.show{transform:translateX(0) translateY(0)}
 
-  /* Minibar column */
   .minibar{
     flex-direction:column;
     gap:10px;
@@ -872,12 +856,10 @@ footer::before{
   }
   .minibar b{font-size:.85rem;text-align:center}
 
-  /* Modal */
   .modal{padding:12px}
   .modal-card{padding:22px;border-radius:18px}
   .modal-card h3{font-size:1.2rem}
 
-  /* CTA */
   .cta-card{padding:26px 16px}
   .cta-card h2{font-size:1.45rem}
   .cta-card p{font-size:.88rem;margin:12px auto 24px}
@@ -925,13 +907,11 @@ footer::before{
     <i style="left:56%;animation-delay:.9s"></i>
     <i style="left:82%;animation-delay:2.7s"></i>
   </div>
-  <!-- WATERMARK DESKTOP: absolute position di hero-sec -->
   <div class="hero-watermark">99</div>
 
   <div class="wrap hero">
     <div class="hero-copy">
       <p class="eyebrow"><span class="dot"></span> 🍚 100% MASAKAN RUMAHAN. DIMASAK HARI INI.</p>
-      <!-- WATERMARK MOBILE: relative position di bawah badge, rata tengah -->
       <div class="hero-watermark-mobile">99</div>
       <div class="title-row">
         <h1>
