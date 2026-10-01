@@ -713,6 +713,46 @@ footer::before{
 .confirm-summary .cs-total{border-top:2px solid var(--maroon);margin-top:8px;padding-top:10px}
 .confirm-summary .cs-total .cs-label,.confirm-summary .cs-total .cs-val{color:var(--maroon);font-weight:800;font-size:.95rem}
 
+/* ===== BOTTOM NAV MOBILE APP-LIKE ===== */
+.bottom-nav{
+  display:none;
+  position:fixed;
+  bottom:0;left:0;right:0;
+  background:rgba(255,252,247,.96);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-top:1px solid var(--line);
+  z-index:55;
+  padding:6px 8px calc(6px + env(safe-area-inset-bottom));
+  box-shadow:0 -8px 30px rgba(60,35,15,.1);
+}
+.bnav-item{
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+  text-decoration:none;color:var(--muted);
+  font-size:.65rem;font-weight:600;
+  padding:8px 14px;border-radius:14px;
+  transition:.25s;
+  position:relative;
+}
+.bnav-item.active{color:var(--maroon);background:rgba(155,28,28,.08)}
+.bnav-item.active::before{
+  content:"";
+  position:absolute;top:-6px;left:50%;transform:translateX(-50%);
+  width:20px;height:3px;border-radius:99px;
+  background:var(--grad-maroon);
+}
+.bnav-ico{font-size:20px;line-height:1}
+.bnav-label{font-size:.62rem;letter-spacing:.02em}
+.bnav-badge{
+  position:absolute;top:4px;right:8px;
+  background:var(--maroon2);color:#fff;
+  font-size:.55rem;font-weight:800;
+  min-width:16px;height:16px;border-radius:99px;
+  display:flex;align-items:center;justify-content:center;
+  padding:0 4px;
+  box-shadow:0 2px 6px rgba(155,28,28,.4);
+}
+
 @media(max-width:1200px){
   .ring{width:100px;height:100px}
   .title-row{gap:18px}
@@ -855,6 +895,7 @@ footer::before{
     flex-direction:column;
     gap:10px;
     padding:12px 16px;
+    bottom:70px;
   }
   .minibar b{font-size:.85rem;text-align:center}
 
@@ -867,6 +908,11 @@ footer::before{
   .cta-card p{font-size:.88rem;margin:12px auto 24px}
   .cta-card .btn-primary{padding:13px 28px;font-size:.95rem}
   .cta-points{gap:14px;font-size:.78rem}
+
+  /* Bottom nav visible di mobile */
+  .bottom-nav{display:flex;justify-content:space-around}
+  body{padding-bottom:70px}
+  footer{padding-bottom:80px}
 }
 </style>
 </head>
@@ -1177,6 +1223,27 @@ footer::before{
   </div>
 </footer>
 
+<!-- ===== BOTTOM NAV MOBILE APP-LIKE ===== -->
+<nav class="bottom-nav" id="bottomNav">
+  <a href="#beranda" class="bnav-item active" data-section="beranda">
+    <span class="bnav-ico">🏠</span>
+    <span class="bnav-label">Beranda</span>
+  </a>
+  <a href="#menu" class="bnav-item" data-section="menu">
+    <span class="bnav-ico">🍽️</span>
+    <span class="bnav-label">Menu</span>
+  </a>
+  <a href="#layanan" class="bnav-item" data-section="layanan">
+    <span class="bnav-ico">🛒</span>
+    <span class="bnav-label">Keranjang</span>
+    <span class="bnav-badge hidden" id="bnavBadge">0</span>
+  </a>
+  <a href="#profil" class="bnav-item" data-section="profil">
+    <span class="bnav-ico">👤</span>
+    <span class="bnav-label">Profil</span>
+  </a>
+</nav>
+
 <div class="minibar" id="minibar"><b id="miniText"></b><button class="btn btn-primary" style="padding:10px 18px;font-size:.85rem" onclick="document.getElementById('cart').scrollIntoView()">Lihat Pesanan</button></div>
 <div class="toast" id="toast"></div>
 
@@ -1288,6 +1355,16 @@ function renderCart(){
   const mini=$('minibar');
   if(ids.length){mini.classList.add('show');$('miniText').textContent=`${$('cartCount').textContent} item • ${rp(t.total)} • ${mode==='antar'?'Diantar':'Ambil sendiri'}`;}
   else mini.classList.remove('show');
+
+  // Update bottom nav badge
+  const badge=$('bnavBadge');
+  const totalItems=ids.reduce((s,i)=>s+cart[i],0);
+  if(totalItems>0){
+    badge.classList.remove('hidden');
+    badge.textContent=totalItems;
+  } else {
+    badge.classList.add('hidden');
+  }
 }
 function setMode(m){
   mode=m;
@@ -1403,6 +1480,26 @@ heroSec.addEventListener('mousemove',e=>{
     el.style.translate=`${x*f}px ${y*f}px`;
   });
 });
+
+// ===== BOTTOM NAV ACTIVE STATE ON SCROLL =====
+const bnavItems=document.querySelectorAll('.bnav-item');
+const sections=document.querySelectorAll('section[id]');
+
+function updateBottomNav(){
+  let current='beranda';
+  sections.forEach(sec=>{
+    const rect=sec.getBoundingClientRect();
+    if(rect.top<=window.innerHeight/2){
+      current=sec.id;
+    }
+  });
+  bnavItems.forEach(item=>{
+    item.classList.toggle('active',item.dataset.section===current);
+  });
+}
+
+addEventListener('scroll',updateBottomNav);
+updateBottomNav();
 
 renderTabs();renderMenu();renderCart();
 </script>
